@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/src/.vs/TinyMvvm/v15
+/src/TinyMvvm/obj
+/src/TinyMvvm/bin/Debug/netstandard1.0
