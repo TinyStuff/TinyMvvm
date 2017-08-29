@@ -6,3 +6,5 @@
 /src/.vs/TinyMvvm/v15
 /src/TinyMvvm/obj
 /src/TinyMvvm/bin/Debug/netstandard1.0
+/src/TinyMvvm.Autofac/obj
+/TinyMvvm.Forms/obj

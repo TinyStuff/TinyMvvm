@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyMvvm", "TinyMvvm\TinyMvvm.csproj", "{ABF21378-06FB-4A94-8A09-C0578155ADA3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyMvvm.Forms", "..\TinyMvvm.Forms\TinyMvvm.Forms.csproj", "{BFEEE325-041B-4D3F-9374-C7B985F71DEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyMvvm.Autofac", "TinyMvvm.Autofac\TinyMvvm.Autofac.csproj", "{82CAAD19-E130-4C94-81A8-56890DEC0874}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{ABF21378-06FB-4A94-8A09-C0578155ADA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABF21378-06FB-4A94-8A09-C0578155ADA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABF21378-06FB-4A94-8A09-C0578155ADA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFEEE325-041B-4D3F-9374-C7B985F71DEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFEEE325-041B-4D3F-9374-C7B985F71DEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFEEE325-041B-4D3F-9374-C7B985F71DEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFEEE325-041B-4D3F-9374-C7B985F71DEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82CAAD19-E130-4C94-81A8-56890DEC0874}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82CAAD19-E130-4C94-81A8-56890DEC0874}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82CAAD19-E130-4C94-81A8-56890DEC0874}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82CAAD19-E130-4C94-81A8-56890DEC0874}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
