@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -58,6 +59,8 @@ namespace TinyMvvm
             }
         }
 
+        private Dictionary<string, string> _subscriptions = new Dictionary<string, string>();
+
         public async Task PublishMessageAsync(string channel, string argument = null)
         {
             await TinyPubSub.PublishAsync(channel, argument);
@@ -65,17 +68,20 @@ namespace TinyMvvm
 
         public void SubscribeToMessageChannel(string channel, Action action)
         {
-            TinyPubSub.Subscribe(channel, action);
+            var tag = TinyPubSub.Subscribe(channel, action);
+            _subscriptions.Add(channel, tag);
         }
 
         public void SubscribeToMessageChannel(string channel, Action<string> action)
         {
-            TinyPubSub.Subscribe(channel, action);
+            var tag = TinyPubSub.Subscribe(channel, action);
+            _subscriptions.Add(channel, tag);
         }
 
         public void UnSubscribeFromMessageChannel(string channel)
         {
-            TinyPubSub.Unsubscribe(channel);
+            var tag = _subscriptions[channel];
+            TinyPubSub.Unsubscribe(tag);
         }
 
         public void RaisePropertyChanged([CallerMemberName]string propertyName = null)
