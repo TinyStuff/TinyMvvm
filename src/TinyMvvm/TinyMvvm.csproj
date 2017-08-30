@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.0</TargetFramework>
+    <Authors>Daniel Hindrikes &amp; Johan Karlsson</Authors>
+    <Company />
+    <Description />
+    <RepositoryType>Git</RepositoryType>
+    <RepositoryUrl>https://github.com/dhindrik/TinyMvvm</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/dhindrik/TinyMvvm</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/dhindrik/TinyMvvm/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageTags>MVVM</PackageTags>
+    <Copyright>Copyright 2017 - Johan Karlsson and Daniel Hindrikes</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

@@ -5,6 +5,15 @@
       <PackageTargetFallback>
           portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20
       </PackageTargetFallback>
+      <RepositoryUrl>https://github.com/dhindrik/TinyMvvm</RepositoryUrl>
+      <PackageProjectUrl>https://github.com/dhindrik/TinyMvvm</PackageProjectUrl>
+      <RepositoryType>Git</RepositoryType>
+      <PackageTags>Xamarin, MVVM</PackageTags>
+      <PackageLicenseUrl>https://github.com/dhindrik/TinyMvvm/blob/master/LICENSE</PackageLicenseUrl>
+      <Copyright>Copyright 2017 - Johan Karlsson and Daniel Hindrikes</Copyright>
+      <Authors>Daniel Hindrikes &amp; Johan Karlsson</Authors>
+      <Company />
+      <Product>TinyMvvm for Xamarin.Forms</Product>
   </PropertyGroup>
 
   <ItemGroup>
