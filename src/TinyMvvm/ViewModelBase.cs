@@ -82,6 +82,8 @@ namespace TinyMvvm
         {
             var tag = _subscriptions[channel];
             TinyPubSub.Unsubscribe(tag);
+
+            _subscriptions.Remove(channel);
         }
 
         public void RaisePropertyChanged([CallerMemberName]string propertyName = null)
