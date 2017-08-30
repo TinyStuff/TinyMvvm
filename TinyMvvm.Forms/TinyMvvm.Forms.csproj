@@ -2,6 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.0</TargetFramework>
+      <PackageTargetFallback>
+          portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20
+      </PackageTargetFallback>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="xamarin.forms" Version="2.3.4.270" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\TinyMvvm\TinyMvvm.csproj" />
+  </ItemGroup>
 
 </Project>

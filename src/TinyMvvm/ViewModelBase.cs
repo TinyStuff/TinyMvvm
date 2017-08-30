@@ -23,6 +23,21 @@ namespace TinyMvvm
             _navigation = navigation;
         }
 
+        public async virtual Task Initialize()
+        {
+
+        }
+
+        public async virtual Task OnAppearing()
+        {
+
+        }
+
+        public async virtual Task OnDisappearing()
+        {
+
+        }
+
         public INavigationHelper Navigation
         {
             get
