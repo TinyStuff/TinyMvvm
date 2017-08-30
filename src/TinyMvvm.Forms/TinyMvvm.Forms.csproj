@@ -14,6 +14,7 @@
       <Authors>Daniel Hindrikes &amp; Johan Karlsson</Authors>
       <Company />
       <Product>TinyMvvm for Xamarin.Forms</Product>
+      <Version>1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
