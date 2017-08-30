@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\TinyMvvm\TinyMvvm.csproj" />
+    <ProjectReference Include="..\TinyMvvm\TinyMvvm.csproj" />
   </ItemGroup>
 
 </Project>
