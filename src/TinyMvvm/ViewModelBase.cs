@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
 using TinyMvvm.IoC;
 using TinyNavigationHelper;
@@ -12,6 +13,8 @@ namespace TinyMvvm
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
         private INavigationHelper _navigation;
+
+        
 
         public ViewModelBase()
         {
@@ -30,7 +33,7 @@ namespace TinyMvvm
 
         public async virtual Task OnAppearing()
         {
-
+         
         }
 
         public async virtual Task OnDisappearing()
