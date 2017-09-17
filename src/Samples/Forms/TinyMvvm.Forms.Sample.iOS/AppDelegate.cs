@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using TinyMvvm.Forms.Sample.iOS.Startup;
+using TinyMvvm.Forms.Sample.Startup;
 using UIKit;
 
 namespace TinyMvvm.Forms.Sample.iOS
@@ -14,9 +16,8 @@ namespace TinyMvvm.Forms.Sample.iOS
         {
             global::Xamarin.Forms.Forms.Init();
 
-            var formsApp = new App();
-			Bootstrapper.Initialize(formsApp);
-            LoadApplication(formsApp);
+            Bootstrapper.Platform = new IosBootstrapper();
+            LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
         }

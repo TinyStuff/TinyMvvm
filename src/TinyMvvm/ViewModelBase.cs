@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using TinyMvvm.IoC;
 using TinyNavigationHelper;
 using TinyPubSubLib;
@@ -37,6 +38,17 @@ namespace TinyMvvm
         public async virtual Task OnDisappearing()
         {
 
+        }
+
+        public ICommand NavigateTo
+        {
+            get
+            {
+                return new TinyCommand<string>(async (p) =>
+                {
+                    await Navigation.NavigateToAsync(p);
+                });
+            }
         }
 
         public INavigationHelper Navigation

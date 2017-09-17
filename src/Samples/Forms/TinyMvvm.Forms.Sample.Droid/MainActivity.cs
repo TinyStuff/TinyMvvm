@@ -22,9 +22,8 @@ namespace TinyMvvm.Forms.Sample.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
-            var app = new App();
-			Bootstrapper.Initialize(app);
-            LoadApplication(app);
+            Bootstrapper.Platform = new DroidBootstrapper();
+            LoadApplication(new App());
         }
     }
 }

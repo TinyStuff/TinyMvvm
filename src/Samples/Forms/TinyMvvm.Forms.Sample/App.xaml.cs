@@ -1,4 +1,6 @@
-﻿using TinyMvvm.Forms.Sample.Views;
+﻿using TinyMvvm.Forms.Sample.Startup;
+using TinyMvvm.Forms.Sample.Views;
+using TinyMvvm.IoC;
 using Xamarin.Forms;
 
 namespace TinyMvvm.Forms.Sample
@@ -8,8 +10,8 @@ namespace TinyMvvm.Forms.Sample
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MainView();
+            Bootstrapper.Initialize(this);
+            MainPage = new NavigationPage(Resolver.Resolve<MainView>());
         }
 
         protected override void OnStart()

@@ -9,12 +9,11 @@ using Xamarin.Forms;
 
 namespace TinyMvvm.Forms
 {
- 
     public class ViewBase<T> : ContentPage where T:INotifyPropertyChanged
     {
         public T ViewModel { get; private set; }
 
-        private static readonly SemaphoreSlim _readLock = new SemaphoreSlim(1, 1);
+        private readonly SemaphoreSlim _readLock = new SemaphoreSlim(1, 1);
 
         public ViewBase()
         {
@@ -33,9 +32,15 @@ namespace TinyMvvm.Forms
                 {
                     Device.BeginInvokeOnMainThread(async () =>
                     {
-                        await _readLock.WaitAsync();
-                        await viewModel.Initialize();
-                        _readLock.Release();
+                        try
+                        {
+                            await _readLock.WaitAsync();
+                            await viewModel.Initialize();
+						}
+                        finally
+                        {
+							_readLock.Release();
+                        }
                     }); 
                 }            
             }
