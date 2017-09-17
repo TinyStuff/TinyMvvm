@@ -18,12 +18,12 @@ namespace TinyMvvm.Forms
 
         public ViewBase()
         {
-            if(Resolver.IsEnabled)
+            if (Resolver.IsEnabled)
             {
                 ViewModel = Resolver.Resolve<T>();
 
                 BindingContext = ViewModel;
-            }         
+            }
             
             if(ViewModel is ViewModelBase)
             {

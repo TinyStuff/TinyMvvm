@@ -7,5 +7,10 @@ namespace TinyMvvm.Forms.Sample.ViewModels
         public MainViewModel()
         {
         }
+
+        public override System.Threading.Tasks.Task Initialize()
+        {
+            return base.Initialize();
+        }
     }
 }

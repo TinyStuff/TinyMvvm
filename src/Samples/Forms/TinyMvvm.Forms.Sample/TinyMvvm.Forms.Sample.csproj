@@ -42,6 +42,7 @@
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="Bootstrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -70,6 +71,9 @@
     </Reference>
     <Reference Include="TinyPubSub.Forms">
       <HintPath>..\..\..\packages\tinypubsub.forms.1.2.54\lib\netstandard1.0\TinyPubSub.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac">
+      <HintPath>..\..\..\packages\Autofac.4.6.1\lib\netstandard1.1\Autofac.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
