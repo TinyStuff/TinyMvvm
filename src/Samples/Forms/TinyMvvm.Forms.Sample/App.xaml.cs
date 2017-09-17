@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using TinyMvvm.Forms.Sample.Views;
+using Xamarin.Forms;
 
 namespace TinyMvvm.Forms.Sample
 {
@@ -8,7 +9,7 @@ namespace TinyMvvm.Forms.Sample
         {
             InitializeComponent();
 
-            MainPage = new TinyMvvm_Forms_SamplePage();
+            MainPage = new MainView();
         }
 
         protected override void OnStart()

@@ -29,16 +29,19 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml" />
-    <EmbeddedResource Include="TinyMvvm.Forms.SamplePage.xaml" />
+    <EmbeddedResource Include="Views\MainView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TinyMvvm.Forms.SamplePage.xaml.cs">
-      <DependentUpon>TinyMvvm.Forms.SamplePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\MainViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -53,9 +56,38 @@
       <HintPath>..\..\..\packages\Xamarin.Forms.2.3.4.270\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Xaml.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation">
+      <HintPath>..\..\..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\netstandard1.1\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="TinyNavigationHelper.Abstraction">
+      <HintPath>..\..\..\packages\TinyNavigationHelper.Abstraction.1.0.11\lib\netstandard1.0\TinyNavigationHelper.Abstraction.dll</HintPath>
+    </Reference>
+    <Reference Include="TinyNavigationHelper.Forms">
+      <HintPath>..\..\..\packages\TinyNavigationHelper.Forms.1.0.11\lib\netstandard1.0\TinyNavigationHelper.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="TinyPubSub">
+      <HintPath>..\..\..\packages\tinypubsub.1.2.54\lib\netstandard1.0\TinyPubSub.dll</HintPath>
+    </Reference>
+    <Reference Include="TinyPubSub.Forms">
+      <HintPath>..\..\..\packages\tinypubsub.forms.1.2.54\lib\netstandard1.0\TinyPubSub.Forms.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\TinyMvvm.Forms\TinyMvvm.Forms.csproj">
+      <Project>{09EDF0BF-371D-4CD4-8B4C-282483721BC2}</Project>
+      <Name>TinyMvvm.Forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TinyMvvm\TinyMvvm.csproj">
+      <Project>{ABF21378-06FB-4A94-8A09-C0578155ADA3}</Project>
+      <Name>TinyMvvm</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

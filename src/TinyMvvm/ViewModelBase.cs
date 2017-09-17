@@ -13,9 +13,7 @@ namespace TinyMvvm
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
         private INavigationHelper _navigation;
-
         
-
         public ViewModelBase()
         {
 
@@ -86,13 +84,13 @@ namespace TinyMvvm
 
         public void SubscribeToMessageChannel(string channel, Action action)
         {
-            var tag = TinyPubSub.Subscribe(channel, action);
+            var tag = TinyPubSub.Subscribe(this, channel, action);
             _subscriptions.Add(channel, tag);
         }
 
         public void SubscribeToMessageChannel(string channel, Action<string> action)
         {
-            var tag = TinyPubSub.Subscribe(channel, action);
+            var tag = TinyPubSub.Subscribe(this, channel, action);
             _subscriptions.Add(channel, tag);
         }
 
