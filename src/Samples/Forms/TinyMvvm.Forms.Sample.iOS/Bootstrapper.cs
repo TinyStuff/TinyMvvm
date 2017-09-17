@@ -6,12 +6,12 @@ namespace TinyMvvm.Forms.Sample.iOS
 {
     public static class Bootstrapper
     {
-        public static void Initialize()
+        public static void Initialize(App app)
         {
             var builder = new ContainerBuilder();
 
             // Common stuff
-            TinyMvvm.Forms.Sample.Bootstrapper.Initialize(builder); 
+            TinyMvvm.Forms.Sample.Bootstrapper.Initialize(app, builder); 
 
             // iOS specific stuff
 
