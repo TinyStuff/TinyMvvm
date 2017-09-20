@@ -21,6 +21,45 @@ The view should inherit from `ViewBase<T>` where `T` is the ViewModel. The ViewM
 
 If you decide to use `ViewModelBase` as the base class for your view model and at the same time have the IoC resolver enabled, the the view will automatically create the view model for you when the view is created. Hence no need to inject the view model in the constructor and assign it manually. Feature or not, you decide.
 
+An example of a typical page in TinyMvvm would look like this xaml copied from the sample app.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<tinymvvm:ViewBase x:TypeArguments="viewmodels:MainViewModel" 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:viewmodels="clr-namespace:TinyMvvm.Forms.Sample.ViewModels;assembly=TinyMvvm.Forms.Samples"
+    xmlns:tinymvvm="clr-namespace:TinyMvvm.Forms;assembly=TinyMvvm.Forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="TinyMvvm.Forms.Sample.Views.MainView">
+    
+	<ContentPage.Content>
+        <StackLayout Margin="10,40">
+            <Label Text="Hello World" />
+            <Button Text="About" Command="{Binding NavigateTo}" CommandParameter="AboutView" />
+        </StackLayout>
+    </ContentPage.Content>
+    
+</tinymvvm:ViewBase>
+```
+
+What you need to do is:
+
+* Define two namespaces (viewmodels and tinymvvm)
+* Change the view type to `tinymvvm:ViewBase`
+* Add a type argument pointing to your view model
+
+The only thing that changes in the code behind is the base class.
+
+```csharp
+    public partial class MainView : TinyMvvm.Forms.ViewBase<MainViewModel>
+    {
+        public MainView()
+        {
+            InitializeComponent();
+        }
+    }
+```
+
 ### ViewModelBase
 
 TinyMvvm also defines a base class for the view model called `ViewModelBase`.
