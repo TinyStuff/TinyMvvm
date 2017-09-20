@@ -12,3 +12,5 @@
 /src/TinyMvvm.Forms/obj
 /src/TinyMvvm.Forms/bin/Debug/netstandard1.0
 /src/TinyMvvm.Autofac/bin/Debug/netstandard1.1
+/src/TinyMvvm.WPF/bin/Debug
+/src/TinyMvvm.WPF/obj/Debug

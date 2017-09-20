@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.10
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TinyMvvm", "TinyMvvm\TinyMvvm.csproj", "{ABF21378-06FB-4A94-8A09-C0578155ADA3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TinyMvvm.Autofac", "TinyMvvm.Autofac\TinyMvvm.Autofac.csproj", "{82CAAD19-E130-4C94-81A8-56890DEC0874}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TinyMvvm.Forms", "TinyMvvm.Forms\TinyMvvm.Forms.csproj", "{09EDF0BF-371D-4CD4-8B4C-282483721BC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyMvvm.WPF", "TinyMvvm.WPF\TinyMvvm.WPF.csproj", "{B271CB8A-9392-4CEA-9EDA-27DE53802452}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{09EDF0BF-371D-4CD4-8B4C-282483721BC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09EDF0BF-371D-4CD4-8B4C-282483721BC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09EDF0BF-371D-4CD4-8B4C-282483721BC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B271CB8A-9392-4CEA-9EDA-27DE53802452}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B271CB8A-9392-4CEA-9EDA-27DE53802452}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B271CB8A-9392-4CEA-9EDA-27DE53802452}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B271CB8A-9392-4CEA-9EDA-27DE53802452}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
