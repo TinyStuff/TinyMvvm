@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using TinyMvvm.IoC;
 using TinyNavigationHelper;
 using TinyPubSubLib;
@@ -13,9 +14,7 @@ namespace TinyMvvm
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
         private INavigationHelper _navigation;
-
         
-
         public ViewModelBase()
         {
 
@@ -39,6 +38,17 @@ namespace TinyMvvm
         public async virtual Task OnDisappearing()
         {
 
+        }
+
+        public ICommand NavigateTo
+        {
+            get
+            {
+                return new TinyCommand<string>(async (p) =>
+                {
+                    await Navigation.NavigateToAsync(p);
+                });
+            }
         }
 
         public INavigationHelper Navigation
@@ -86,13 +96,13 @@ namespace TinyMvvm
 
         public void SubscribeToMessageChannel(string channel, Action action)
         {
-            var tag = TinyPubSub.Subscribe(channel, action);
+            var tag = TinyPubSub.Subscribe(this, channel, action);
             _subscriptions.Add(channel, tag);
         }
 
         public void SubscribeToMessageChannel(string channel, Action<string> action)
         {
-            var tag = TinyPubSub.Subscribe(channel, action);
+            var tag = TinyPubSub.Subscribe(this, channel, action);
             _subscriptions.Add(channel, tag);
         }
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TinyMvvm.IoC
 {
-    public class Resolver
+    public static class Resolver
     {
         private static IResolver _resolver;
 
