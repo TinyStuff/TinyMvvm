@@ -15,6 +15,7 @@
         </releaseNotes>
         <dependencies>
             <dependency id="TinyNavigationHelper.WPF" version="1.0.21" />
+            <dependency id="TinyMvvm" version="1.0.21" />
         </dependencies>
 
     </metadata>
