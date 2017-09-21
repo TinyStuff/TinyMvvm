@@ -6,11 +6,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using TinyMvvm.IoC;
 
 namespace TinyMvvm.WPF
 {
-    public class ViewBase<T> : Window where T:INotifyPropertyChanged
+    public class ViewBase<T> : Page where T:INotifyPropertyChanged
     {
         public T ViewModel { get; private set; }
 
@@ -18,6 +19,8 @@ namespace TinyMvvm.WPF
 
         public ViewBase()
         {
+            NavigationService.Navigated += NavigationService_Navigated;
+
             if (Resolver.IsEnabled)
             {
                 ViewModel = Resolver.Resolve<T>();
@@ -31,14 +34,57 @@ namespace TinyMvvm.WPF
 
                 if (viewModel != null)
                 {
+                    Application.Current.Dispatcher.Invoke(async() =>
+                    {
+                        try
+                        {
+                            await _readLock.WaitAsync();
+                            await viewModel.Initialize();
+                        }
+                        finally
+                        {
+                            _readLock.Release();
+                        }
+                    });                   
+                }
+            }         
+        }
 
-                    
-                    //Device.BeginInvokeOnMainThread(async () =>
-                    //{
-                    //    await _readLock.WaitAsync();
-                    //    await viewModel.Initialize();
-                    //    _readLock.Release();
-                    //});
+        private void NavigationService_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+            NavigationService.Navigated -= NavigationService_Navigated;
+            NavigationService.Navigating += NavigationService_Navigating;
+
+            if (ViewModel is ViewModelBase)
+            {
+                var viewModel = ViewModel as ViewModelBase;
+
+                if (viewModel != null)
+                {
+                    Application.Current.Dispatcher.Invoke(async () =>
+                    {
+                        await _readLock.WaitAsync();
+                        await viewModel.OnAppearing();
+                        _readLock.Release();
+                    });
+                }
+            }
+        }
+
+        private void NavigationService_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
+        {
+            NavigationService.Navigating -= NavigationService_Navigating;
+
+            if (ViewModel is ViewModelBase)
+            {
+                var viewModel = ViewModel as ViewModelBase;
+
+                if (viewModel != null)
+                {
+                    Application.Current.Dispatcher.Invoke(async () =>
+                    {
+                        await viewModel.OnDisappearing();
+                    });
                 }
             }
         }
