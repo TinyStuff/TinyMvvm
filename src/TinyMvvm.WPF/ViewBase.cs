@@ -19,8 +19,8 @@ namespace TinyMvvm.WPF
 
         public ViewBase()
         {
-            NavigationService.Navigated += NavigationService_Navigated;
-
+            Loaded += ViewBase_Loaded;
+            
             if (Resolver.IsEnabled)
             {
                 ViewModel = Resolver.Resolve<T>();
@@ -50,10 +50,27 @@ namespace TinyMvvm.WPF
             }         
         }
 
-        private void NavigationService_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        private void ViewBase_Unloaded(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigated -= NavigationService_Navigated;
-            NavigationService.Navigating += NavigationService_Navigating;
+            Unloaded -= ViewBase_Unloaded;
+
+            if (ViewModel is ViewModelBase)
+            {
+                var viewModel = ViewModel as ViewModelBase;
+
+                if (viewModel != null)
+                {
+                    Application.Current.Dispatcher.Invoke(async () =>
+                    {
+                        await viewModel.OnDisappearing();
+                    });
+                }
+            }
+        }
+
+        private void ViewBase_Loaded(object sender, RoutedEventArgs e)
+        {
+            Unloaded += ViewBase_Unloaded;
 
             if (ViewModel is ViewModelBase)
             {
@@ -71,22 +88,6 @@ namespace TinyMvvm.WPF
             }
         }
 
-        private void NavigationService_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
-        {
-            NavigationService.Navigating -= NavigationService_Navigating;
 
-            if (ViewModel is ViewModelBase)
-            {
-                var viewModel = ViewModel as ViewModelBase;
-
-                if (viewModel != null)
-                {
-                    Application.Current.Dispatcher.Invoke(async () =>
-                    {
-                        await viewModel.OnDisappearing();
-                    });
-                }
-            }
-        }
     }
 }
