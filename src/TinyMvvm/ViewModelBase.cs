@@ -44,9 +44,20 @@ namespace TinyMvvm
         {
             get
             {
-                return new TinyCommand<string>(async (p) =>
+                return new TinyCommand<string>(async (key) =>
                 {
-                    await Navigation.NavigateToAsync(p);
+                    await Navigation.NavigateToAsync(key);
+                });
+            }
+        }
+
+        public ICommand OpenModal
+        {
+            get
+            {
+                return new TinyCommand<string>(async (key) =>
+                {
+                    await Navigation.OpenModalAsync(key); 
                 });
             }
         }
