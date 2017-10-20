@@ -8,5 +8,24 @@ namespace TinyMvvm.WPF.Sample.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        public MainViewModel()
+        {
+            
+        }
+
+        public override Task Initialize()
+        {
+            return base.Initialize();
+        }
+
+        public override Task OnAppearing()
+        {
+            return base.OnAppearing();
+        }
+
+        public override Task OnDisappearing()
+        {
+            return base.OnDisappearing();
+        }
     }
 }
