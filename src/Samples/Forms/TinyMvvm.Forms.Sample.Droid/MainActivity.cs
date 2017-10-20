@@ -7,6 +7,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using TinyMvvm.Forms.Sample.Droid.Startup;
+using TinyMvvm.Forms.Sample.Startup;
 
 namespace TinyMvvm.Forms.Sample.Droid
 {

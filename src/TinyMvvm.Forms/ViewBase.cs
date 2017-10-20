@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace TinyMvvm.Forms
 {
-    public class ViewBase<T> : ContentPage where T:INotifyPropertyChanged
+    public abstract class ViewBase<T> : ContentPage where T:INotifyPropertyChanged
     {
         public T ViewModel { get; private set; }
 

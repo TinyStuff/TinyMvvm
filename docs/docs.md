@@ -6,6 +6,13 @@ TinyMvvm is yet another small MVVM framework designed specifically with Xamarin 
 
 This documentation does not cover the basics of MVVM and assumes that you are already familiar with the concept of MVVM.
 
+## What do we do?
+
+* Supply a base class for views and viewmodels
+* Implementation of `INotifyPropertyChanged`
+* Wraps TinyNavigationService for easy as pie navigation
+* Wraps TinyPubSub for dead simple pub/sub stuff
+
 ## The overall structure
 
 ### ViewBase&lt;T&gt;
@@ -51,13 +58,13 @@ What you need to do is:
 The only thing that changes in the code behind is the base class.
 
 ```csharp
-    public partial class MainView : TinyMvvm.Forms.ViewBase<MainViewModel>
+public partial class MainView : TinyMvvm.Forms.ViewBase<MainViewModel>
+{
+    public MainView()
     {
-        public MainView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
+}
 ```
 
 ### ViewModelBase
@@ -71,11 +78,55 @@ Features (or drawbacks) of the ViewModelBase
 * Implements INotifyPropertyChanged for you
 * Propagates life cycle events to the view (Initialize, OnAppearing, OnDisapparing)
 
+
+#### Navigation in View (from Xaml)
+
 Navigation is made really easy. In the xaml, simply bind a command to `NavigateTo` and pass the view name as the parameter:
 
 ```xml
 <Button Text="About" Command="{Binding NavigateTo}" CommandParameter="AboutView" />
-``` 
+```
+
+or open a view as a modal view:
+
+```xml
+<Button Text="About" Command="{Binding OpenModal}" CommandParameter="AboutView" />
+```
+
+#### Navigation from ViewModel (you know, from code)
+
+```csharp
+await Navigation.NavigateToAsync("AboutView");
+```
+
+or open as modal
+
+```csharp
+await Navigation.OpenModalAsync("AboutView");
+```
+
+#### PubSub
+
+The PubSub engine below TinyMvvm is TinyPubSub. It's a framework of it's own but it's weaved into TinyMvvm anyhow.
+
+It's very simple to use:
+
+1. Subscribe from any viewmodel in the app
+
+	```csharp
+	this.SubscribeToMessageChannel(
+				"user-authenticated",  // The channel, any string
+				() => Log("User is authenticated") ); // The action
+	
+	```
+
+2. From somewhere else in the app
+
+	```csharp
+	await this.PublishMessageAsync("user-authenticated");
+	```
+
+Check out [TinyPubSub](https://github.com/johankson/TinyPubSub) for more detailed information about it.
 
 ### IoC
 
