@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -43,6 +43,12 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
+    <Reference Include="TinyNavigationHelper.Abstraction, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\TinyNavigationHelper.Abstraction.1.2.1\lib\netstandard1.0\TinyNavigationHelper.Abstraction.dll</HintPath>
+    </Reference>
+    <Reference Include="TinyNavigationHelper.Forms, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\TinyNavigationHelper.Forms.1.2.1\lib\netstandard1.0\TinyNavigationHelper.Forms.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>..\..\..\packages\Xamarin.Android.Support.v4.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
@@ -84,12 +90,6 @@
     </Reference>
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="TinyNavigationHelper.Abstraction">
-      <HintPath>..\..\..\packages\TinyNavigationHelper.Abstraction.1.0.11\lib\netstandard1.0\TinyNavigationHelper.Abstraction.dll</HintPath>
-    </Reference>
-    <Reference Include="TinyNavigationHelper.Forms">
-      <HintPath>..\..\..\packages\TinyNavigationHelper.Forms.1.0.11\lib\netstandard1.0\TinyNavigationHelper.Forms.dll</HintPath>
-    </Reference>
     <Reference Include="TinyPubSub">
       <HintPath>..\..\..\packages\tinypubsub.1.2.54\lib\netstandard1.0\TinyPubSub.dll</HintPath>
     </Reference>
@@ -139,9 +139,7 @@
       <Name>TinyMvvm.Autofac</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Startup\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

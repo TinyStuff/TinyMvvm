@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="TinyNavigationHelper.Abstraction" Version="1.0.9" />
+    <PackageReference Include="TinyNavigationHelper.Abstraction" Version="1.2.1" />
     <PackageReference Include="tinypubsub" Version="1.2.54" />
   </ItemGroup>
 

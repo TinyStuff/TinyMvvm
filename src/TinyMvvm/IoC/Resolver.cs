@@ -30,5 +30,10 @@ namespace TinyMvvm.IoC
         {
             return _resolver.Resolve<T>(key);
         }
+
+        public static object Resolve(Type type)
+        {
+            return _resolver.Resolver(type);
+        }
     }
 }
