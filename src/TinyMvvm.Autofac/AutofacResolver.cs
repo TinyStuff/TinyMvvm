@@ -22,5 +22,10 @@ namespace TinyMvvm.Autofac
         {
             return _container.ResolveKeyed<T>(key);
         }
+
+        public object Resolver(Type type)
+        {
+            return _container.Resolve(type);
+        }
     }
 }

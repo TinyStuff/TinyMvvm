@@ -40,6 +40,8 @@ namespace TinyMvvm
 
         }
 
+        public object NavigationParameter { get; set; }
+
         public ICommand NavigateTo
         {
             get

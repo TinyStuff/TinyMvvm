@@ -5,44 +5,50 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using TinyMvvm.IoC;
+using TinyNavigationHelper.Abstraction;
+using TinyNavigationHelper.Forms;
 using Xamarin.Forms;
 
 namespace TinyMvvm.Forms
 {
-    public abstract class ViewBase<T> : ContentPage where T:INotifyPropertyChanged
+    public abstract class ViewBase : ContentPage
     {
-        public T ViewModel { get; private set; }
+        public object NavigationParameter { get; set; }
+        internal SemaphoreSlim ReadLock { get; private set; } = new SemaphoreSlim(1, 1);
+    }
 
-        private readonly SemaphoreSlim _readLock = new SemaphoreSlim(1, 1);
+    public abstract class ViewBase<T> : ViewBase where T:INotifyPropertyChanged
+    {
+        public T ViewModel
+        {
+            get
+            {
+                if (BindingContext != null)
+                {
+                    return (T)BindingContext;
+                }
+
+                return default(T);
+            }
+        }
+
+        
+
+        
 
         public ViewBase()
         {
-            if (Resolver.IsEnabled)
-            {
-                ViewModel = Resolver.Resolve<T>();
 
-                BindingContext = ViewModel;
+            var navigation = (FormsNavigationHelper)NavigationHelper.Current;
+
+            if(!(navigation.ViewCreator is TinyMvvmViewCreator))
+            {
+                throw new Exception("You must run TinyMvvm.Initialize();");
             }
-            
-            if(ViewModel is ViewModelBase)
-            {
-                var viewModel = ViewModel as ViewModelBase;
 
-                if (viewModel != null)
-                {
-                    Device.BeginInvokeOnMainThread(async () =>
-                    {
-                        try
-                        {
-                            await _readLock.WaitAsync();
-                            await viewModel.Initialize();
-						}
-                        finally
-                        {
-							_readLock.Release();
-                        }
-                    }); 
-                }            
+            if (Resolver.IsEnabled)
+            { 
+                BindingContext = Resolver.Resolve<T>(); ;
             }
         }
 
@@ -58,9 +64,9 @@ namespace TinyMvvm.Forms
                 {
                     Device.BeginInvokeOnMainThread(async () =>
                     {
-                        await _readLock.WaitAsync();
+                        await ReadLock.WaitAsync();
                         await viewModel.OnAppearing();
-                        _readLock.Release();
+                        ReadLock.Release();
                     });
                 }
             }

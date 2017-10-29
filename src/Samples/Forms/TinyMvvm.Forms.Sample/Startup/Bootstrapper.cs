@@ -2,6 +2,8 @@
 using System.Reflection;
 using Autofac;
 using TinyNavigationHelper;
+using TinyMvvm.Autofac;
+using TinyMvvm.IoC;
 
 namespace TinyMvvm.Forms.Sample.Startup
 {
@@ -27,8 +29,10 @@ namespace TinyMvvm.Forms.Sample.Startup
 
 			// Build and set
 			var container = builder.Build();
-			var resolver = new TinyMvvm.Autofac.AutofacResolver(container);
-			TinyMvvm.IoC.Resolver.SetResolver(resolver);
+			var resolver = new AutofacResolver(container);
+			Resolver.SetResolver(resolver);
+
+            TinyMvvm.Initialize();
 
             // Platform specifics
 			Platform?.Initialize(app, builder);

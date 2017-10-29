@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace TinyMvvm.Forms.Sample.Views
 {
-    public partial class MainView : TinyMvvm.Forms.ViewBase<MainViewModel>
+    public partial class MainView : ViewBase<MainViewModel>
     {
         public MainView()
         {

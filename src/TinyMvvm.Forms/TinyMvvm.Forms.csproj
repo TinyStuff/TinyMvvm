@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="tinynavigationhelper.forms" Version="1.0.9" />
+    <PackageReference Include="tinynavigationhelper.forms" Version="1.2.1" />
     <PackageReference Include="xamarin.forms" Version="2.3.4.270" />
   </ItemGroup>
 
