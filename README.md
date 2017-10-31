@@ -9,3 +9,18 @@ We will create documentation when we release version 1.0.
 ## Xamarin.Forms
 TinyMvvm is built for Xamarin.Forms but is not limited to Xamarin.Forms, it created in a way that it will be easy to extend to other platforms.
 
+### How to install
+Install the TinyMvvm.Forms package from NuGet, https://www.nuget.org/packages/TinyMvvm.Forms/
+
+```
+Install-Package TinyMvvm.Forms 
+```
+
+### Initialize TinyMvvm
+
+### Views
+
+### ViewModels
+
+### Navigation
+TinyMvvm using the TinyNavigationHelper for navigation, for more detailed information, please read the documentation for TinyNavigationHelper, https://github.com/dhindrik/TinyNavigationHelper/blob/master/README.md.
