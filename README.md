@@ -5,3 +5,7 @@
 TinyMvvm is under development, it is not a stable version yet, but you can install it from NuGet anyhow. If you do that, please give us feedback!
 
 We will create documentation when we release version 1.0.
+
+## Xamarin.Forms
+TinyMvvm is built for Xamarin.Forms but is not limited to Xamarin.Forms, it created in a way that it will be easy to extend to other platforms.
+
