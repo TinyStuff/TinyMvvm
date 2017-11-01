@@ -24,14 +24,21 @@ namespace TinyMvvm.Forms
             if (Resolver.IsEnabled)
             {
                 page = (Page)Resolver.Resolve(type);
- 
+
                 var view = page as ViewBase;
 
-                if(view?.BindingContext is ViewModelBase)
+                if (view?.BindingContext is ViewModelBase)
                 {
-                    TinyMvvmSetup(view, parameter); 
+                    TinyMvvmSetup(view, parameter);
                 }
-                
+                else
+                {
+                    if (ParameterSetter.CanSet(type))
+                    {
+                        ParameterSetter.Set(page, parameter);
+                    }
+                }
+
             }
             else
             {
@@ -45,10 +52,10 @@ namespace TinyMvvm.Forms
                     TinyMvvmSetup(view, parameter);
                 }
                 else
-                {                            
-                    if(parameter != null)
-                    {                     
-                        page = defaultCreator.Create(type, parameter);
+                {
+                    if (ParameterSetter.CanSet(type))
+                    {
+                        ParameterSetter.Set(page, parameter);
                     }
                 }
             }
