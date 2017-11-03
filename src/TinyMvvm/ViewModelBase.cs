@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TinyMvvm.IoC;
 using TinyNavigationHelper;
-using TinyPubSubLib;
 
 namespace TinyMvvm
 {
@@ -100,32 +99,7 @@ namespace TinyMvvm
             }
         }
 
-        private Dictionary<string, string> _subscriptions = new Dictionary<string, string>();
-
-        public async Task PublishMessageAsync(string channel, string argument = null)
-        {
-            await TinyPubSub.PublishAsync(channel, argument);
-        }
-
-        public void SubscribeToMessageChannel(string channel, Action action)
-        {
-            var tag = TinyPubSub.Subscribe(this, channel, action);
-            _subscriptions.Add(channel, tag);
-        }
-
-        public void SubscribeToMessageChannel(string channel, Action<string> action)
-        {
-            var tag = TinyPubSub.Subscribe(this, channel, action);
-            _subscriptions.Add(channel, tag);
-        }
-
-        public void UnSubscribeFromMessageChannel(string channel)
-        {
-            var tag = _subscriptions[channel];
-            TinyPubSub.Unsubscribe(tag);
-
-            _subscriptions.Remove(channel);
-        }
+      
 
         public void RaisePropertyChanged([CallerMemberName]string propertyName = null)
         {

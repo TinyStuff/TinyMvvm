@@ -74,12 +74,6 @@
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation">
       <HintPath>..\..\..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\netstandard1.1\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
     </Reference>
-    <Reference Include="TinyPubSub">
-      <HintPath>..\..\..\packages\tinypubsub.1.2.54\lib\netstandard1.0\TinyPubSub.dll</HintPath>
-    </Reference>
-    <Reference Include="TinyPubSub.Forms">
-      <HintPath>..\..\..\packages\tinypubsub.forms.1.2.54\lib\netstandard1.0\TinyPubSub.Forms.dll</HintPath>
-    </Reference>
     <Reference Include="Autofac">
       <HintPath>..\..\..\packages\Autofac.4.6.1\lib\netstandard1.1\Autofac.dll</HintPath>
     </Reference>
