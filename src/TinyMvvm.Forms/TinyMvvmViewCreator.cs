@@ -65,6 +65,8 @@ namespace TinyMvvm.Forms
 
         private void TinyMvvmSetup(ViewBase view, object parameter )
         {
+            view.CreatedByTinnyMvvm = true;
+
             if (parameter != null)
             {
                 view.NavigationParameter = parameter;
