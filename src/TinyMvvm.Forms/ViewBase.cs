@@ -13,8 +13,32 @@ namespace TinyMvvm.Forms
 {
     public abstract class ViewBase : ContentPage
     {
+        internal bool CreatedByTinnyMvvm { get; set; }
         public object NavigationParameter { get; set; }
         internal SemaphoreSlim ReadLock { get; private set; } = new SemaphoreSlim(1, 1);
+
+        public ViewBase()
+        {
+            BindingContextChanged += ViewBase_BindingContextChanged;
+        }
+
+        private async void ViewBase_BindingContextChanged(object sender, EventArgs e)
+        {
+            if(!CreatedByTinnyMvvm && BindingContext is ViewModelBase)
+            {
+                var viewModel = (ViewModelBase)BindingContext;
+
+                try
+                {
+                    await ReadLock.WaitAsync();
+                    await viewModel.Initialize();
+                }
+                finally
+                {
+                    ReadLock.Release();
+                }
+            }
+        }
     }
 
     public abstract class ViewBase<T> : ViewBase where T:INotifyPropertyChanged
