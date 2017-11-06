@@ -27,6 +27,10 @@ namespace TinyMvvm.Forms
 
                 var view = page as ViewBase;
 
+                view.CreatedByTinyMvvm = true;
+
+                view.CreateViewModel();
+
                 if (view?.BindingContext is ViewModelBase)
                 {
                     TinyMvvmSetup(view, parameter);
@@ -38,7 +42,6 @@ namespace TinyMvvm.Forms
                         ParameterSetter.Set(page, parameter);
                     }
                 }
-
             }
             else
             {
@@ -46,6 +49,10 @@ namespace TinyMvvm.Forms
                 page = defaultCreator.Create(type);
 
                 var view = page as ViewBase;
+
+                view.CreatedByTinyMvvm = true;
+
+                view.CreateViewModel();
 
                 if (view?.BindingContext is ViewModelBase)
                 {
@@ -65,7 +72,7 @@ namespace TinyMvvm.Forms
 
         private void TinyMvvmSetup(ViewBase view, object parameter )
         {
-            view.CreatedByTinnyMvvm = true;
+            
 
             if (parameter != null)
             {
