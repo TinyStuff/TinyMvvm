@@ -27,9 +27,12 @@ namespace TinyMvvm.Forms
 
                 var view = page as ViewBase;
 
-                view.CreatedByTinyMvvm = true;
+                if (view != null)
+                {
+                    view.CreatedByTinyMvvm = true;
 
-                view.CreateViewModel();
+                    view.CreateViewModel(); 
+                }
 
                 if (view?.BindingContext is ViewModelBase)
                 {
@@ -50,9 +53,12 @@ namespace TinyMvvm.Forms
 
                 var view = page as ViewBase;
 
-                view.CreatedByTinyMvvm = true;
+                if (view != null)
+                {
+                    view.CreatedByTinyMvvm = true;
 
-                view.CreateViewModel();
+                    view.CreateViewModel(); 
+                }
 
                 if (view?.BindingContext is ViewModelBase)
                 {
