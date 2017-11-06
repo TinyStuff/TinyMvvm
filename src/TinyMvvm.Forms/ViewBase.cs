@@ -13,7 +13,7 @@ namespace TinyMvvm.Forms
 {
     public abstract class ViewBase : ContentPage
     {
-        internal bool CreatedByTinnyMvvm { get; set; }
+        internal bool CreatedByTinyMvvm { get; set; }
         public object NavigationParameter { get; set; }
         internal SemaphoreSlim ReadLock { get; private set; } = new SemaphoreSlim(1, 1);
 
@@ -24,7 +24,7 @@ namespace TinyMvvm.Forms
 
         private async void ViewBase_BindingContextChanged(object sender, EventArgs e)
         {
-            if(!CreatedByTinnyMvvm && BindingContext is ViewModelBase)
+            if(!CreatedByTinyMvvm && BindingContext is ViewModelBase)
             {
                 var viewModel = (ViewModelBase)BindingContext;
 
@@ -38,6 +38,11 @@ namespace TinyMvvm.Forms
                     ReadLock.Release();
                 }
             }
+        }
+
+        internal virtual void CreateViewModel()
+        {
+
         }
     }
 
@@ -56,7 +61,17 @@ namespace TinyMvvm.Forms
             }
         }
 
-        
+        internal override void CreateViewModel()
+        {
+            if (Resolver.IsEnabled)
+            {
+                BindingContext = Resolver.Resolve<T>(); ;
+            }
+            else
+            {
+                BindingContext = Activator.CreateInstance(typeof(T));
+            }
+        }
 
         
 
@@ -70,15 +85,17 @@ namespace TinyMvvm.Forms
                 throw new Exception("You must run TinyMvvm.Initialize();");
             }
 
-            if (Resolver.IsEnabled)
-            { 
-                BindingContext = Resolver.Resolve<T>(); ;
-            }
+            
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
+            if(ViewModel == null && !CreatedByTinyMvvm)
+            {
+                CreateViewModel();
+            }
 
             if (ViewModel is ViewModelBase)
             {

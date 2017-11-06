@@ -9,6 +9,7 @@
         <StackLayout Margin="10,40">
             <Label Text="Hello World" />
             <Button Text="About" Command="{Binding NavigateTo}" CommandParameter="AboutView" />
+          <Button Text="Parameter view" Command="{Binding WithParameter}"  />
         </StackLayout>
     </ContentPage.Content>
 </tinymvvm:ViewBase>
