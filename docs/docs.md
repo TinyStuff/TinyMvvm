@@ -11,7 +11,19 @@ This documentation does not cover the basics of MVVM and assumes that you are al
 * Supply a base class for views and viewmodels
 * Implementation of `INotifyPropertyChanged`
 * Wraps TinyNavigationService for easy as pie navigation
-* Wraps TinyPubSub for dead simple pub/sub stuff
+
+## How to install
+Install the TinyMvvm.Forms package from NuGet, https://www.nuget.org/packages/TinyMvvm.Forms/
+
+```
+Install-Package TinyMvvm.Forms 
+```
+If you want to separet the ViewModels in a separte project that dosen't have references to Xamarin.Forms, just install the TinyMvvm packatge on that project.
+
+```
+Install-Package TinyMvvm 
+```
+
 
 ## The overall structure
 
@@ -78,6 +90,8 @@ Features (or drawbacks) of the ViewModelBase
 * Implements INotifyPropertyChanged for you
 * Propagates life cycle events to the view (Initialize, OnAppearing, OnDisapparing)
 
+### Navigation
+TinyMvvm using the TinyNavigationHelper for navigation, for more detailed information, please read the documentation for TinyNavigationHelper, https://github.com/dhindrik/TinyNavigationHelper/blob/master/README.md.
 
 #### Navigation in View (from Xaml)
 
@@ -105,26 +119,9 @@ or open as modal
 await Navigation.OpenModalAsync("AboutView");
 ```
 
-#### PubSub
+#### Messaging
 
-The PubSub engine below TinyMvvm is TinyPubSub. It's a framework of it's own but it's weaved into TinyMvvm anyhow.
-
-It's very simple to use:
-
-1. Subscribe from any viewmodel in the app
-
-	```csharp
-	this.SubscribeToMessageChannel(
-				"user-authenticated",  // The channel, any string
-				() => Log("User is authenticated") ); // The action
-	
-	```
-
-2. From somewhere else in the app
-
-	```csharp
-	await this.PublishMessageAsync("user-authenticated");
-	```
+TinyMvvm has no messaging system built-in, we recommend you to take a look at TinyPubSub if you need messaging in your app.
 
 Check out [TinyPubSub](https://github.com/johankson/TinyPubSub) for more detailed information about it.
 
