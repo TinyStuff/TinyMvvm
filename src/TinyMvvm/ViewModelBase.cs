@@ -7,22 +7,17 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TinyMvvm.IoC;
 using TinyNavigationHelper;
+using TinyNavigationHelper.Abstraction;
 
 namespace TinyMvvm
 {
     public abstract class ViewModelBase : INotifyPropertyChanged
-    {
-        private INavigationHelper _navigation;
-        
+    {        
         public ViewModelBase()
         {
 
         }
-
-        public ViewModelBase(INavigationHelper navigation)
-        {
-            _navigation = navigation;
-        }
+        
 
         public async virtual Task Initialize()
         {
@@ -67,16 +62,14 @@ namespace TinyMvvm
         {
             get
             {
-                if (_navigation == null && Resolver.IsEnabled)
+                if (NavigationHelper.Current != null)
                 {
-                    return Resolver.Resolve<INavigationHelper>();
+                    return NavigationHelper.Current; 
                 }
-                else if (_navigation != null)
+                else
                 {
-                    return _navigation;
+                    throw new Exception("Navigation has not been initialized.");
                 }
-
-                throw new NullReferenceException("Please pass a INavigation implementation to the constructor");
             }
         }
         private bool _isBusy;
