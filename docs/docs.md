@@ -31,6 +31,7 @@ TinyMvvm.Forms.TinyMvvm.Initialize();
 ```
 
 ### Configure navigation
+```csharp
 // Option 1:
 var navigationHelper = new NavigationHelper(this);
 navigationHelper.RegisterView<MainView>("MainView");
