@@ -24,6 +24,28 @@ If you want to separet the ViewModels in a separte project that dosen't have ref
 Install-Package TinyMvvm 
 ```
 
+## Initiation
+
+```csharp
+TinyMvvm.Forms.TinyMvvm.Initialize();
+```
+
+### Configure navigation
+// Option 1:
+var navigationHelper = new NavigationHelper(this);
+navigationHelper.RegisterView<MainView>("MainView");
+		
+// Option 2: Register single views		
+var navigationHelper = new FormsNavigationHelper(this);		
+navigationHelper.RegisterView("MainView", typeof(MainView));		
+		
+// Option 3: Register all views (pages) that is inherited from Page		
+// The class name will be the key. To use this, you need to add using System.Reflection;		
+var asm = typeof(App).GetTypeInfo().Assembly;		
+navigationHelper.RegisterViewsInAssembly(asm);
+```
+
+The recommendation is to use NavigationHelper.Current.SetRootView(string pageKey, bool withNavigation = true) instead of MainPage = new YourPage() for setting the MainPage of the application.
 
 ## The overall structure
 
