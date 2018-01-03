@@ -10,7 +10,7 @@ This documentation does not cover the basics of MVVM and assumes that you are al
 
 * Supply a base class for views and viewmodels
 * Implementation of `INotifyPropertyChanged`
-* Wraps TinyNavigationService for easy as pie navigation
+* Wraps TinyNavigationHelper for easy as pie navigation
 
 ## How to install
 Install the TinyMvvm.Forms package from NuGet, https://www.nuget.org/packages/TinyMvvm.Forms/
@@ -142,17 +142,46 @@ or open as modal
 await Navigation.OpenModalAsync("AboutView");
 ```
 
+
+### IoC
+Tiny Mvvm is not bound to any specific IoC provider. There are a provider for Autoface that you can install with the "TinyMvvm.Autoface" package.
+
+```
+Install-Package TinyMvvm.Autofac
+```
+
+TinyMvvm has a Resolver in it's core project. To use it you need to add on provider to it that implements the IResolver interface, for example our Autofac provider.
+
+```csharp
+var container = builder.Build();
+var resolver = new AutofacResolver(container);
+Resolver.SetResolver(resolver);
+```			
+
+```csharp
+var navigationHelper = Resolver.Resolve<INavigationHelper>();
+```
+
+### TinyCommand
+
+TinyMvvm has an own implementation of ICommand that not has any references to Xamarin.Forms so you can use it in an library without reference Xamarin.Forms.
+
+```csharp
+public ICommand WithParameter
+{
+      get
+      {
+                return new TinyCommand(async() =>
+                {
+                   //Do stuff
+                });
+      }
+}
+```
+
 #### Messaging
 
 TinyMvvm has no messaging system built-in, we recommend you to take a look at TinyPubSub if you need messaging in your app.
 
 Check out [TinyPubSub](https://github.com/johankson/TinyPubSub) for more detailed information about it.
-
-### IoC
-
-TODO
-
-### TinyCommand
-
-ToOO
 
