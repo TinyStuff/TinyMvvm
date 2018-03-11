@@ -12,12 +12,14 @@ using TinyNavigationHelper.Abstraction;
 namespace TinyMvvm
 {
     public abstract class ViewModelBase : INotifyPropertyChanged
-    {        
+    {
         public ViewModelBase()
         {
 
         }
-        
+
+        public virtual Action<Action> BeginInvokeOnMainThread { get; set; }
+
 
         public async virtual Task Initialize()
         {
@@ -26,7 +28,7 @@ namespace TinyMvvm
 
         public async virtual Task OnAppearing()
         {
-         
+
         }
 
         public async virtual Task OnDisappearing()
@@ -53,7 +55,7 @@ namespace TinyMvvm
             {
                 return new TinyCommand<string>(async (key) =>
                 {
-                    await Navigation.OpenModalAsync(key); 
+                    await Navigation.OpenModalAsync(key);
                 });
             }
         }
@@ -64,7 +66,7 @@ namespace TinyMvvm
             {
                 if (NavigationHelper.Current != null)
                 {
-                    return NavigationHelper.Current; 
+                    return NavigationHelper.Current;
                 }
                 else
                 {
@@ -92,7 +94,7 @@ namespace TinyMvvm
             }
         }
 
-      
+
 
         public void RaisePropertyChanged([CallerMemberName]string propertyName = null)
         {
