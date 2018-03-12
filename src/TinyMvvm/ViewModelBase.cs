@@ -31,6 +31,11 @@ namespace TinyMvvm
 
         }
 
+        public async virtual Task OnFirstAppear()
+        {
+
+        }
+
         public async virtual Task OnDisappearing()
         {
 
