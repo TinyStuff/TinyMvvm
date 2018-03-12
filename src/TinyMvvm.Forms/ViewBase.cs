@@ -27,7 +27,10 @@ namespace TinyMvvm.Forms
             if(!CreatedByTinyMvvm && BindingContext is ViewModelBase)
             {
                 var viewModel = (ViewModelBase)BindingContext;
-
+                viewModel.BeginInvokeOnMainThread = (action) =>
+                {
+                    Device.BeginInvokeOnMainThread(action);
+                };
                 try
                 {
                     await ReadLock.WaitAsync();
