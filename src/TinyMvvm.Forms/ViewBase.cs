@@ -27,10 +27,7 @@ namespace TinyMvvm.Forms
             if(!CreatedByTinyMvvm && BindingContext is ViewModelBase)
             {
                 var viewModel = (ViewModelBase)BindingContext;
-                viewModel.BeginInvokeOnMainThread = (action) =>
-                {
-                    Device.BeginInvokeOnMainThread(action);
-                };
+                SetupUIAction(viewModel);
                 try
                 {
                     await ReadLock.WaitAsync();
@@ -40,6 +37,17 @@ namespace TinyMvvm.Forms
                 {
                     ReadLock.Release();
                 }
+            }
+        }
+
+        internal static void SetupUIAction(ViewModelBase viewModel)
+        {
+            if (viewModel.BeginInvokeOnMainThread == null)
+            {
+                viewModel.BeginInvokeOnMainThread = (action) =>
+                {
+                    Device.BeginInvokeOnMainThread(action);
+                };
             }
         }
 
@@ -91,6 +99,8 @@ namespace TinyMvvm.Forms
             
         }
 
+        private bool _hasAppeared;
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -110,6 +120,10 @@ namespace TinyMvvm.Forms
                     {
                         await ReadLock.WaitAsync();
                         await viewModel.OnAppearing();
+                        if (!_hasAppeared) {
+                            _hasAppeared = true;
+                            await viewModel.OnFirstAppear();
+                        }
                         ReadLock.Release();
                     });
                 }
