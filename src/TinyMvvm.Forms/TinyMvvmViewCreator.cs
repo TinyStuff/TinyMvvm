@@ -89,7 +89,7 @@ namespace TinyMvvm.Forms
 
             if (viewModel != null)
             {
-
+                ViewBase.SetupUIAction(viewModel);
                 if (parameter != null)
                 {
                     viewModel.NavigationParameter = parameter;
@@ -109,5 +109,7 @@ namespace TinyMvvm.Forms
                 });
             }
         }
+
+       
     }
 }
