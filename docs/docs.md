@@ -18,7 +18,7 @@ Install the TinyMvvm.Forms package from NuGet, https://www.nuget.org/packages/Ti
 ```
 Install-Package TinyMvvm.Forms 
 ```
-If you want to separet the ViewModels in a separte project that dosen't have references to Xamarin.Forms, just install the TinyMvvm packatge on that project.
+If you want to separet the ViewModels in a separte project that dosen't have references to Xamarin.Forms, just install the TinyMvvm package on that project.
 
 ```
 Install-Package TinyMvvm 
@@ -109,7 +109,6 @@ TinyMvvm also defines a base class for the view model called `ViewModelBase`.
 Features (or drawbacks) of the ViewModelBase
 
 * Wraps navigation for you through the INavigation interface (Implemented in TinyNavigation)
-* Wraps a tiny pub/sub framework (Implemented in TinyPubSub)
 * Implements INotifyPropertyChanged for you
 * Propagates life cycle events to the view (Initialize, OnAppearing, OnDisapparing)
 
