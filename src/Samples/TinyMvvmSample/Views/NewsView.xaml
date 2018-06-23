@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<local:ViewBase 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:local="clr-namespace:TinyMvvmSample.Views"
+    xmlns:vm="clr-namespace:TinyMvvmSample.Core.ViewModels;assembly=TinyMvvmSample.Core"
+    x:Class="TinyMvvmSample.Views.NewsView" x:TypeArguments="vm:NewsViewModel">
+    <ListView ItemsSource="{Binding Items}" CachingStrategy="RecycleElement" HasUnevenRows="true"
+              IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy}" RefreshCommand="{Binding Refresh}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Padding="10">
+                        <Label Text="{Binding Title}" FontAttributes="Bold" />
+                        <Label Text="{Binding Text}" />
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+        </ListView>
+</local:ViewBase>
