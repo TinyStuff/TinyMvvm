@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<local:ViewBase xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TinyMvvmSample.Views"
+                xmlns:vm="clr-namespace:TinyMvvmSample.Core.ViewModels;assembly=TinyMvvmSample.Core"
+             x:Class="TinyMvvmSample.Views.MainView" x:TypeArguments="vm:MainViewModel">
+             <StackLayout>
+        <Button Text="Get started" Command="{Binding NavigateTo}" CommandParameter="NewsView" />
+            </StackLayout>
+</local:ViewBase>
