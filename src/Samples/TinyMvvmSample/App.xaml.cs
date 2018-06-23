@@ -11,7 +11,7 @@ namespace TinyMvvmSample
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            Bootstrapper.Initialize();
         }
 
         protected override void OnStart()

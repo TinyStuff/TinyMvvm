@@ -54,6 +54,12 @@
     <PackageReference Include="Xamarin.Android.Support.v4" Version="27.0.2" />
     <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="27.0.2" />
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="27.0.2" />
+    <PackageReference Include="TinyMvvm.Forms">
+      <Version>0.1.53</Version>
+    </PackageReference>
+    <PackageReference Include="TinyMvvm.Autofac">
+      <Version>0.1.53</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -89,6 +95,12 @@
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
     <Folder Include="Resources\drawable-xxxhdpi\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TinyMvvmSample.Core\TinyMvvmSample.Core.csproj">
+      <Project>{ADD6AF68-809A-4EF1-B475-0A5B2ACA3929}</Project>
+      <Name>TinyMvvmSample.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\TinyMvvmSample\TinyMvvmSample.projitems" Label="Shared" Condition="Exists('..\TinyMvvmSample\TinyMvvmSample.projitems')" />
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
