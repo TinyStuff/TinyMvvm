@@ -6,3 +6,6 @@ TinyMvvm is a MVVM library that is built for Xamarin.Forms but is not limited to
 
 ## Get started
 <a href="https://github.com/dhindrik/TinyMvvm/blob/master/docs/docs.md">Read this document about how to get started using TinyMvvm!</a>
+
+## Contribute
+You are very welcome to contribute to TinyMvvm. If you want to add a new feature we would like if you create an issue first so we can discuss the the feature before you spend time to implement it.
