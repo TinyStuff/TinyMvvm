@@ -18,7 +18,7 @@ namespace TinyMvvm
 
         }
 
-        public virtual Action<Action> BeginInvokeOnMainThread { get; set; }
+        public virtual Action<Action>? BeginInvokeOnMainThread { get; set; }
 
 
         public async virtual Task Initialize()
@@ -41,7 +41,7 @@ namespace TinyMvvm
 
         }
 
-        public object NavigationParameter { get; set; }
+        public object? NavigationParameter { get; set; }
 
         public ICommand NavigateTo
         {
@@ -99,14 +99,14 @@ namespace TinyMvvm
             }
         }
 
-        public void RaisePropertyChanged([CallerMemberName]string propertyName = null)
+        public void RaisePropertyChanged([CallerMemberName]string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void Set<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null)
+        protected void Set<T>(ref T field, T newValue, [CallerMemberName] string? propertyName = null)
         {
             if (!EqualityComparer<T>.Default.Equals(field, newValue))
             {

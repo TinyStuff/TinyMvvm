@@ -1,7 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>8.0</LangVersion>
+     <NullableContextOptions>enable</NullableContextOptions>
+    <WarningsAsErrors>CS8600;CS8602;CS8603</WarningsAsErrors>
+        
       <Version>1.0.0</Version>
     <Authors>Daniel Hindrikes &amp; Johan Karlsson</Authors>
     <Company />
@@ -15,7 +19,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="TinyNavigationHelper.Abstraction" Version="1.2.8" />
+    <Folder Include="TinyNavigationHelper\" />
   </ItemGroup>
-
+  <ItemGroup>
+    <Compile Include="..\..\TinyNavigationHelper\src\TinyNavigationHelper.Abstraction\INavigationHelper.cs">
+      <Link>TinyNavigationHelper\INavigationHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\TinyNavigationHelper\src\TinyNavigationHelper.Abstraction\IViewCreator.cs">
+      <Link>TinyNavigationHelper\IViewCreator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\TinyNavigationHelper\src\TinyNavigationHelper.Abstraction\NavigationHelper.cs">
+      <Link>TinyNavigationHelper\NavigationHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\TinyNavigationHelper\src\TinyNavigationHelper.Abstraction\ParameterSetter.cs">
+      <Link>TinyNavigationHelper\ParameterSetter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\TinyNavigationHelper\src\TinyNavigationHelper.Abstraction\ViewCreationException.cs">
+      <Link>TinyNavigationHelper\ViewCreationException.cs</Link>
+    </Compile>
+  </ItemGroup>
 </Project>

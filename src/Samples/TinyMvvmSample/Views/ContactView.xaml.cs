@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace TinyMvvmSample.Views
 {
-    public partial class MainView
+    public partial class ContactView 
     {
-        public MainView()
+        public ContactView()
         {
             InitializeComponent();
         }

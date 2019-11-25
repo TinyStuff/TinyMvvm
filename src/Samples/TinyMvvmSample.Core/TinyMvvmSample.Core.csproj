@@ -5,14 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Remove="Class1.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="TinyMvvm" Version="0.1.53" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-    <Folder Include="Services\" />
-    <Folder Include="Models\" />
+    <ProjectReference Include="..\..\TinyMvvm\TinyMvvm.csproj" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,15 +12,22 @@ using Xamarin.Forms;
 
 namespace TinyMvvm.Forms
 {
+    [QueryProperty("TinyId", "tinyid")]
     public abstract class ViewBase : ContentPage
     {
         internal bool CreatedByTinyMvvm { get; set; }
-        public object NavigationParameter { get; set; }
+        public object? NavigationParameter { get; set; }
         internal SemaphoreSlim ReadLock { get; private set; } = new SemaphoreSlim(1, 1);
+
+        /// <summary>
+        /// Internally used by TinyMvvm
+        /// </summary>
+        public string? TinyId { get; set; }
 
         public ViewBase()
         {
             BindingContextChanged += ViewBase_BindingContextChanged;
+
         }
 
         private async void ViewBase_BindingContextChanged(object sender, EventArgs e)
@@ -30,6 +38,16 @@ namespace TinyMvvm.Forms
                 SetupUIAction(viewModel);
                 try
                 {
+                    if (TinyId != null)
+                    {
+                        var shellNavigationHelper = (ShellNavigationHelper)NavigationHelper.Current;
+
+                        var parameters = shellNavigationHelper.GetQueryParameters(TinyId);
+                        viewModel.NavigationParameter = parameters;
+  
+
+                    }
+
                     await ReadLock.WaitAsync();
                     await viewModel.Initialize();
                 }
@@ -57,7 +75,9 @@ namespace TinyMvvm.Forms
         }
     }
 
-    public abstract class ViewBase<T> : ViewBase where T:INotifyPropertyChanged
+
+    
+    public abstract class ViewBase<T> : ViewBase where T:ViewModelBase?
     {
         public T ViewModel
         {
@@ -68,20 +88,25 @@ namespace TinyMvvm.Forms
                     return (T)BindingContext;
                 }
 
-                return default(T);
+                return null;
             }
         }
+
+        
 
         internal override void CreateViewModel()
         {
             if (Resolver.IsEnabled)
             {
-                BindingContext = Resolver.Resolve<T>(); ;
+                BindingContext = Resolver.Resolve<T>();
             }
             else
             {
                 BindingContext = Activator.CreateInstance(typeof(T));
             }
+
+            
+            
         }
 
         
@@ -95,9 +120,12 @@ namespace TinyMvvm.Forms
             {
                 throw new Exception("You must run TinyMvvm.Initialize();");
             }
-
-            
         }
+
+       
+
+
+       
 
         private bool _hasAppeared;
 

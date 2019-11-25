@@ -1,8 +1,10 @@
-using System;
+﻿using System;
+using System.Reflection;
+using TinyMvvmSample.Views;
+using TinyNavigationHelper.Forms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace TinyMvvmSample
 {
     public partial class App : Application
@@ -11,7 +13,14 @@ namespace TinyMvvmSample
         {
             InitializeComponent();
 
-            Bootstrapper.Initialize();
+            var navigationHelper = new ShellNavigationHelper();
+            navigationHelper.RegisterRoute("about/contact", typeof(ContactView));
+
+            navigationHelper.RegisterViewsInAssembly(Assembly.GetExecutingAssembly());
+
+            TinyMvvm.Forms.TinyMvvm.Initialize();
+
+            MainPage = new MainShell();
         }
 
         protected override void OnStart()

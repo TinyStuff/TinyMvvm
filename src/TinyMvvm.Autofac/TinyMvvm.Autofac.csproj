@@ -1,7 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>8.0</LangVersion>
+     <NullableContextOptions>enable</NullableContextOptions>
+   <WarningsAsErrors>CS8600;CS8602;CS8603</WarningsAsErrors>
+        
     <Authors>Daniel Hindrikes &amp; Johan Karlsson</Authors>
     <Company />
     <Description />

@@ -12,14 +12,14 @@ namespace TinyMvvm.Forms
 {
     public class TinyMvvmViewCreator : IViewCreator<Page>
     {
-        public Page Create(Type type)
+        public Page? Create(Type type)
         {
             return Create(type, null);
         }
 
-        public Page Create(Type type, object parameter)
+        public Page? Create(Type type, object? parameter)
         {
-            Page page = null;
+            Page? page = null;
 
             if (Resolver.IsEnabled)
             {
