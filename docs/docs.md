@@ -1,7 +1,5 @@
 # TinyMvvm (for Xamarin Forms)
 
-**<div style="color: red;">In progress - not done yet</div>**
-
 TinyMvvm is yet another small MVVM framework designed specifically with Xamarin Forms in mind. There is a TinyMvvm-version for WPF in progress as well, but this documentation does not cover that weird version.
 
 This documentation does not cover the basics of MVVM and assumes that you are already familiar with the concept of MVVM.
@@ -10,7 +8,7 @@ This documentation does not cover the basics of MVVM and assumes that you are al
 
 * Supply a base class for views and viewmodels
 * Implementation of `INotifyPropertyChanged`
-* Wraps TinyNavigationHelper for easy as pie navigation
+* Wraps TinyNavigationHelper for easy navigation
 
 ## How to install
 Install the TinyMvvm.Forms package from NuGet, https://www.nuget.org/packages/TinyMvvm.Forms/
@@ -44,9 +42,11 @@ navigationHelper.RegisterView("MainView", typeof(MainView));
 // The class name will be the key. To use this, you need to add using System.Reflection;		
 var asm = typeof(App).GetTypeInfo().Assembly;		
 navigationHelper.RegisterViewsInAssembly(asm);
-```
 
-The recommendation is to use NavigationHelper.Current.SetRootView(string pageKey, bool withNavigation = true) instead of MainPage = new YourPage() for setting the MainPage of the application.
+// Option 4: For Xamarin.Forms Shell URL navigation. Option 1-3 can be combined with Option 4 because ShellNavigationHelper is a subclass of FormsNavigationHelper.
+var navigationHelper = new ShellNavigationHelper();
+
+```
 
 ## The overall structure
 
@@ -112,35 +112,53 @@ Features (or drawbacks) of the ViewModelBase
 * Implements INotifyPropertyChanged for you
 * Propagates life cycle events to the view (Initialize, OnAppearing, OnDisapparing)
 
-### Navigation
-TinyMvvm using the TinyNavigationHelper for navigation, for more detailed information, please read the documentation for TinyNavigationHelper, https://github.com/dhindrik/TinyNavigationHelper/blob/master/README.md.
+### Navigation from ViewModel
 
-#### Navigation in View (from Xaml)
-
-Navigation is made really easy. In the xaml, simply bind a command to `NavigateTo` and pass the view name as the parameter:
-
-```xml
-<Button Text="About" Command="{Binding NavigateTo}" CommandParameter="AboutView" />
+Shell URL navigation:
+```csharp
+await Navigation.NavigateToAsync("//home/messages/id=1");
 ```
-
-or open a view as a modal view:
-
-```xml
-<Button Text="About" Command="{Binding OpenModal}" CommandParameter="AboutView" />
-```
-
-#### Navigation from ViewModel (you know, from code)
+Xamarin.Forms traditional:
 
 ```csharp
 await Navigation.NavigateToAsync("AboutView");
 ```
+with parameter:
 
-or open as modal
+```csharp
+var myObject = new MyObject();
+
+await Navigation.NavigateToAsync("AboutView", myObject);
+```
+
+or open as modal:
 
 ```csharp
 await Navigation.OpenModalAsync("AboutView");
 ```
 
+#### QueryParameters in ViewModelBase
+With URL navigation you can pass query parameters. With TinyMvvm you can access them from the ViewModel via the **QueryParameters** property of **ViewModelBase**. QueryParameters is of type Dictionary<string, string>.
+
+```csharp
+public override async Task Initialize()
+{
+	await base.Initialize();
+	
+	var id = QueryParameters["id"];
+}
+```
+
+
+#### NavigationParameter in ViewModelBase
+```csharp
+public override async Task Initialize()
+{
+	await base.Initialize();
+	
+	var myObject = NavigationParameter as MyObject;
+}
+```
 
 ### IoC
 Tiny Mvvm is not bound to any specific IoC provider. There are a provider for Autoface that you can install with the "TinyMvvm.Autoface" package.
