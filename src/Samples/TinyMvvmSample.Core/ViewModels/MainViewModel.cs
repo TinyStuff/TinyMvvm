@@ -14,7 +14,7 @@ namespace TinyMvvmSample.Core.ViewModels
 
         public ICommand About => new TinyCommand(() =>
         {
-            Navigation.NavigateToAsync("///about");
+            Navigation.NavigateToAsync("//login?messageTitle=hej");
         });
 
         public override Task OnAppearing()

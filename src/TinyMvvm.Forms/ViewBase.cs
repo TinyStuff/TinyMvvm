@@ -26,13 +26,14 @@ namespace TinyMvvm.Forms
 
         public ViewBase()
         {
-            BindingContextChanged += ViewBase_BindingContextChanged;
 
         }
 
-        private async void ViewBase_BindingContextChanged(object sender, EventArgs e)
+        protected async override void OnBindingContextChanged()
         {
-            if(!CreatedByTinyMvvm && BindingContext is ViewModelBase)
+            base.OnBindingContextChanged();
+
+            if (!CreatedByTinyMvvm && BindingContext is ViewModelBase)
             {
                 var viewModel = (ViewModelBase)BindingContext;
                 SetupUIAction(viewModel);
@@ -44,7 +45,7 @@ namespace TinyMvvm.Forms
 
                         var parameters = shellNavigationHelper.GetQueryParameters(TinyId);
                         viewModel.NavigationParameter = parameters;
-  
+
 
                     }
 
@@ -54,6 +55,23 @@ namespace TinyMvvm.Forms
                 finally
                 {
                     ReadLock.Release();
+                }
+            }
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (!CreatedByTinyMvvm && BindingContext is ViewModelBase)
+            {
+                var viewModel = (ViewModelBase)BindingContext;
+                if (TinyId != null)
+                {
+                    var shellNavigationHelper = (ShellNavigationHelper)NavigationHelper.Current;
+
+                    var parameters = shellNavigationHelper.GetQueryParameters(TinyId);
+                    viewModel.NavigationParameter = parameters;
                 }
             }
         }
