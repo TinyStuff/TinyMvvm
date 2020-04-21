@@ -33,9 +33,8 @@ namespace TinyMvvm.Forms
         {
             base.OnBindingContextChanged();
 
-            if (!CreatedByTinyMvvm && BindingContext is ViewModelBase)
+            if (!CreatedByTinyMvvm && BindingContext is ViewModelBase viewModel)
             {
-                var viewModel = (ViewModelBase)BindingContext;
                 SetupUIAction(viewModel);
                 try
                 {
@@ -45,8 +44,6 @@ namespace TinyMvvm.Forms
 
                         var parameters = shellNavigationHelper.GetQueryParameters(TinyId);
                         viewModel.NavigationParameter = parameters;
-
-
                     }
 
                     await ReadLock.WaitAsync();
@@ -63,9 +60,8 @@ namespace TinyMvvm.Forms
         {
             base.OnAppearing();
 
-            if (!CreatedByTinyMvvm && BindingContext is ViewModelBase)
+            if (BindingContext is ViewModelBase viewModel)
             {
-                var viewModel = (ViewModelBase)BindingContext;
                 if (TinyId != null)
                 {
                     var shellNavigationHelper = (ShellNavigationHelper)NavigationHelper.Current;
