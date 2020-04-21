@@ -18,6 +18,7 @@ namespace TinyMvvm
 
         }
 
+        [Obsolete("The recommendation is to use MainThread from Xamarin.Essentials instead.")]
         public virtual Action<Action>? BeginInvokeOnMainThread { get; set; }
 
 
