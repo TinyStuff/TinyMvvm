@@ -7,9 +7,15 @@ namespace TinyMvvmSample.Core.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+
+        public MainViewModel()
+        {
+
+        }
+
         public ICommand Contact => new TinyCommand(() =>
         {
-            Navigation.NavigateToAsync("///about/contact?id=1");
+            Navigation.NavigateToAsync($"{nameof(ContactViewModel)}?id=1");
         });
 
         public ICommand About => new TinyCommand(() =>

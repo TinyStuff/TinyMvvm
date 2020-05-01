@@ -17,7 +17,8 @@ namespace TinyMvvm.Forms
     {
         internal bool CreatedByTinyMvvm { get; set; }
         public object? NavigationParameter { get; set; }
-        internal SemaphoreSlim ReadLock { get; private set; } = new SemaphoreSlim(1, 1);
+        internal SemaphoreSlim ReadLock { get; private set; } 
+            = new SemaphoreSlim(1, 1);
 
         /// <summary>
         /// Internally used by TinyMvvm

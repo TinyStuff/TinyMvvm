@@ -14,10 +14,11 @@ namespace TinyMvvmSample
             InitializeComponent();
 
             var navigationHelper = new ShellNavigationHelper();
-            navigationHelper.RegisterRoute("about/contact", typeof(ContactView));
+           //navigationHelper.RegisterRoute("about/contact", typeof(ContactView));
 
             navigationHelper.RegisterViewsInAssembly(Assembly.GetExecutingAssembly());
 
+            
             TinyMvvm.Forms.TinyMvvm.Initialize();
 
             MainPage = new MainShell();

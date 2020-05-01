@@ -4,8 +4,29 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
      xmlns:mvvm="clr-namespace:TinyMvvm.Forms;assembly=TinyMvvm.Forms"
     xmlns:vm="clr-namespace:TinyMvvmSample.Core.ViewModels;assembly=TinyMvvmSample.Core"
-    x:Class="TinyMvvmSample.Views.ContactView" x:TypeArguments="vm:ContactViewModel">
+    x:Class="TinyMvvmSample.Views.ContactView"     
+    Shell.PresentationMode="{Binding Modal}"
+    x:TypeArguments="vm:ContactViewModel">
     <ContentPage.Content>
-        
+        <StackLayout>
+            <Label Text="Contact View"></Label>
+            <Label Text="Contact View"></Label>
+            <Label Text="Contact View"></Label>
+            <Label Text="Contact View"></Label>
+            <Label Text="Contact View"></Label>
+            <Label Text="Contact View"></Label>
+            <Label Text="Contact View"></Label>
+            <Label Text="Contact View"></Label>
+            <Label Text="Contact View"></Label>
+            <Label Text="Contact View"></Label>
+            <Label Text="Contact View"></Label>
+            <Label Text="Contact View"></Label>
+            <Label Text="Contact View"></Label>
+            <Label Text="Contact View"></Label>
+            <Label Text="Contact View"></Label>
+            <Label Text="Contact View"></Label>
+            <Label Text="Contact View"></Label>
+            <Label Text="Contact View"></Label>
+        </StackLayout>
     </ContentPage.Content>
 </mvvm:ViewBase>
