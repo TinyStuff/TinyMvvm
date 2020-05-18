@@ -6,6 +6,11 @@
      <NullableContextOptions>enable</NullableContextOptions>
     <WarningsAsErrors>CS8600;CS8602;CS8603</WarningsAsErrors>
         
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        
       <Version>1.0.0</Version>
     <Authors>Daniel Hindrikes &amp; Johan Karlsson</Authors>
     <Company />

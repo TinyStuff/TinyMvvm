@@ -136,6 +136,10 @@
       <Project>{ABF21378-06FB-4A94-8A09-C0578155ADA3}</Project>
       <Name>TinyMvvm</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\TinyMvvm.Autofac\TinyMvvm.Autofac.csproj">
+      <Project>{82CAAD19-E130-4C94-81A8-56890DEC0874}</Project>
+      <Name>TinyMvvm.Autofac</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\TinyMvvmSample\TinyMvvmSample.projitems" Label="Shared" Condition="Exists('..\TinyMvvmSample\TinyMvvmSample.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
