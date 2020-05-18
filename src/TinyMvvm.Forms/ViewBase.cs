@@ -56,6 +56,7 @@ namespace TinyMvvm.Forms
             }
         }
 
+        private bool _hasAppeared;
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -68,6 +69,23 @@ namespace TinyMvvm.Forms
 
                     var parameters = shellNavigationHelper.GetQueryParameters(TinyId);
                     viewModel.NavigationParameter = parameters;
+                }
+
+                if (viewModel != null)
+                {
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        await ReadLock.WaitAsync();
+                        await viewModel.OnAppearing();
+
+                        if (!_hasAppeared)
+                        {
+                            _hasAppeared = true;
+                            await viewModel.OnFirstAppear();
+                        }
+
+                        ReadLock.Release();
+                    });
                 }
             }
         }
@@ -136,40 +154,18 @@ namespace TinyMvvm.Forms
             }
         }
 
-       
-
-
-       
-
-        private bool _hasAppeared;
-
+      
         protected override void OnAppearing()
         {
-            base.OnAppearing();
+           
 
             if(ViewModel == null && !CreatedByTinyMvvm)
             {
                 CreateViewModel();
             }
 
-            if (ViewModel is ViewModelBase)
-            {
-                var viewModel = ViewModel as ViewModelBase;
+            base.OnAppearing();
 
-                if (viewModel != null)
-                {
-                    Device.BeginInvokeOnMainThread(async () =>
-                    {
-                        await ReadLock.WaitAsync();
-                        await viewModel.OnAppearing();
-                        if (!_hasAppeared) {
-                            _hasAppeared = true;
-                            await viewModel.OnFirstAppear();
-                        }
-                        ReadLock.Release();
-                    });
-                }
-            }
         }
 
         protected override void OnDisappearing()
