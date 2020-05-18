@@ -23,6 +23,13 @@
     <Copyright>Copyright 2017 - Johan Karlsson and Daniel Hindrikes</Copyright>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+  </PropertyGroup>
   <ItemGroup>
     <Folder Include="TinyNavigationHelper\" />
   </ItemGroup>
