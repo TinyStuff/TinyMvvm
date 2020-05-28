@@ -22,24 +22,24 @@ namespace TinyMvvm
         public virtual Action<Action>? BeginInvokeOnMainThread { get; set; }
 
 
-        public async virtual Task Initialize()
+        public virtual Task Initialize()
         {
-
+            return Task.CompletedTask;
         }
 
-        public async virtual Task OnAppearing()
+        public virtual Task OnAppearing()
         {
-
+            return Task.CompletedTask;
         }
 
-        public async virtual Task OnFirstAppear()
+        public virtual Task OnFirstAppear()
         {
-
+            return Task.CompletedTask;
         }
 
-        public async virtual Task OnDisappearing()
+        public virtual Task OnDisappearing()
         {
-
+            return Task.CompletedTask;
         }
 
         public object? NavigationParameter { get; set; }
