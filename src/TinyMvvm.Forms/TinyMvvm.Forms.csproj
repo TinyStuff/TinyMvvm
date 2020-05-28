@@ -33,7 +33,7 @@
     <DebugType>full</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="xamarin.forms" Version="4.2.0.709249" />
+    <PackageReference Include="xamarin.forms" Version="4.6.0.800" />
   </ItemGroup>
 
   <ItemGroup>
