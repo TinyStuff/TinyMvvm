@@ -2,15 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <LangVersion>8.0</LangVersion>
      <NullableContextOptions>enable</NullableContextOptions>
    <WarningsAsErrors>CS8600;CS8602;CS8603;CS8618;CS8653;CS8625</WarningsAsErrors>
-        
+
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        
+
       <RepositoryUrl>https://github.com/dhindrik/TinyMvvm</RepositoryUrl>
       <PackageProjectUrl>https://github.com/dhindrik/TinyMvvm</PackageProjectUrl>
       <RepositoryType>Git</RepositoryType>
@@ -24,11 +23,9 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <LangVersion>8.0</LangVersion>
     <DebugType>full</DebugType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <LangVersion>8.0</LangVersion>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
   </PropertyGroup>
