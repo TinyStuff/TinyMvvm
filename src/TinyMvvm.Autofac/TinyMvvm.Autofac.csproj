@@ -2,15 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <LangVersion>8.0</LangVersion>
      <NullableContextOptions>enable</NullableContextOptions>
    <WarningsAsErrors>CS8600;CS8602;CS8603</WarningsAsErrors>
-        
+
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        
+
     <Authors>Daniel Hindrikes &amp; Johan Karlsson</Authors>
     <Company />
     <Description />
