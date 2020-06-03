@@ -42,7 +42,10 @@ namespace TinyMvvm.Forms
                     {
                         var shellNavigationHelper = (ShellNavigationHelper)NavigationHelper.Current;
 
-                        var parameters = shellNavigationHelper.GetQueryParameters(TinyId);
+                        var queryParameters = shellNavigationHelper.GetQueryParameters(TinyId);
+                        viewModel.QueryParameters = queryParameters;
+
+                        var parameters = shellNavigationHelper.GetParameter(TinyId);
                         viewModel.NavigationParameter = parameters;
                     }
 
@@ -67,7 +70,10 @@ namespace TinyMvvm.Forms
                 {
                     var shellNavigationHelper = (ShellNavigationHelper)NavigationHelper.Current;
 
-                    var parameters = shellNavigationHelper.GetQueryParameters(TinyId);
+                    var queryParameters = shellNavigationHelper.GetQueryParameters(TinyId);
+                    viewModel.QueryParameters = queryParameters;
+
+                    var parameters = shellNavigationHelper.GetParameter(TinyId);
                     viewModel.NavigationParameter = parameters;
                 }
 

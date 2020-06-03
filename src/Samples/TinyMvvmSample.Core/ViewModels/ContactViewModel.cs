@@ -15,6 +15,7 @@ namespace TinyMvvmSample.Core.ViewModels
             await base.Initialize();
 
             var parameters = NavigationParameter;
+            var query = QueryParameters;
         }
 
         public override Task OnAppearing()

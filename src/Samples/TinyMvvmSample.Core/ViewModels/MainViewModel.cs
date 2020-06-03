@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using TinyMvvm;
@@ -9,7 +10,13 @@ namespace TinyMvvmSample.Core.ViewModels
     {
         public ICommand Contact => new TinyCommand(() =>
         {
-            Navigation.NavigateToAsync($"{nameof(ContactViewModel)}?id=1");
+            var list = new List<string>()
+            {
+                "hej",
+                "tja"
+            };
+
+            Navigation.NavigateToAsync($"{nameof(ContactViewModel)}?id=1", list);
         });
 
         public ICommand About => new TinyCommand(() =>

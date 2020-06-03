@@ -43,7 +43,7 @@ namespace TinyMvvm
         }
 
         public object? NavigationParameter { get; set; }
-        public Dictionary<string, string>? QueryParameters => NavigationParameter as Dictionary<string, string>;
+        public Dictionary<string, string>? QueryParameters { get; set; }
 
         public ICommand NavigateTo
         {
