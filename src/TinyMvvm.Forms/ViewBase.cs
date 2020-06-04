@@ -43,10 +43,18 @@ namespace TinyMvvm.Forms
                         var shellNavigationHelper = (ShellNavigationHelper)NavigationHelper.Current;
 
                         var queryParameters = shellNavigationHelper.GetQueryParameters(TinyId);
-                        viewModel.QueryParameters = queryParameters;
+
+                        if (queryParameters != null)
+                        {
+                            viewModel.QueryParameters = queryParameters;
+                        }
 
                         var parameters = shellNavigationHelper.GetParameter(TinyId);
-                        viewModel.NavigationParameter = parameters;
+
+                        if (parameters != null)
+                        {
+                            viewModel.NavigationParameter = parameters;
+                        }
                     }
 
                     await ReadLock.WaitAsync();
@@ -71,10 +79,18 @@ namespace TinyMvvm.Forms
                     var shellNavigationHelper = (ShellNavigationHelper)NavigationHelper.Current;
 
                     var queryParameters = shellNavigationHelper.GetQueryParameters(TinyId);
-                    viewModel.QueryParameters = queryParameters;
+
+                    if (queryParameters != null)
+                    {
+                        viewModel.QueryParameters = queryParameters;
+                    }
 
                     var parameters = shellNavigationHelper.GetParameter(TinyId);
-                    viewModel.NavigationParameter = parameters;
+
+                    if (parameters != null)
+                    {
+                        viewModel.NavigationParameter = parameters;
+                    }
                 }
 
                 if (viewModel != null)
