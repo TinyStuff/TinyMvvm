@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeTemplates version="3.0">
+  <CodeTemplate version="2.0">
+    <Header>
+      <_Group>TinyMvvm</_Group>
+      <Version />
+      <MimeType>text/x-csharp</MimeType>
+      <Shortcut>tmprop</Shortcut>
+      <_Description>Creates a TinyMvvm-style property</_Description>
+      <TemplateType>Expansion</TemplateType>
+    </Header>
+    <Variables>
+      <Variable name="name">
+        <Default>name</Default>
+      </Variable>
+      <Variable name="pname">
+        <Default>Name</Default>
+      </Variable>
+    </Variables>
+    <Code><![CDATA[private string $name$;
+public string $pname$
+{
+    get => $name$;
+    set => Set(ref $name$, value);
+}
+$end$]]></Code>
+  </CodeTemplate>
+</CodeTemplates>

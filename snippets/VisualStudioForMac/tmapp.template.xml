@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeTemplates version="3.0">
+  <CodeTemplate version="2.0">
+    <Header>
+      <_Group>TinyMvvm</_Group>
+      <Version />
+      <MimeType>text/x-csharp</MimeType>
+      <Shortcut>tmapp</Shortcut>
+      <_Description>Create an override for the OnAppearing method</_Description>
+      <TemplateType>Expansion</TemplateType>
+    </Header>
+    <Variables />
+    <Code><![CDATA[public async override Task OnAppearing()
+{
+    await base.OnAppearing();
+
+    $end$
+}]]></Code>
+  </CodeTemplate>
+</CodeTemplates>

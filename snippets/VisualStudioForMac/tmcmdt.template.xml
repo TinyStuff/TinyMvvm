@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeTemplates version="3.0">
+  <CodeTemplate version="2.0">
+    <Header>
+      <_Group>TinyMvvm</_Group>
+      <Version />
+      <MimeType>text/x-csharp</MimeType>
+      <Shortcut>tmcmdt</Shortcut>
+      <_Description>Creates a generic TinyCommand property</_Description>
+      <TemplateType>Expansion</TemplateType>
+    </Header>
+    <Variables>
+      <Variable name="name">
+        <Default>name</Default>
+        <_ToolTip>The name of the backing field for the command</_ToolTip>
+      </Variable>
+      <Variable name="pname">
+        <Default>Name</Default>
+        <_ToolTip>The name of the property</_ToolTip>
+      </Variable>
+      <Variable name="type">
+        <Default>object</Default>
+        <_ToolTip>The type of the parameter sent to the command</_ToolTip>
+      </Variable>
+      <Variable name="parameter">
+        <Default>parameter</Default>
+        <_ToolTip>The name of the parameter sent to the command</_ToolTip>
+      </Variable>
+    </Variables>
+    <Code><![CDATA[private ICommand? $name$;
+public ICommand $pname$ => $name$ ?? new TinyCommand<$type$>(async($parameter$) => {
+    $end$
+});]]></Code>
+  </CodeTemplate>
+</CodeTemplates>

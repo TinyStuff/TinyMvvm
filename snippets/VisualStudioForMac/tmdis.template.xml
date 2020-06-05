@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeTemplates version="3.0">
+  <CodeTemplate version="2.0">
+    <Header>
+      <_Group>TinyMvvm</_Group>
+      <Version />
+      <MimeType>text/x-csharp</MimeType>
+      <Shortcut>tmdis</Shortcut>
+      <_Description>Create an override for the OnDisappearing method</_Description>
+      <TemplateType>Expansion</TemplateType>
+    </Header>
+    <Variables />
+    <Code><![CDATA[public async override Task OnDisappearing()
+{
+    await base.OnDisappearing();
+
+    $end$
+}]]></Code>
+  </CodeTemplate>
+</CodeTemplates>

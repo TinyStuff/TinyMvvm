@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeTemplates version="3.0">
+  <CodeTemplate version="2.0">
+    <Header>
+      <_Group>TinyMvvm</_Group>
+      <Version />
+      <MimeType>text/x-csharp</MimeType>
+      <Shortcut>IsBusy</Shortcut>
+      <_Description>Surround code with IsBusy</_Description>
+      <TemplateType>SurroundsWith</TemplateType>
+    </Header>
+    <Variables />
+    <Code><![CDATA[IsBusy = true;
+
+$selected$
+
+IsBusy = false;]]></Code>
+  </CodeTemplate>
+</CodeTemplates>

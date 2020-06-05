@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeTemplates version="3.0">
+  <CodeTemplate version="2.0">
+    <Header>
+      <_Group>TinyMvvm</_Group>
+      <Version />
+      <MimeType>text/x-csharp</MimeType>
+      <Shortcut>tmcmd</Shortcut>
+      <_Description>Create a TinyMvvm Command</_Description>
+      <TemplateType>Expansion</TemplateType>
+    </Header>
+    <Variables>
+     <Variable name="name">
+        <Default>name</Default>
+        <_ToolTip>The name of the backing field for the command</_ToolTip>
+      </Variable>
+      <Variable name="pname">
+        <Default>Name</Default>
+        <_ToolTip>The name of the property</_ToolTip>
+      </Variable>
+    </Variables>
+    <Code><![CDATA[private ICommand? $name$;
+public ICommand $pname$ => $name$ ?? new TinyCommand(async() => {
+    $end$
+});]]></Code>
+  </CodeTemplate>
+</CodeTemplates>
