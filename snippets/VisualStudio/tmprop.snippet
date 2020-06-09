@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+    <SnippetTypes>
+      <SnippetType>
+        Expansion
+      </SnippetType>
+      </SnippetTypes>
+        <Header>
+            <Title>TinyMvvm Property</Title>
+            <Author>Daniel Hindrikes</Author>
+            <Description>
+              Creates a TinyMvvm-style property</Description>
+                <Shortcut>tmprop</Shortcut>
+            </Header>
+            <Snippet>
+                <Code Language="CSharp">
+                  <![CDATA[private string $name$;
+public string $pname$
+{
+    get => $name$;
+    set => Set(ref $name$, value);
+}
+$end$]]>
+                </Code>
+              <Declarations>
+                <Literal>
+                  <ID>name</ID>
+                  <ToolTip>The name of the backing field</ToolTip>
+                  <Default>name</Default>
+                </Literal>
+                <Literal>
+                  <ID>pname</ID>
+                  <ToolTip>The name of the property</ToolTip>
+                  <Default>Name</Default>
+                </Literal>
+              </Declarations>
+            </Snippet>
+        </CodeSnippet>
+    </CodeSnippets>

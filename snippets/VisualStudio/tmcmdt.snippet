@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+    <SnippetTypes>
+      <SnippetType>
+        Expansion
+      </SnippetType>
+      </SnippetTypes>
+        <Header>
+            <Title>TinyMvvm Generic Command</Title>
+            <Author>Daniel Hindrikes</Author>
+            <Description>Create a TinyMvvm Generic Command</Description>
+                <Shortcut>tmcmdt</Shortcut>
+            </Header>
+            <Snippet>
+                <Code Language="CSharp">
+                  <![CDATA[private ICommand? $name$;
+public ICommand $pname$ => $name$ ?? new TinyCommand<$type$>(async($parameter$) => {
+    $end$
+});]]>
+                </Code>
+              <Declarations>
+                <Literal>
+                  <ID>name</ID>
+                  <ToolTip>The name of the backing field for the command</ToolTip>
+                  <Default>name</Default>
+                </Literal>
+                <Literal>
+                  <ID>pname</ID>
+                  <ToolTip>The name of the property</ToolTip>
+                  <Default>Name</Default>
+                </Literal>
+                <Literal>
+                  <ID>type</ID>
+                  <ToolTip>The type of the parameter sent to the command</ToolTip>
+                  <Default>object</Default>
+                </Literal>
+                <Literal>
+                  <ID>parameter</ID>
+                  <ToolTip>The name of the parameter sent to the command</ToolTip>
+                  <Default>parameter</Default>
+                </Literal>
+              </Declarations>
+                <Imports>
+                    <Import>
+                        <Namespace>TinyMvvm</Namespace>
+                    </Import>
+                  <Import>
+                    <Namespace>System.Windows.Input</Namespace>
+                  </Import>
+                </Imports>
+            </Snippet>
+        </CodeSnippet>
+    </CodeSnippets>
