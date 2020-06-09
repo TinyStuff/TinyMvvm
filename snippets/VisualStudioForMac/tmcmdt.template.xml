@@ -28,7 +28,7 @@
       </Variable>
     </Variables>
     <Code><![CDATA[private ICommand? $name$;
-public ICommand $pname$ => $name$ ?? new TinyCommand<$type$>(async($parameter$) => {
+public ICommand $pname$ => $name$ ??= new TinyCommand<$type$>(async($parameter$) => {
     $end$
 });]]></Code>
   </CodeTemplate>

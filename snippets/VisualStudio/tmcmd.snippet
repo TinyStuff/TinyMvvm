@@ -15,7 +15,7 @@
             <Snippet>
                 <Code Language="CSharp">
                    <![CDATA[private ICommand? $name$;
-public ICommand $pname$ => $name$ ?? new TinyCommand(async() => {
+public ICommand $pname$ => $name$ ??= new TinyCommand(async() => {
     $end$
 });]]>
                 </Code>
