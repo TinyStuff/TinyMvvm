@@ -1,14 +1,9 @@
 # TinyMvvm (for Xamarin Forms)
 
-TinyMvvm is yet another small MVVM framework designed specifically with Xamarin Forms in mind. There is a TinyMvvm-version for WPF in progress as well, but this documentation does not cover that weird version.
+TinyMvvm is yet a small MVVM framework designed specifically with Xamarin Forms in mind. 
 
 This documentation does not cover the basics of MVVM and assumes that you are already familiar with the concept of MVVM.
 
-## What do we do?
-
-* Supply a base class for views and viewmodels
-* Implementation of `INotifyPropertyChanged`
-* Wraps TinyNavigationHelper for easy navigation
 
 ## How to install
 Install the TinyMvvm.Forms package from NuGet, https://www.nuget.org/packages/TinyMvvm.Forms/
@@ -16,7 +11,8 @@ Install the TinyMvvm.Forms package from NuGet, https://www.nuget.org/packages/Ti
 ```
 Install-Package TinyMvvm.Forms 
 ```
-If you want to separet the ViewModels in a separte project that dosen't have references to Xamarin.Forms, just install the TinyMvvm package on that project.
+If you want to separate the ViewModels in a separate project that doesn't have references to Xamarin.Forms, just install the TinyMvvm package on that project.
+
 
 ```
 Install-Package TinyMvvm 
