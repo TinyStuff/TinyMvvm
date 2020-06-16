@@ -8,6 +8,6 @@ namespace TinyMvvm.IoC
     {
         T Resolve<T>();
         T Resolve<T>(string key);
-        object Resolver(Type type);
+        object Resolve(Type type);
     }
 }

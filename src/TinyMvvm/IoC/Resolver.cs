@@ -33,7 +33,7 @@ namespace TinyMvvm.IoC
 
         public static object Resolve(Type type)
         {
-            return _resolver.Resolver(type);
+            return _resolver.Resolve(type);
         }
     }
 }
