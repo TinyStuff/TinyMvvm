@@ -31,6 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="xamarin.forms" Version="4.6.0.800" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
