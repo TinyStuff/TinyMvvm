@@ -17,6 +17,7 @@ namespace TinyMvvm.Forms
     {
         internal bool CreatedByTinyMvvm { get; set; }
         public object? NavigationParameter { get; set; }
+        public Dictionary<string, string>? QueryParameters { get; private set; }
         internal SemaphoreSlim ReadLock { get; private set; } = new SemaphoreSlim(1, 1);
 
         /// <summary>
@@ -46,6 +47,7 @@ namespace TinyMvvm.Forms
 
                         if (queryParameters != null)
                         {
+                            QueryParameters = queryParameters;
                             viewModel.QueryParameters = queryParameters;
                         }
 
@@ -54,6 +56,7 @@ namespace TinyMvvm.Forms
                         if (parameters != null)
                         {
                             viewModel.NavigationParameter = parameters;
+                            NavigationParameter = parameters;
                         }
                     }
 
@@ -83,6 +86,7 @@ namespace TinyMvvm.Forms
                     if (queryParameters != null)
                     {
                         viewModel.QueryParameters = queryParameters;
+                        QueryParameters = queryParameters;
                     }
 
                     var parameters = shellNavigationHelper.GetParameter(TinyId);
@@ -90,6 +94,7 @@ namespace TinyMvvm.Forms
                     if (parameters != null)
                     {
                         viewModel.NavigationParameter = parameters;
+                        NavigationParameter = parameters;
                     }
                 }
 
