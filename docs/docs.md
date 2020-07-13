@@ -20,10 +20,6 @@ Install-Package TinyMvvm
 
 ## Initiation
 
-```csharp
-TinyMvvm.Forms.TinyMvvm.Initialize();
-```
-
 ### Configure navigation
 ```csharp
 // Option 1:
