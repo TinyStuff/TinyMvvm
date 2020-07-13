@@ -38,8 +38,6 @@ namespace ClassicSampleApp
 
             Resolver.SetResolver(new AutofacResolver(container));
 
-            TinyMvvm.Forms.TinyMvvm.Initialize();
-
             MainPage = new NavigationPage(new MainView());
         }
 

@@ -38,9 +38,6 @@ namespace SampleApp
 
             Resolver.SetResolver(new AutofacResolver(container));
 
-            TinyMvvm.Forms.TinyMvvm.Initialize();
-            
-
             MainPage = new AppShell();
         }
 

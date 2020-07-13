@@ -177,7 +177,7 @@ namespace TinyMvvm.Forms
 
             if(!(navigation.ViewCreator is TinyMvvmViewCreator))
             {
-                throw new Exception("You must run TinyMvvm.Initialize();");
+                navigation.ViewCreator = new TinyMvvmViewCreator();
             }
         }
 
