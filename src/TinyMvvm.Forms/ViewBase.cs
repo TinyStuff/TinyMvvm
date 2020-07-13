@@ -34,7 +34,7 @@ namespace TinyMvvm.Forms
         {
             base.OnBindingContextChanged();
 
-            if (!CreatedByTinyMvvm && BindingContext is ViewModelBase viewModel)
+            if (!CreatedByTinyMvvm && BindingContext is IViewModelBase viewModel)
             {
                 SetupUIAction(viewModel);
                 try
@@ -75,7 +75,7 @@ namespace TinyMvvm.Forms
         {
             base.OnAppearing();
 
-            if (BindingContext is ViewModelBase viewModel)
+            if (BindingContext is IViewModelBase viewModel)
             {
                 if (TinyId != null)
                 {
@@ -117,14 +117,18 @@ namespace TinyMvvm.Forms
             }
         }
 
-        internal static void SetupUIAction(ViewModelBase viewModel)
+        internal static void SetupUIAction(IViewModelBase viewModel)
         {
-            if (viewModel.BeginInvokeOnMainThread == null)
+            if (viewModel is ViewModelBase viewModelBase)
             {
-                viewModel.BeginInvokeOnMainThread = (action) =>
+
+                if (viewModelBase.BeginInvokeOnMainThread == null)
                 {
-                    Device.BeginInvokeOnMainThread(action);
-                };
+                    viewModelBase.BeginInvokeOnMainThread = (action) =>
+                    {
+                        Device.BeginInvokeOnMainThread(action);
+                    };
+                }
             }
         }
 
@@ -136,7 +140,7 @@ namespace TinyMvvm.Forms
 
 
     
-    public abstract class ViewBase<T> : ViewBase where T:ViewModelBase?
+    public abstract class ViewBase<T> : ViewBase where T:IViewModelBase?
     {
         public T ViewModel
         {
@@ -147,7 +151,7 @@ namespace TinyMvvm.Forms
                     return (T)BindingContext;
                 }
 
-                return null;
+                return default(T);
             }
         }
 
@@ -203,10 +207,8 @@ namespace TinyMvvm.Forms
         {
             base.OnDisappearing();
 
-            if (ViewModel is ViewModelBase)
+            if (ViewModel is IViewModelBase viewModel)
             {
-                var viewModel = ViewModel as ViewModelBase;
-
                 if (viewModel != null)
                 {
                     Device.BeginInvokeOnMainThread(async () =>
@@ -218,7 +220,7 @@ namespace TinyMvvm.Forms
         }
     }
 
-    public class ShellViewBase<T> : ViewBase<T> where T:ViewModelBase?
+    public class ShellViewBase<T> : ViewBase<T> where T:IViewModelBase?
     {
         public ShellViewBase() : base(true)
         {

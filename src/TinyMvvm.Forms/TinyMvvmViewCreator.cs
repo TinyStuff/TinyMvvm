@@ -85,7 +85,7 @@ namespace TinyMvvm.Forms
                 view.NavigationParameter = parameter;
             }
 
-            var viewModel = view.BindingContext as ViewModelBase;
+            var viewModel = view.BindingContext as IViewModelBase;
 
             if (viewModel != null)
             {

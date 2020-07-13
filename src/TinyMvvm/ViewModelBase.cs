@@ -11,7 +11,7 @@ using TinyNavigationHelper.Abstraction;
 
 namespace TinyMvvm
 {
-    public abstract class ViewModelBase : INotifyPropertyChanged
+    public abstract class ViewModelBase : IViewModelBase
     {
         public ViewModelBase()
         {
