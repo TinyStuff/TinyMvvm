@@ -162,15 +162,13 @@ namespace TinyMvvm.Forms
             else
             {
                 BindingContext = Activator.CreateInstance(typeof(T));
-            }
-
-            
+            }        
             
         }
 
         
 
-        public ViewBase()
+        public ViewBase(bool isShellView = false)
         {
 
             var navigation = (FormsNavigationHelper)NavigationHelper.Current;
@@ -178,6 +176,11 @@ namespace TinyMvvm.Forms
             if(!(navigation.ViewCreator is TinyMvvmViewCreator))
             {
                 navigation.ViewCreator = new TinyMvvmViewCreator();
+            }
+
+            if(isShellView)
+            {
+                CreateViewModel();
             }
         }
 

@@ -7,7 +7,7 @@ namespace SampleApp.Views
 {
     public partial class AboutView
     {
-        public AboutView()
+        public AboutView() : base(true)
         {
             InitializeComponent();
         }
