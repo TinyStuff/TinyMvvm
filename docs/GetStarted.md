@@ -45,7 +45,7 @@ This is a tutorial that will guide you through how to get started building an ap
     * Use **ShellNavigationHelper** and register all views in the current Assembly. This register all views so we can use the class name as the key if we use the classic (non-Shell) navigation or we can use ViewModelNavigation that is powered by the Shell navigation.
     * The sample is using **Autofac** as it's **IoC container**, but you can use whatever container you want. The only thing you need to do to use another is to create an implementation of **IResolver** that uses it. Register all classes that is a subType of **Page** (Xamarin.Forms) and **ViewModelBase** (TinyMvvm).
     * Register the container to the Resolver, the **Resolver** is used internally by TinyMvvm, but you can also use it in your code.
-    * The last thing to do is to call the **Initialize* method for TinyMvvm.
+ 
     ```csharp
         public App()
         {
@@ -70,8 +70,6 @@ This is a tutorial that will guide you through how to get started building an ap
             var container = containerBuilder.Build();
 
             Resolver.SetResolver(new AutofacResolver(container));
-
-            TinyMvvm.Forms.TinyMvvm.Initialize();
 
             MainPage = new AppShell();
         }
