@@ -166,9 +166,15 @@ namespace TinyMvvm.Forms
             
         }
 
-        
+        public ViewBase(bool isShellView)
+        {
+            if (isShellView)
+            {
+                CreateViewModel();
+            }
+        }
 
-        public ViewBase(bool isShellView = false)
+        public ViewBase()
         {
 
             var navigation = (FormsNavigationHelper)NavigationHelper.Current;
@@ -176,12 +182,7 @@ namespace TinyMvvm.Forms
             if(!(navigation.ViewCreator is TinyMvvmViewCreator))
             {
                 navigation.ViewCreator = new TinyMvvmViewCreator();
-            }
-
-            if(isShellView)
-            {
-                CreateViewModel();
-            }
+            }            
         }
 
       
@@ -214,6 +215,13 @@ namespace TinyMvvm.Forms
                     });
                 }
             }
+        }
+    }
+
+    public class ShellViewBase<T> : ViewBase<T> where T:ViewModelBase?
+    {
+        public ShellViewBase() : base(true)
+        {
         }
     }
 }
