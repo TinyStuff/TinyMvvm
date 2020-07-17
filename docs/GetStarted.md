@@ -94,6 +94,8 @@ This is a tutorial that will guide you through how to get started building an ap
         }
     }
     ```
+1. Create a new folder called **Views** in the **SampleApp** project.
+1. Create two new **ContentPage XAML** pages in the Views folder, **MainView** and **AboutView**.
 1. Edit **MainView.xaml** and **AboutView.xaml** to have **ViewBase** as it's base class. To set BindingContext to the the ViewModel, use the **x:TypeArguments** for the View.
     ```xml
     <mvvm:ViewBase
