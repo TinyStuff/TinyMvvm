@@ -156,7 +156,7 @@ This is a tutorial that will guide you through how to get started building an ap
         }
 
         private ICommand details;
-        private ICommand Details => details ??= new TinyCommand<string>(async(name) =>
+        public ICommand Details => details ??= new TinyCommand<string>(async(name) =>
         {
             await Navigation.NavigateToAsync($"{nameof(DetailsViewModel)}?name={name}", DateTimeOffset.Now);
         });
