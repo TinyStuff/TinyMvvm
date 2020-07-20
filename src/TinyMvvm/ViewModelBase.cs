@@ -101,6 +101,8 @@ namespace TinyMvvm
             }
         }
 
+        public bool IsInitialized { get; set; }
+
         public void RaisePropertyChanged([CallerMemberName]string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

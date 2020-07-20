@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<mvvm:ViewBase
+<mvvm:ShellViewBase
     xmlns:mvvm="clr-namespace:TinyMvvm.Forms;assembly=TinyMvvm.Forms"
     xmlns:vm="clr-namespace:SampleApp.ViewModels"
     xmlns="http://xamarin.com/schemas/2014/forms"
@@ -20,4 +20,4 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
     </Grid>
-</mvvm:ViewBase>
+</mvvm:ShellViewBase>

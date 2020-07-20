@@ -7,6 +7,8 @@ namespace TinyMvvm
 {
     public interface IViewModelBase : INotifyPropertyChanged
     {
+        bool IsInitialized { get; set; }
+
         Task Initialize();
 
         Task OnAppearing();

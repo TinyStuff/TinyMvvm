@@ -19,11 +19,55 @@ namespace TinyMvvm.Forms
         public object? NavigationParameter { get; set; }
         public Dictionary<string, string>? QueryParameters { get; private set; }
         internal SemaphoreSlim ReadLock { get; private set; } = new SemaphoreSlim(1, 1);
+        internal protected bool isShellView;
 
+        private string? tinyId;
         /// <summary>
         /// Internally used by TinyMvvm
         /// </summary>
-        public string? TinyId { get; set; }
+        public string? TinyId
+        {
+            get => tinyId;
+            set
+            {
+                tinyId = value;
+
+                if (TinyId != null && !CreatedByTinyMvvm && BindingContext is IViewModelBase viewModel)
+                {
+                    var shellNavigationHelper = (ShellNavigationHelper)NavigationHelper.Current;
+
+                    var queryParameters = shellNavigationHelper.GetQueryParameters(TinyId);
+
+                    if (queryParameters != null)
+                    {
+                        QueryParameters = queryParameters;
+                        viewModel.QueryParameters = queryParameters;
+                    }
+
+                    var parameters = shellNavigationHelper.GetParameter(TinyId);
+
+                    if (parameters != null)
+                    {
+                        viewModel.NavigationParameter = parameters;
+                        NavigationParameter = parameters;
+                    }
+
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        try
+                        {
+                            await ReadLock.WaitAsync();
+                            await viewModel.Initialize();
+                        }
+                        finally
+                        {
+                            ReadLock.Release();
+                        }
+                    });                   
+                   
+                }
+            }
+        }
 
         public ViewBase()
         {
@@ -39,33 +83,22 @@ namespace TinyMvvm.Forms
                 SetupUIAction(viewModel);
                 try
                 {
-                    if (TinyId != null)
-                    {
-                        var shellNavigationHelper = (ShellNavigationHelper)NavigationHelper.Current;
+                    
 
-                        var queryParameters = shellNavigationHelper.GetQueryParameters(TinyId);
+                    if (!isShellView)
+                    { 
+                        await ReadLock.WaitAsync();
+                        await viewModel.Initialize();
 
-                        if (queryParameters != null)
-                        {
-                            QueryParameters = queryParameters;
-                            viewModel.QueryParameters = queryParameters;
-                        }
-
-                        var parameters = shellNavigationHelper.GetParameter(TinyId);
-
-                        if (parameters != null)
-                        {
-                            viewModel.NavigationParameter = parameters;
-                            NavigationParameter = parameters;
-                        }
+                        viewModel.IsInitialized = true;
                     }
-
-                    await ReadLock.WaitAsync();
-                    await viewModel.Initialize();
                 }
                 finally
                 {
-                    ReadLock.Release();
+                    if (!isShellView)
+                    {
+                        ReadLock.Release();
+                    }
                 }
             }
         }
@@ -103,6 +136,12 @@ namespace TinyMvvm.Forms
                     Device.BeginInvokeOnMainThread(async () =>
                     {
                         await ReadLock.WaitAsync();
+
+                        if(!viewModel.IsInitialized)
+                        {
+                            await viewModel.Initialize();
+                        }
+
                         await viewModel.OnAppearing();
 
                         if (!_hasAppeared)
@@ -172,6 +211,8 @@ namespace TinyMvvm.Forms
 
         public ViewBase(bool isShellView)
         {
+            this.isShellView = isShellView;
+
             if (isShellView)
             {
                 CreateViewModel();
