@@ -58,6 +58,8 @@ namespace TinyMvvm.Forms
                         {
                             await ReadLock.WaitAsync();
                             await viewModel.Initialize();
+
+                            viewModel.IsInitialized = true;
                         }
                         finally
                         {
