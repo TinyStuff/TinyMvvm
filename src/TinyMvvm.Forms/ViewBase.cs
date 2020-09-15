@@ -22,6 +22,7 @@ namespace TinyMvvm.Forms
         internal protected bool isShellView;
 
         private string? tinyId;
+
         /// <summary>
         /// Internally used by TinyMvvm
         /// </summary>
@@ -142,6 +143,7 @@ namespace TinyMvvm.Forms
                         if(!viewModel.IsInitialized)
                         {
                             await viewModel.Initialize();
+                            viewModel.IsInitialized = true;
                         }
 
                         await viewModel.OnAppearing();
