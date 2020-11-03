@@ -19,5 +19,8 @@ To get started with TinyMvvm the recommendation is to following this, <a href="h
 You can also read the following document about the main concepts of TinyMvvm,
 <a href="https://github.com/dhindrik/TinyMvvm/blob/master/docs/docs.md">TinyMvvm Concepts</a>
 
+Watch Daniel Hindrikes talking about TinyMvvm on YouTube with this recording from Xam Expert Day 2020:
+[![Watch on YouTube](https://img.youtube.com/vi/rS-cnU86870/0.jpg)](https://www.youtube.com/watch?v=rS-cnU86870)
+
 ## Contribute
 You are very welcome to contribute to TinyMvvm. If you want to add a new feature we would like if you create an issue first so we can discuss the the feature before you spend time to implement it.
