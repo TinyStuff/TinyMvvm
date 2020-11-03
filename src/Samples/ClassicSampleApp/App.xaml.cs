@@ -38,7 +38,7 @@ namespace ClassicSampleApp
 
             Resolver.SetResolver(new AutofacResolver(container));
 
-            MainPage = new NavigationPage(new MainView());
+            navigationHelper.SetRootView(nameof(MainTabbedView), false);
         }
 
         protected override void OnStart()

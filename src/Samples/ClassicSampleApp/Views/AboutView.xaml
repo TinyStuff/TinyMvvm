@@ -4,7 +4,7 @@
     xmlns:vm="clr-namespace:ClassicSampleApp.ViewModels"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="ClassicSampleApp.Views.AboutView" x:TypeArguments="vm:AboutViewModel">
+    x:Class="ClassicSampleApp.Views.AboutView" x:TypeArguments="vm:AboutViewModel" Title="About">
  <Grid>
      <Button Text="Go home!" Command="{Binding Home}" />
  </Grid>
