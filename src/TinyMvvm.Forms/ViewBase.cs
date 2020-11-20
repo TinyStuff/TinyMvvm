@@ -6,8 +6,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using TinyMvvm.IoC;
-using TinyNavigationHelper.Abstraction;
-using TinyNavigationHelper.Forms;
 using Xamarin.Forms;
 
 namespace TinyMvvm.Forms
@@ -106,7 +104,6 @@ namespace TinyMvvm.Forms
             }
         }
 
-        private bool _hasAppeared;
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -147,12 +144,6 @@ namespace TinyMvvm.Forms
                         }
 
                         await viewModel.OnAppearing();
-
-                        if (!_hasAppeared)
-                        {
-                            _hasAppeared = true;
-                            await viewModel.OnFirstAppear();
-                        }
 
                         ReadLock.Release();
                     });

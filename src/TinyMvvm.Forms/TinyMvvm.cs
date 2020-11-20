@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TinyNavigationHelper.Abstraction;
-using TinyNavigationHelper.Forms;
 using Xamarin.Forms;
 
 namespace TinyMvvm.Forms
