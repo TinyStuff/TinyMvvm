@@ -60,7 +60,7 @@ namespace TinyMvvm
         public virtual Task Initialize() => Task.CompletedTask;
 
 
-        public virtual Task Returning => Task.CompletedTask;
+        public virtual Task Returning() => Task.CompletedTask;
 
 
         public virtual Task OnAppearing()
