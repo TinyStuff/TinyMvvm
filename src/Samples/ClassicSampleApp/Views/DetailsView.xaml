@@ -8,6 +8,7 @@
     <StackLayout Padding="10">
         <Label Text="{Binding Name}" />
         <Label Text="{Binding Date}" />
+        <Button Text="Back" Command="{Binding Back}" />
         <Button Text="About" Command="{Binding About}" />
     </StackLayout>
 </mvvm:ViewBase>

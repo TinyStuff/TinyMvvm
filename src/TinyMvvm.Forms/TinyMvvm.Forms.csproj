@@ -45,20 +45,6 @@
     <ProjectReference Include="..\TinyMvvm\TinyMvvm.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="TinyNavigationHelper\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\..\TinyNavigationHelper\src\TinyNavigationHelper.Forms\ShellNavigationHelper.cs">
-      <Link>TinyNavigationHelper\ShellNavigationHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\..\TinyNavigationHelper\src\TinyNavigationHelper.Forms\FormsNavigationHelper.cs">
-      <Link>TinyNavigationHelper\FormsNavigationHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\..\TinyNavigationHelper\src\TinyNavigationHelper.Forms\DefaultViewCreator.cs">
-      <Link>TinyNavigationHelper\DefaultViewCreator.cs</Link>
-    </Compile>
-    <Compile Include="..\..\TinyNavigationHelper\src\TinyNavigationHelper.Forms\Extensions.cs">
-      <Link>TinyNavigationHelper\Extensions.cs</Link>
-    </Compile>
+    <Folder Include="NavigationHelper\" />
   </ItemGroup>
 </Project>

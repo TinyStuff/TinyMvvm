@@ -1,7 +1,6 @@
 ﻿using System;
+using TinyMvvm;
 using TinyMvvm.Forms;
-using TinyNavigationHelper.Abstraction;
-using TinyNavigationHelper.Forms;
 using Xamarin.Forms;
 
 namespace ClassicSampleApp.Views

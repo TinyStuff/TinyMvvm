@@ -33,5 +33,10 @@ namespace ClassicSampleApp.ViewModels
         {
             Navigation.SetRootView("AboutView");
         });
+
+        public ICommand Back => new TinyCommand(() =>
+        {
+            Navigation.BackAsync("back");
+        });
     }
 }
