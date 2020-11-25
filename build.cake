@@ -1,6 +1,5 @@
 var target = Argument("target", "Build");
 var configuration = Argument("configuration", "Release");
-var version = Argument("packageVersion", "1.0.0");
 
 Task("Build").Does(() => {
 var settings = new DotNetCoreBuildSettings()
@@ -16,6 +15,8 @@ var settings = new DotNetCoreBuildSettings()
 
 Task("Pack").IsDependentOn("Build").Does(() =>
 {
+    var version = EnvironmentVariable<string>("GITHUB_REF", "").Split("/").Last();
+
     var settings = new DotNetCorePackSettings()
     {
         IncludeSymbols = true,
@@ -40,7 +41,7 @@ Task("Publish").IsDependentOn("Pack").Does(() =>{
      IgnoreSymbols = false
  };
 
- DotNetCoreNuGetPush("*.*pkg", settings);
+// DotNetCoreNuGetPush("*.*pkg", settings);
 });
 
 RunTarget(target);
