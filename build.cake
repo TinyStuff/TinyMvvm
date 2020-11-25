@@ -37,11 +37,9 @@ Task("Publish").IsDependentOn("Pack").Does(() =>{
  {
      Source = "https://www.nuget.org/api/v2/package/",
      ApiKey = EnvironmentVariable<string>("NUGETKEY", ""),
-     WorkingDirectory = ".packages",
      IgnoreSymbols = false
  };
-
-    DotNetCoreNuGetPush("*.*pkg", settings);
+    DotNetCoreNuGetPush(".packages/*.pkg", settings);
 });
 
 RunTarget(target);
