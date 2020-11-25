@@ -12,6 +12,9 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: tags/$GITHUB_REF
       - name: Run the Cake script
         uses: cake-build/cake-action@v1
         with:
