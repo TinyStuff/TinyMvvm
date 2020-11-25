@@ -17,5 +17,4 @@ jobs:
         uses: cake-build/cake-action@v1
         with:
           target: Publish
-          packageVersion: $GITHUB_REF
           cake-version: 1.0.0-rc0001
