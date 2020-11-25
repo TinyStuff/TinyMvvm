@@ -41,7 +41,7 @@ Task("Publish").IsDependentOn("Pack").Does(() =>{
      IgnoreSymbols = false
  };
 
-// DotNetCoreNuGetPush("*.*pkg", settings);
+    DotNetCoreNuGetPush("*.*pkg", settings);
 });
 
 RunTarget(target);
