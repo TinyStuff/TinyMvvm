@@ -18,3 +18,5 @@ jobs:
         with:
           target: Publish
           cake-version: 1.0.0-rc0001
+        env:
+          NUGETKEY: ${{ secrets.NUGETKEY }}

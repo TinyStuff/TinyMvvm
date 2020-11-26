@@ -33,10 +33,13 @@ Task("Pack").IsDependentOn("Build").Does(() =>
 
 
 Task("Publish").IsDependentOn("Pack").Does(() =>{
+
+var apiKey = EnvironmentVariable<string>("NUGETKEY", "");
+
     var settings = new DotNetCoreNuGetPushSettings
  {
      Source = "https://www.nuget.org/api/v2/package/",
-     ApiKey = EnvironmentVariable<string>("NUGETKEY", ""),
+     ApiKey = apiKey,
      IgnoreSymbols = false
  };
     DotNetCoreNuGetPush(".packages/*.nupkg", settings);
