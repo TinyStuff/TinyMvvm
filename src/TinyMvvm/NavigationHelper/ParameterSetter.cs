@@ -25,7 +25,7 @@ namespace TinyMvvm
             return false;
         }
 
-        public static void Set(object view, object parameter)
+        public static void Set(object view, object? parameter)
         {
             try
             {

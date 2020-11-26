@@ -8,20 +8,25 @@ namespace TinyMvvm.Forms
 {
     public class DefaultViewCreator : IViewCreator<Page>
     {
-        public Page Create(Type type)
+        public Page? Create(Type type)
         {         
             return (Page)Activator.CreateInstance(type);
         }
 
-        public Page Create(Type type, object parameter)
+        public Page? Create(Type type, object? parameter)
         {
             if (ParameterSetter.CanSet(type))
             {
                 var page = Create(type);
 
-                ParameterSetter.Set(page, parameter);
+                if (page != null)
+                {
+                    ParameterSetter.Set(page, parameter);
 
-                return page;
+                    return page;
+                }
+
+                throw new ViewCreationException("The view cannot be created");
             }
             else
             {

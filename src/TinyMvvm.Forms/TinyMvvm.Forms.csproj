@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-     <NullableContextOptions>enable</NullableContextOptions>
+      <nullable>enable</nullable>
    <WarningsAsErrors>CS8600;CS8602;CS8603;CS8618;CS8653;CS8625</WarningsAsErrors>
 
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -24,10 +24,12 @@
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="xamarin.forms" Version="4.6.0.800" />
