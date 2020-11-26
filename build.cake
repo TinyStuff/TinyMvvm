@@ -39,7 +39,7 @@ Task("Publish").IsDependentOn("Pack").Does(() =>{
      ApiKey = EnvironmentVariable<string>("NUGETKEY", ""),
      IgnoreSymbols = false
  };
-    DotNetCoreNuGetPush(".packages/*.pkg", settings);
+    DotNetCoreNuGetPush(".packages/*.nupkg", settings);
 });
 
 RunTarget(target);
