@@ -42,7 +42,8 @@ var apiKey = EnvironmentVariable<string>("NUGETKEY", "");
      ApiKey = apiKey,
      IgnoreSymbols = false
  };
-    DotNetCoreNuGetPush(".packages/*.pkg", settings);
+    DotNetCoreNuGetPush(".packages/*.nupkg", settings);
+    DotNetCoreNuGetPush(".packages/*.snupkg", settings);
 });
 
 RunTarget(target);
