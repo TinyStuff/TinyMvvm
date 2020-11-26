@@ -32,7 +32,7 @@ namespace TinyMvvm.Forms
                     view.CreateViewModel(); 
                 }
 
-                if (view?.BindingContext is ViewModelBase)
+                if (view?.BindingContext is IViewModelBase)
                 {
                     TinyMvvmSetup(view, parameter);
                 }
@@ -58,7 +58,7 @@ namespace TinyMvvm.Forms
                     view.CreateViewModel(); 
                 }
 
-                if (view?.BindingContext is ViewModelBase)
+                if (view?.BindingContext is IViewModelBase)
                 {
                     TinyMvvmSetup(view, parameter);
                 }
