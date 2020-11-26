@@ -176,7 +176,7 @@ namespace TinyMvvm.Forms
     
     public abstract class ViewBase<T> : ViewBase where T:IViewModelBase?
     {
-        public T ViewModel
+        public T? ViewModel
         {
             get
             {

@@ -178,7 +178,14 @@ namespace TinyMvvm.Forms
                     page = ViewCreator.Create(type, parameter);
                 }
 
-                await NavigateToAsync(page);
+                if (page != null)
+                {
+                    await NavigateToAsync(page);
+                }
+                else
+                {
+                    throw new ViewCreationException($"The view can not be created");
+                }
             }
             else
             {
@@ -227,7 +234,14 @@ namespace TinyMvvm.Forms
                     page = ViewCreator.Create(type, parameter);
                 }
 
-                await OpenModalAsync(page, withNavigation);
+                if (page != null)
+                {
+                    await OpenModalAsync(page, withNavigation);
+                }
+                else
+                {
+                    throw new ViewCreationException($"The view cannot be created");
+                }
             }
             else
             {
@@ -241,7 +255,7 @@ namespace TinyMvvm.Forms
             _modalNavigationPage = null;
         }
 
-        public async Task BackAsync(object parameter = null)
+        public async Task BackAsync(object? parameter = null)
         {
             if (_modalNavigationPage == null)
             {
@@ -411,7 +425,14 @@ namespace TinyMvvm.Forms
                     page = ViewCreator.Create(type, parameter);
                 }
 
-                await NavigateToAsync(page, true);
+                if (page != null)
+                {
+                    await NavigateToAsync(page, true);
+                }
+                else
+                {
+                    throw new ViewCreationException($"The view cannot be created");
+                }
             }
             else
             {

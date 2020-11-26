@@ -74,7 +74,7 @@ namespace TinyMvvm.Forms
             return page;
         }
 
-        private void TinyMvvmSetup(ViewBase view, object parameter )
+        private void TinyMvvmSetup(ViewBase view, object? parameter )
         {
             
 

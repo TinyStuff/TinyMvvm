@@ -115,7 +115,7 @@ namespace TinyMvvm.Forms
 
                 await Shell.Current.GoToAsync(key);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 await base.NavigateToAsync(key);
             }

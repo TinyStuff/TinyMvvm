@@ -34,7 +34,7 @@ namespace TinyMvvm
 
                         foreach (var property in properties)
                         {
-                            if (property.Name == "BeginInvokeOnMainThread")
+                            if (property.Name == "BeginInvokeOnMainThread" && property is not null)
                             {
                                 InvokeOnMainThread = property.GetValue(null, null) as Action<Action>;
                                 break;
@@ -44,7 +44,7 @@ namespace TinyMvvm
 
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
 
                 }
@@ -54,7 +54,7 @@ namespace TinyMvvm
         [Obsolete("The recommendation is to use MainThread from Xamarin.Essentials instead.")]
         public virtual Action<Action>? BeginInvokeOnMainThread { get; set; }
 
-        private static Action<Action> InvokeOnMainThread { get; set; }
+        private static Action<Action>? InvokeOnMainThread { get; set; }
 
 
         public virtual Task Initialize() => Task.CompletedTask;

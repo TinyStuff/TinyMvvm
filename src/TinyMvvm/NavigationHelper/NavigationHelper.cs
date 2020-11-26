@@ -6,6 +6,6 @@ namespace TinyMvvm
 {
     public class NavigationHelper
     {
-        public static INavigationHelper Current { get; set; }
+        public static INavigationHelper Current { get; set; } = null!;
     }
 }

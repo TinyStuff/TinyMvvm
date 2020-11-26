@@ -9,7 +9,7 @@ namespace TinyMvvm
     {
         private Action _action;
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler? CanExecuteChanged;
 
         public TinyCommand(Action action)
         {
@@ -36,7 +36,7 @@ namespace TinyMvvm
             _action = action;
         }
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler? CanExecuteChanged;
 
         public bool CanExecute(object parameter)
         {
