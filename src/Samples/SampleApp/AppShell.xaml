@@ -4,8 +4,11 @@
         <ShellContent Title="Home" Route="home">
             <views:MainView />
          </ShellContent>
-        <ShellContent Title="About" Route="about">
+        <ShellContent Title="AboutView" Route="AboutView">
             <views:AboutView />
          </ShellContent>
     </TabBar>
+    <ShellContent Route="LoginView">
+        <views:AboutView />
+    </ShellContent>
 </Shell>
