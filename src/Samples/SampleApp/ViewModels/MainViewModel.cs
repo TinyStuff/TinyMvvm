@@ -47,5 +47,11 @@ namespace SampleApp.ViewModels
         {
             await Navigation.NavigateToAsync($"{nameof(DetailsViewModel)}?name={name}", DateTimeOffset.Now);
         });
+
+        private ICommand login;
+        public ICommand Login => login ??= new TinyCommand(async () =>
+        {
+            await Navigation.NavigateToAsync("//LoginView");
+        });
     }
 }

@@ -20,7 +20,7 @@ namespace SampleApp
 
             var navigationHelper = new ShellNavigationHelper();
 
-            navigationHelper.RegisterViewsInAssembly(currentAssembly);
+            navigationHelper.InitViewModelNavigation(currentAssembly);
 
             var containerBuilder = new ContainerBuilder();
 

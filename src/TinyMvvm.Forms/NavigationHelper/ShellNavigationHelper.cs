@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -121,21 +122,26 @@ namespace TinyMvvm.Forms
             }
         }
 
-        protected override void InternalRegisterView(Type type, string key)
+        /// <summary>
+        /// Register all viewModels in a assembly so you can use them to navigate.
+        /// </summary>
+        /// <param name="viewModelAssembly"></param>
+        public void InitViewModelNavigation(Assembly viewModelAssembly)
         {
-            base.InternalRegisterView(type, key);
 
-            if (type.GenericTypeArguments.Length > 0)
-            {
-                RegisterRoute(type.GenericTypeArguments[0].Name, type);
-            }
+                foreach (var type in viewModelAssembly.DefinedTypes.Where(e => e.IsSubclassOf(typeof(Page))))
+                {
+                    if (type.GenericTypeArguments.Length > 0)
+                    {
+                        RegisterRoute(type.GenericTypeArguments[0].Name, type);
+                    }
 
-            if (type.BaseType.GenericTypeArguments.Length > 0)
-            {
-                RegisterRoute(type.BaseType.GenericTypeArguments[0].Name, type);
-            }
+                    if (type.BaseType.GenericTypeArguments.Length > 0)
+                    {
+                        RegisterRoute(type.BaseType.GenericTypeArguments[0].Name, type);
+                    }
 
-            RegisterRoute(key, type);
+                }
         }
     }
 }
