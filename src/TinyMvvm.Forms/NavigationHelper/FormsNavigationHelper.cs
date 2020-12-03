@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Xamarin.Forms;
-using TinyMvvm.Forms;
-using TinyMvvm;
 
 namespace TinyMvvm.Forms
 {

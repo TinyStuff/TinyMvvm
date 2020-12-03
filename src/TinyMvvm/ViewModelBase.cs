@@ -2,16 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using TinyMvvm.IoC;
 
-
-[assembly: InternalsVisibleTo("TinyNavigationHelper.Forms")]
-[assembly: InternalsVisibleTo("TinyMvvm.Forms")]
 
 namespace TinyMvvm
 {
