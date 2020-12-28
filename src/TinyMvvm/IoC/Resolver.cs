@@ -21,7 +21,7 @@ namespace TinyMvvm.IoC
             }
         }
 
-        public static T Resolve<T>()
+        public static T Resolve<T>() where T:class
         {
             if(_resolver is null)
             {
@@ -31,7 +31,7 @@ namespace TinyMvvm.IoC
             return _resolver.Resolve<T>();
         }
 
-        public static T Resolve<T>(string key)
+        public static T Resolve<T>(string key) where T : class
         {
             if (_resolver is null)
             {
