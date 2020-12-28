@@ -168,8 +168,6 @@ namespace TinyMvvm.Forms
         }
     }
 
-
-    
     public abstract class ViewBase<T> : ViewBase where T:IViewModelBase?
     {
         public T? ViewModel
@@ -183,21 +181,18 @@ namespace TinyMvvm.Forms
 
                 return default(T);
             }
-        }
-
-        
+        }        
 
         internal override void CreateViewModel()
         {
             if (Resolver.IsEnabled)
             {
-                BindingContext = Resolver.Resolve<T>();
+                BindingContext = Resolver.Resolve(typeof(T));
             }
             else
             {
                 BindingContext = Activator.CreateInstance(typeof(T));
-            }        
-            
+            }     
         }
 
         public ViewBase(bool isShellView)
@@ -221,18 +216,14 @@ namespace TinyMvvm.Forms
             }            
         }
 
-      
         protected override void OnAppearing()
         {
-           
-
             if(ViewModel == null && !CreatedByTinyMvvm)
             {
                 CreateViewModel();
             }
 
             base.OnAppearing();
-
         }
 
         protected override void OnDisappearing()
