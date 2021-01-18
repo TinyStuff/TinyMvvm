@@ -6,7 +6,6 @@ var settings = new DotNetCoreBuildSettings()
 {
     Configuration = "Release"
 };
-
     DotNetCoreBuild("src/TinyMvvm/TinyMvvm.csproj", settings);
     DotNetCoreBuild("src/TinyMvvm.Forms/TinyMvvm.Forms.csproj", settings);
     DotNetCoreBuild("src/TinyMvvm.Autofac/TinyMvvm.Autofac.csproj", settings);
@@ -40,10 +39,20 @@ var apiKey = EnvironmentVariable<string>("NUGETKEY", "");
  {
      Source = "https://www.nuget.org/api/v2/package/",
      ApiKey = apiKey,
-     IgnoreSymbols = false
+     IgnoreSymbols = true
  };
     DotNetCoreNuGetPush(".packages/*.nupkg", settings);
-    DotNetCoreNuGetPush(".packages/*.snupkg", settings);
+
+    var symbolSettings = new DotNetCoreNuGetPushSettings
+    {
+        Source = "https://www.nuget.org/api/v2/symbolpackage/",
+        ApiKey = apiKey,
+        IgnoreSymbols = false
+    };
+
+
+
+    DotNetCoreNuGetPush(".packages/*.snupkg", symbolSettings);
 });
 
 RunTarget(target);
