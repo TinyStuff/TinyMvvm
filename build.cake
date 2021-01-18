@@ -39,7 +39,7 @@ var apiKey = EnvironmentVariable<string>("NUGETKEY", "");
  {
      Source = "https://www.nuget.org/api/v2/package/",
      ApiKey = apiKey,
-     IgnoreSymbols = true
+     IgnoreSymbols = false
  };
     DotNetCoreNuGetPush(".packages/*.nupkg", settings);
 
