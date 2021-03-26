@@ -10,6 +10,7 @@ namespace SampleApp.ViewModels
         public ICommand Home => home ?? new TinyCommand(async () =>
         {
             await Navigation.NavigateToAsync("//home");
+          
         });
 
     }

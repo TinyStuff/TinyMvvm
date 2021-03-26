@@ -264,7 +264,7 @@ namespace TinyMvvm.Forms
                     {
                         var prevPage = selected.Navigation.NavigationStack[0];
 
-                        if (prevPage.BindingContext is ViewModelBase tviewModel)
+                        if (prevPage != null && prevPage.BindingContext is ViewModelBase tviewModel)
                         {
                             tviewModel.ReturningParameter = parameter;
                             tviewModel.ReturningHasRun = true;
@@ -287,7 +287,7 @@ namespace TinyMvvm.Forms
                         {
                             var prevPage = tabbedPage.CurrentPage.Navigation.NavigationStack[0];
 
-                            if (prevPage.BindingContext is ViewModelBase tviewModel)
+                            if (prevPage != null && prevPage.BindingContext is ViewModelBase tviewModel)
                             {
                                 tviewModel.ReturningParameter = parameter;
                                 tviewModel.ReturningHasRun = true;
@@ -305,7 +305,7 @@ namespace TinyMvvm.Forms
                     {
                         var prevPage = masterDetailPage.Detail.Navigation.NavigationStack[0];
 
-                        if (prevPage.BindingContext is ViewModelBase mdviewModel)
+                        if (prevPage != null && prevPage.BindingContext is ViewModelBase mdviewModel)
                         {
                             mdviewModel.ReturningParameter = parameter;
                             mdviewModel.ReturningHasRun = true;
@@ -323,7 +323,7 @@ namespace TinyMvvm.Forms
 
                 var prevPage1 = Application.Current.MainPage.Navigation.NavigationStack[0];
 
-                if (prevPage1.BindingContext is ViewModelBase viewModel)
+                if (prevPage1 != null && prevPage1.BindingContext is ViewModelBase viewModel)
                 {
                     viewModel.ReturningParameter = parameter;
                     viewModel.ReturningHasRun = true;
@@ -339,7 +339,7 @@ namespace TinyMvvm.Forms
             {
                 var prevPage = Application.Current.MainPage.Navigation.NavigationStack[0];
 
-                if (prevPage.BindingContext is ViewModelBase mviewModel)
+                if (prevPage != null && prevPage.BindingContext is ViewModelBase mviewModel)
                 {
                     mviewModel.ReturningParameter = parameter;
                     mviewModel.ReturningHasRun = true;

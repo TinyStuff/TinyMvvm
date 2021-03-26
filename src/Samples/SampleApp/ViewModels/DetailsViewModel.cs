@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using TinyMvvm;
 
 namespace SampleApp.ViewModels
@@ -29,5 +30,12 @@ namespace SampleApp.ViewModels
             get => date;
             set => Set(ref date, value);
         }
+
+        private ICommand back;
+        public ICommand Back => back ?? new TinyCommand(async () =>
+        {
+            await Navigation.BackAsync();
+
+        });
     }
 }
