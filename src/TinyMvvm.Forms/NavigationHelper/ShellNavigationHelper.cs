@@ -30,8 +30,13 @@ namespace TinyMvvm.Forms
             }
         }
 
-        internal Dictionary<string, string> GetQueryParameters(string tinyId)
+        internal Dictionary<string, string>? GetQueryParameters(string tinyId)
         {
+            if(!queries.ContainsKey(tinyId))
+            {
+                return null;
+            }
+
             var query = queries[tinyId];
 
             var values = query.Split('&');
