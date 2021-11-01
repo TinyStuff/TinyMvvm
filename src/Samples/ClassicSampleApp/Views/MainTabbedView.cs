@@ -16,12 +16,13 @@ namespace ClassicSampleApp.Views
             var aboutView = viewCreator.Create(typeof(AboutView));
 
             var navigationPage = new NavigationPage(mainView);
+            var aboutNavigation = new NavigationPage(aboutView);
 
             //The title for the tabs.
             navigationPage.Title = "Welcome";
 
             Children.Add(navigationPage);
-            Children.Add(aboutView);
+            Children.Add(aboutNavigation);
         }
     }
 }
