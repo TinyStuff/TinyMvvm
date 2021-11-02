@@ -11,7 +11,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
       <Version>1.0.0</Version>
-    <Authors>Daniel Hindrikes &amp; Johan Karlsson</Authors>
+    <Authors>Daniel Hindrikes</Authors>
     <Company />
     <Description />
     <RepositoryType>Git</RepositoryType>
@@ -19,7 +19,7 @@
     <PackageProjectUrl>https://github.com/dhindrik/TinyMvvm</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/dhindrik/TinyMvvm/blob/master/LICENSE</PackageLicenseUrl>
     <PackageTags>MVVM</PackageTags>
-    <Copyright>Copyright 2017 - Johan Karlsson and Daniel Hindrikes</Copyright>
+    <Copyright>Copyright 2021 - Daniel Hindrikes</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

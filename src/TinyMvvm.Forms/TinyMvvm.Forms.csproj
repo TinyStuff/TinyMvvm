@@ -15,8 +15,8 @@
       <RepositoryType>Git</RepositoryType>
       <PackageTags>Xamarin, MVVM</PackageTags>
       <PackageLicenseUrl>https://github.com/dhindrik/TinyMvvm/blob/master/LICENSE</PackageLicenseUrl>
-      <Copyright>Copyright 2017 - Johan Karlsson and Daniel Hindrikes</Copyright>
-      <Authors>Daniel Hindrikes &amp; Johan Karlsson</Authors>
+      <Copyright>Copyright 2021 - Daniel Hindrikes</Copyright>
+      <Authors>Daniel Hindrikes</Authors>
       <Company />
       <Product>TinyMvvm for Xamarin.Forms</Product>
       <Version>1.0.0</Version>

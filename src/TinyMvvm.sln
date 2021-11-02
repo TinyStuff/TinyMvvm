@@ -40,6 +40,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassicSampleApp.iOS", "Sam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassicSampleApp", "Samples\ClassicSampleApp\ClassicSampleApp.csproj", "{7E0ED782-3257-4201-AA14-BAA26ABD1C5D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyMvvm.Maui", "TInyMvvm.Maui\TInyMvvm.Maui.csproj", "{4A250AB6-EEA3-4416-8C1B-73F1FBA13141}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -244,6 +246,22 @@ Global
 		{7E0ED782-3257-4201-AA14-BAA26ABD1C5D}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
 		{7E0ED782-3257-4201-AA14-BAA26ABD1C5D}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
 		{7E0ED782-3257-4201-AA14-BAA26ABD1C5D}.AppStore|iPhone.Build.0 = Debug|Any CPU
+		{4A250AB6-EEA3-4416-8C1B-73F1FBA13141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A250AB6-EEA3-4416-8C1B-73F1FBA13141}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A250AB6-EEA3-4416-8C1B-73F1FBA13141}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{4A250AB6-EEA3-4416-8C1B-73F1FBA13141}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{4A250AB6-EEA3-4416-8C1B-73F1FBA13141}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{4A250AB6-EEA3-4416-8C1B-73F1FBA13141}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{4A250AB6-EEA3-4416-8C1B-73F1FBA13141}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A250AB6-EEA3-4416-8C1B-73F1FBA13141}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A250AB6-EEA3-4416-8C1B-73F1FBA13141}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{4A250AB6-EEA3-4416-8C1B-73F1FBA13141}.Release|iPhone.Build.0 = Release|Any CPU
+		{4A250AB6-EEA3-4416-8C1B-73F1FBA13141}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{4A250AB6-EEA3-4416-8C1B-73F1FBA13141}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{4A250AB6-EEA3-4416-8C1B-73F1FBA13141}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
+		{4A250AB6-EEA3-4416-8C1B-73F1FBA13141}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
+		{4A250AB6-EEA3-4416-8C1B-73F1FBA13141}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
+		{4A250AB6-EEA3-4416-8C1B-73F1FBA13141}.AppStore|iPhone.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

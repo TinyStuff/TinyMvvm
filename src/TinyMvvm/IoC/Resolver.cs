@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TinyMvvm.IoC
+namespace TinyMvvm
 {
     public static class Resolver
     {

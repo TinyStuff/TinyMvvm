@@ -15,7 +15,7 @@
     <PackageProjectUrl>https://github.com/dhindrik/TinyMvvm</PackageProjectUrl>
     <RepositoryType>Git</RepositoryType>
     <RepositoryUrl>https://github.com/dhindrik/TinyMvvm</RepositoryUrl>
-    <Copyright>Copyright 2020 - Daniel Hindrikes</Copyright>
+    <Copyright>Copyright 2021 - Daniel Hindrikes</Copyright>
     <Version>1.0.0</Version>
   </PropertyGroup>
 

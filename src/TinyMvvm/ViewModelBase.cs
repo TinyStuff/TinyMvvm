@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 [assembly: InternalsVisibleTo("TinyMvvm.Forms")]
+[assembly: InternalsVisibleTo("TinyMvvm.Maui")]
 namespace TinyMvvm
 {
     public abstract class ViewModelBase : IViewModelBase
