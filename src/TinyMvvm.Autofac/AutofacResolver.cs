@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using System;
-using TinyMvvm.IoC;
 
 namespace TinyMvvm.Autofac
 {

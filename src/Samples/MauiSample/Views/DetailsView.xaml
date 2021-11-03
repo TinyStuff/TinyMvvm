@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<mvvm:ShellViewBase
+    xmlns:mvvm="clr-namespace:TinyMvvm.Maui;assembly=TinyMvvm.Maui"
+    xmlns:vm="clr-namespace:MauiSample.ViewModels"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MauiSample.Views.DetailsView" x:TypeArguments="vm:DetailsViewModel">
+    <VerticalStackLayout Padding="10">
+        <Label Text="{Binding Name}" />
+        <Label Text="{Binding Date}" />
+        <Button Text="Back" Command="{Binding Back}" />
+    </VerticalStackLayout>
+</mvvm:ShellViewBase>
