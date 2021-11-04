@@ -10,13 +10,12 @@ var settings = new DotNetCoreBuildSettings()
     DotNetCoreBuild("src/TinyMvvm.Forms/TinyMvvm.Forms.csproj", settings);
     DotNetCoreBuild("src/TinyMvvm.Autofac/TinyMvvm.Autofac.csproj", settings);
     DotNetCoreBuild("src/TinyMvvm.TinyIoC/TinyMvvm.TinyIoC.csproj", settings);
-    DotNetCoreBuild("src/TinyMvvm.TinyIoC/TinyMvvm.Maui.csproj", settings);
+    DotNetCoreBuild("src/TinyMvvm.Maui/TinyMvvm.Maui.csproj", settings);
 });
 
 Task("Pack").IsDependentOn("Build").Does(() =>
 {
     var version = EnvironmentVariable<string>("GITHUB_REF", "").Split("/").Last();
-
     var settings = new DotNetCorePackSettings()
     {
         IncludeSymbols = true,
@@ -29,7 +28,7 @@ Task("Pack").IsDependentOn("Build").Does(() =>
     DotNetCorePack("src/TinyMvvm.Forms/TinyMvvm.Forms.csproj", settings);
     DotNetCorePack("src/TinyMvvm.Autofac/TinyMvvm.Autofac.csproj", settings);
     DotNetCorePack("src/TinyMvvm.TinyIoC/TinyMvvm.TinyIoC.csproj", settings);
-    DotNetCorePack("src/TinyMvvm.TinyIoC/TinyMvvm.Maui.csproj", settings);
+    DotNetCorePack("src/TinyMvvm.Maui/TinyMvvm.Maui.csproj", settings);
 });
 
 
