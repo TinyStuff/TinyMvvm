@@ -1,6 +1,6 @@
 ﻿namespace TinyMvvm.Maui;
 
-public class ShellNavigationHelper : FormsNavigationHelper
+public class ShellNavigationHelper : ClassicNavigationHelper
 {
     private Dictionary<string, string> queries = new Dictionary<string, string>();
     private Dictionary<string, object> parameters = new Dictionary<string, object>();

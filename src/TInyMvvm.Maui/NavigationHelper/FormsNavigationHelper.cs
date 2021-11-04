@@ -1,12 +1,12 @@
 ﻿namespace TinyMvvm.Maui;
 
-public class FormsNavigationHelper : INavigationHelper
+public class ClassicNavigationHelper : INavigationHelper
 {
     protected Dictionary<string, Type> Views = new Dictionary<string, Type>();
 
     public IViewCreator<Page> ViewCreator { get; set; }
 
-    public FormsNavigationHelper()
+    public ClassicNavigationHelper()
     {
         if (Assembly.GetExecutingAssembly().FullName.Contains("TinyMvvm"))
         {

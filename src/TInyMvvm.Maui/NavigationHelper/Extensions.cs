@@ -4,7 +4,7 @@ public static class Extensions
 {
     public static async Task NavigateToAsync(this INavigationHelper helper, Page page)
     {
-        var formsHelper = helper as FormsNavigationHelper;
+        var formsHelper = helper as ClassicNavigationHelper;
         if (formsHelper == null)
         {
             throw new ArgumentException("This extension only works in .NET MAUI");
@@ -15,7 +15,7 @@ public static class Extensions
 
     public static async Task OpenModalAsync(this INavigationHelper helper, Page page, bool withNavigation = false)
     {
-        var formsHelper = helper as FormsNavigationHelper;
+        var formsHelper = helper as ClassicNavigationHelper;
         if (formsHelper == null)
         {
             throw new ArgumentException("This extension only works in .NET MAUI");

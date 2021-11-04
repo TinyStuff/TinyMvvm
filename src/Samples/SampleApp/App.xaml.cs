@@ -5,7 +5,6 @@ using Autofac.Core;
 using TinyMvvm;
 using TinyMvvm.Autofac;
 using TinyMvvm.Forms;
-using TinyMvvm.IoC;
 using Xamarin.Forms;
 
 namespace SampleApp

@@ -202,7 +202,7 @@ public abstract class ViewBase<T> : ViewBase where T : IViewModelBase?
     public ViewBase()
     {
 
-        var navigation = (FormsNavigationHelper)NavigationHelper.Current;
+        var navigation = (ClassicNavigationHelper)NavigationHelper.Current;
 
         if (!(navigation.ViewCreator is TinyMvvmViewCreator))
         {

@@ -1,7 +1,8 @@
-﻿using Microsoft.Maui;
-using Microsoft.Maui.Hosting;
+﻿using Microsoft.Maui.Hosting;
 using Microsoft.Maui.Controls.Compatibility;
 using Microsoft.Maui.Controls.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace MauiSample
 {
@@ -15,9 +16,14 @@ namespace MauiSample
 				.ConfigureFonts(fonts =>
 				{
 					fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				});
+				})
+				.UseTinyMvvm(typeof(App).Assembly, typeof(App).Assembly);
 
-			return builder.Build();
+			var app = builder.Build();
+
+			Resolver.SetResolver(new ServiceProviderResolver(app.Services));
+
+			return app;
 		}
 	}
 }
