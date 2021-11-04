@@ -1,6 +1,6 @@
 ﻿using System;
 using TinyIoC;
-using TinyMvvm.IoC;
+using TinyMvvm;
 
 namespace TinyMvvm.TinyIoC
 {

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
-using TinyMvvm.IoC;
 using Xamarin.Forms;
 
 namespace TinyMvvm.Forms
