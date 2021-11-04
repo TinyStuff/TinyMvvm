@@ -10,6 +10,7 @@ var settings = new DotNetCoreBuildSettings()
     DotNetCoreBuild("src/TinyMvvm.Forms/TinyMvvm.Forms.csproj", settings);
     DotNetCoreBuild("src/TinyMvvm.Autofac/TinyMvvm.Autofac.csproj", settings);
     DotNetCoreBuild("src/TinyMvvm.TinyIoC/TinyMvvm.TinyIoC.csproj", settings);
+    DotNetCoreBuild("src/TinyMvvm.TinyIoC/TinyMvvm.Maui.csproj", settings);
 });
 
 Task("Pack").IsDependentOn("Build").Does(() =>
@@ -28,6 +29,7 @@ Task("Pack").IsDependentOn("Build").Does(() =>
     DotNetCorePack("src/TinyMvvm.Forms/TinyMvvm.Forms.csproj", settings);
     DotNetCorePack("src/TinyMvvm.Autofac/TinyMvvm.Autofac.csproj", settings);
     DotNetCorePack("src/TinyMvvm.TinyIoC/TinyMvvm.TinyIoC.csproj", settings);
+    DotNetCorePack("src/TinyMvvm.TinyIoC/TinyMvvm.Maui.csproj", settings);
 });
 
 
