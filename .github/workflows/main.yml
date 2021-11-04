@@ -22,6 +22,8 @@ jobs:
       - uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '6.0.100'
+      - name: Install dependencies
+        run: dotnet workload install maui
       - name: Run the Cake script
         uses: cake-build/cake-action@v1
         with:
