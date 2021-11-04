@@ -51,7 +51,9 @@ namespace TinyMvvm
 
         private static Action<Action>? InvokeOnMainThread { get; set; }
 
-
+        /// <summary>
+        /// Initialize runs after that BindingContext of the view has been set.
+        /// </summary>
         public virtual Task Initialize() => Task.CompletedTask;
 
 
