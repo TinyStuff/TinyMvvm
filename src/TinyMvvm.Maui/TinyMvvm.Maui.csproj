@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UseMaui>true</UseMaui>
+<PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+      <RepositoryUrl>https://github.com/dhindrik/TinyMvvm</RepositoryUrl>
+      <PackageProjectUrl>https://github.com/dhindrik/TinyMvvm</PackageProjectUrl>
+      <RepositoryType>Git</RepositoryType>
+      <PackageTags>MAUI, MVVM</PackageTags>
+      <PackageLicenseUrl>https://github.com/dhindrik/TinyMvvm/blob/master/LICENSE</PackageLicenseUrl>
+      <Copyright>Copyright 2021 - Daniel Hindrikes</Copyright>
+      <Authors>Daniel Hindrikes</Authors>
+      <Company />
+      <Product>TinyMvvm for .NET MAUI</Product>
+      <Version>1.0.0</Version>
+
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TinyMvvm\TinyMvvm.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="NavigationHelper\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NavigationHelper\" />
+  </ItemGroup>
+
+
+</Project>
