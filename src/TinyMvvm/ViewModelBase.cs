@@ -25,7 +25,7 @@ namespace TinyMvvm
                     if (assembly != null)
                     {
                         var deviceType = assembly.GetType("TinyMvvm.Forms.Helpers");
-                        var properties = deviceType.GetProperties();
+                        var properties = deviceType!.GetProperties();
 
                         foreach (var property in properties)
                         {
