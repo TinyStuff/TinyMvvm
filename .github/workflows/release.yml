@@ -22,6 +22,6 @@ jobs:
         uses: cake-build/cake-action@v1
         with:
           target: Publish
-          cake-version: 1.0.0-rc0001
+          cake-version: 1.3.0
         env:
           NUGETKEY: ${{ secrets.NUGETKEY }}
