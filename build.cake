@@ -4,7 +4,8 @@ var configuration = Argument("configuration", "Release");
 Task("Build").Does(() => {
 var settings = new DotNetCoreBuildSettings()
 {
-    Configuration = "Release"
+    Configuration = "Release",
+    Sources = new List<string>() {"https ://api.nuget.org/v3/index.json",https://aka.ms/dotnet6/nuget/index.json","https://pkgs.dev.azure.com/dnceng/public/_packaging/darc-pub-dotnet-runtime-6f411658/nuget/v3/index.json", "https://pkgs.dev.azure.com/dnceng/public/_packaging/darc-pub-dotnet-emsdk-1ec2e17f/nuget/v3/index.json"}
 };
     DotNetCoreBuild("src/TinyMvvm/TinyMvvm.csproj", settings);
     DotNetCoreBuild("src/TinyMvvm.Forms/TinyMvvm.Forms.csproj", settings);
