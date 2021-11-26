@@ -42,6 +42,9 @@ var navigationHelper = new ShellNavigationHelper();
 
 ## The overall structure
 
+### ShellViewBase&lt;T&gt;
+ShellViewBase shoule be used when using Xamarin.Forms Shell. It should be used as with ViewBase<T>, described below. But if you use ViewBase, it will not work with navigation paramters or query paramters.
+
 ### ViewBase&lt;T&gt;
 
 Features (or drawbacks) of the ViewBase
