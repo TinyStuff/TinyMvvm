@@ -1,11 +1,8 @@
-﻿using System;
+﻿namespace TinyMvvm;
 
-namespace TinyMvvm
+public class ViewCreationException : Exception
 {
-    public class ViewCreationException : Exception
+    public ViewCreationException(string message) : base(message)
     {
-        public ViewCreationException(string message) : base(message)
-        {
-        }
     }
 }
