@@ -5,109 +5,108 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace TinyMvvm.Forms
+namespace TinyMvvm.Forms;
+
+public class TinyMvvmViewCreator : IViewCreator<Page>
 {
-    public class TinyMvvmViewCreator : IViewCreator<Page>
+    public Page? Create(Type type)
     {
-        public Page? Create(Type type)
-        {
-            return Create(type, null);
-        }
+        return Create(type, null);
+    }
 
-        public Page? Create(Type type, object? parameter)
-        {
-            Page? page = null;
+    public Page? Create(Type type, object? parameter)
+    {
+        Page? page = null;
 
-            if (Resolver.IsEnabled)
+        if (Resolver.IsEnabled)
+        {
+            page = (Page)Resolver.Resolve(type);
+
+            var view = page as ViewBase;
+
+            if (view != null)
             {
-                page = (Page)Resolver.Resolve(type);
+                view.CreatedByTinyMvvm = true;
 
-                var view = page as ViewBase;
+                view.CreateViewModel();
+            }
 
-                if (view != null)
-                {
-                    view.CreatedByTinyMvvm = true;
-
-                    view.CreateViewModel(); 
-                }
-
-                if (view?.BindingContext is IViewModelBase)
-                {
-                    TinyMvvmSetup(view, parameter);
-                }
-                else
-                {
-                    if (ParameterSetter.CanSet(type))
-                    {
-                        ParameterSetter.Set(page, parameter);
-                    }
-                }
+            if (view?.BindingContext is IViewModelBase)
+            {
+                TinyMvvmSetup(view, parameter);
             }
             else
             {
-                var defaultCreator = new DefaultViewCreator();
-                page = defaultCreator.Create(type);
-
-                var view = page as ViewBase;
-
-                if (view != null)
+                if (ParameterSetter.CanSet(type))
                 {
-                    view.CreatedByTinyMvvm = true;
-
-                    view.CreateViewModel(); 
-                }
-
-                if (view?.BindingContext is IViewModelBase)
-                {
-                    TinyMvvmSetup(view, parameter);
-                }
-                else
-                {
-                    if (ParameterSetter.CanSet(type))
-                    {
-                        ParameterSetter.Set(page, parameter);
-                    }
+                    ParameterSetter.Set(page, parameter);
                 }
             }
+        }
+        else
+        {
+            var defaultCreator = new DefaultViewCreator();
+            page = defaultCreator.Create(type);
 
-            return page;
+            var view = page as ViewBase;
+
+            if (view != null)
+            {
+                view.CreatedByTinyMvvm = true;
+
+                view.CreateViewModel();
+            }
+
+            if (view?.BindingContext is IViewModelBase)
+            {
+                TinyMvvmSetup(view, parameter);
+            }
+            else
+            {
+                if (ParameterSetter.CanSet(type))
+                {
+                    ParameterSetter.Set(page, parameter);
+                }
+            }
         }
 
-        private void TinyMvvmSetup(ViewBase view, object? parameter )
-        {
-            
+        return page;
+    }
 
+    private void TinyMvvmSetup(ViewBase view, object? parameter)
+    {
+
+
+        if (parameter != null)
+        {
+            view.NavigationParameter = parameter;
+        }
+
+        var viewModel = view.BindingContext as IViewModelBase;
+
+        if (viewModel != null)
+        {
+            ViewBase.SetupUIAction(viewModel);
             if (parameter != null)
             {
-                view.NavigationParameter = parameter;
+                viewModel.NavigationParameter = parameter;
             }
 
-            var viewModel = view.BindingContext as IViewModelBase;
-
-            if (viewModel != null)
+            Device.BeginInvokeOnMainThread(async () =>
             {
-                ViewBase.SetupUIAction(viewModel);
-                if (parameter != null)
+                try
                 {
-                    viewModel.NavigationParameter = parameter;
+                    await view.ReadLock.WaitAsync();
+                    await viewModel.Initialize();
+                    viewModel.IsInitialized = true;
                 }
-
-                Device.BeginInvokeOnMainThread(async () =>
+                finally
                 {
-                    try
-                    {
-                        await view.ReadLock.WaitAsync();
-                        await viewModel.Initialize();
-                        viewModel.IsInitialized = true;
-                    }
-                    finally
-                    {
-                        view.ReadLock.Release();
-                    }
-                });
-            }
+                    view.ReadLock.Release();
+                }
+            });
         }
-
-       
     }
+
+
 }
