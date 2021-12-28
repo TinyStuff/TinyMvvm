@@ -4,10 +4,9 @@ using Xamarin.Forms;
 
 
 
-namespace TinyMvvm.Forms
+namespace TinyMvvm.Forms;
+
+internal static class Helpers
 {
-    internal static class Helpers
-    {
-        public static Action<Action> BeginInvokeOnMainThread => Device.BeginInvokeOnMainThread;
-    }
+    public static Action<Action> BeginInvokeOnMainThread => Device.BeginInvokeOnMainThread;
 }

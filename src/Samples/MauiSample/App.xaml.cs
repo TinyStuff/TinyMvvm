@@ -3,11 +3,10 @@ using Autofac;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using TinyMvvm.Autofac;
-using Application = Microsoft.Maui.Controls.Application;
 
 namespace MauiSample;
 
-public partial class App : Application
+public partial class App
 {
     public App()
     {

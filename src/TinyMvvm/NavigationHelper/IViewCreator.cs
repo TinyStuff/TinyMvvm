@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace TinyMvvm;
 
-namespace TinyMvvm
+public interface IViewCreator<T>
 {
-    public interface IViewCreator<T>
-    {
-        T? Create(Type type);
-        T? Create(Type type, object? parameter);
-    }
+    T? Create(Type type);
+    T? Create(Type type, object? parameter);
 }

@@ -1,26 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Threading.Tasks;
+﻿namespace TinyMvvm;
 
-namespace TinyMvvm
+public interface IViewModelBase : INotifyPropertyChanged
 {
-    public interface IViewModelBase : INotifyPropertyChanged
-    {
-        bool IsInitialized { get; set; }
+    bool IsInitialized { get; set; }
 
-        Task Initialize();
+    Task Initialize();
 
-        Task Returning();
+    Task Returning();
 
-        Task OnAppearing();
+    Task OnAppearing();
 
-        Task OnFirstAppear();
+    Task OnFirstAppear();
 
-        Task OnDisappearing();
+    Task OnDisappearing();
 
-        object? ReturningParameter { get; set; }
-        object? NavigationParameter { get; set; }
-        Dictionary<string, string>? QueryParameters { get; set; }
-    }
+    object? ReturningParameter { get; set; }
+    object? NavigationParameter { get; set; }
+    Dictionary<string, string>? QueryParameters { get; set; }
 }

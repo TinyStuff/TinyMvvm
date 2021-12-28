@@ -5,148 +5,147 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace TinyMvvm.Forms
+namespace TinyMvvm.Forms;
+
+public class ShellNavigationHelper : FormsNavigationHelper
 {
-    public class ShellNavigationHelper : FormsNavigationHelper
+    private Dictionary<string, string> queries = new Dictionary<string, string>();
+    private Dictionary<string, object> parameters = new Dictionary<string, object>();
+
+    public ShellNavigationHelper()
     {
-        private Dictionary<string, string> queries = new Dictionary<string, string>();
-        private Dictionary<string, object> parameters = new Dictionary<string, object>();
+        NavigationHelper.Current = this;
+    }
 
-        public ShellNavigationHelper()
+    public void RegisterRoute(string route, Type type)
+    {
+        try
         {
-            NavigationHelper.Current = this;
+
+            Routing.RegisterRoute(route, type);
         }
-
-        public void RegisterRoute(string route, Type type)
+        catch (ArgumentException)
         {
-            try
-            {
-
-                Routing.RegisterRoute(route, type);
-            }
-            catch (ArgumentException)
-            {
-                //Catch to avoid app crash if route already registered
-            }
+            //Catch to avoid app crash if route already registered
         }
+    }
 
-        internal Dictionary<string, string>? GetQueryParameters(string tinyId)
+    internal Dictionary<string, string>? GetQueryParameters(string tinyId)
+    {
+        if (!queries.ContainsKey(tinyId))
         {
-            if(!queries.ContainsKey(tinyId))
-            {
-                return null;
-            }
-
-            var query = queries[tinyId];
-
-            var values = query.Split('&');
-
-            var parameters = new Dictionary<string, string>();
-
-            foreach (var val in values)
-            {
-                var split = val.Split('=');
-
-                parameters.Add(split.First(), split.Last());
-            }
-
-            parameters.Remove(tinyId);
-
-            return parameters;
-        }
-
-        internal object? GetParameter(string tinyId)
-        {
-            if(parameters.ContainsKey(tinyId))
-            {
-                var parameter = parameters[tinyId];
-
-                parameters.Remove(tinyId);
-
-                return parameter;
-            }
-
             return null;
         }
 
-        public async override Task NavigateToAsync(string key)
+        var query = queries[tinyId];
+
+        var values = query.Split('&');
+
+        var parameters = new Dictionary<string, string>();
+
+        foreach (var val in values)
         {
+            var split = val.Split('=');
 
-                if (Views.ContainsKey(key.ToLower()))
-                {
-                    await base.NavigateToAsync(key);
-                    return;
-                }
-
-                if (key.Contains("?"))
-                {
-                    var route = key.Split('?');
-
-                    var tinyId = Guid.NewGuid().ToString();
-                    key = $"{key}&tinyid={tinyId}";
-
-                    queries.Add(tinyId, route.Last());
-                }
-
-                await Shell.Current.GoToAsync(key);
-           
+            parameters.Add(split.First(), split.Last());
         }
 
-        public async override Task NavigateToAsync(string key, object parameter)
+        parameters.Remove(tinyId);
+
+        return parameters;
+    }
+
+    internal object? GetParameter(string tinyId)
+    {
+        if (parameters.ContainsKey(tinyId))
         {
-            try
-            {
-                if (Views.ContainsKey(key.ToLower()))
-                {
-                    await base.NavigateToAsync(key, parameter);
-                    return;
-                }
+            var parameter = parameters[tinyId];
 
-                var tinyId = Guid.NewGuid().ToString();
+            parameters.Remove(tinyId);
 
-                if (key.Contains("?"))
-                {
-                    var route = key.Split('?');
-                    
-                    key = $"{key}&tinyid={tinyId}";
-
-                    queries.Add(tinyId, route.Last());
-                }
-                else
-                {
-                    key = $"{key}?tinyid={tinyId}";
-                }
-
-                parameters.Add(tinyId, parameter);
-
-                await Shell.Current.GoToAsync(key);
-            }
-            catch (Exception)
-            {
-                await base.NavigateToAsync(key);
-            }
+            return parameter;
         }
 
-        /// <summary>
-        /// Register all viewModels in a assembly so you can use them to navigate.
-        /// </summary>
-        /// <param name="viewModelAssembly"></param>
-        public void InitViewModelNavigation(Assembly viewModelAssembly)
+        return null;
+    }
+
+    public async override Task NavigateToAsync(string key)
+    {
+
+        if (Views.ContainsKey(key.ToLower()))
         {
+            await base.NavigateToAsync(key);
+            return;
+        }
 
-                foreach (var type in viewModelAssembly.DefinedTypes.Where(e => e.IsSubclassOf(typeof(Page))))
-                {
-                    if (type.GenericTypeArguments.Length > 0)
-                    {
-                        RegisterRoute(type.GenericTypeArguments[0].Name, type);
-                    }
+        if (key.Contains("?"))
+        {
+            var route = key.Split('?');
 
-                    if (type.BaseType.GenericTypeArguments.Length > 0)
-                    {
-                        RegisterRoute(type.BaseType.GenericTypeArguments[0].Name, type);
-                    }
+            var tinyId = Guid.NewGuid().ToString();
+            key = $"{key}&tinyid={tinyId}";
 
-                }
+            queries.Add(tinyId, route.Last());
+        }
+
+        await Shell.Current.GoToAsync(key);
+
+    }
+
+    public async override Task NavigateToAsync(string key, object parameter)
+    {
+        try
+        {
+            if (Views.ContainsKey(key.ToLower()))
+            {
+                await base.NavigateToAsync(key, parameter);
+                return;
+            }
+
+            var tinyId = Guid.NewGuid().ToString();
+
+            if (key.Contains("?"))
+            {
+                var route = key.Split('?');
+
+                key = $"{key}&tinyid={tinyId}";
+
+                queries.Add(tinyId, route.Last());
+            }
+            else
+            {
+                key = $"{key}?tinyid={tinyId}";
+            }
+
+            parameters.Add(tinyId, parameter);
+
+            await Shell.Current.GoToAsync(key);
+        }
+        catch (Exception)
+        {
+            await base.NavigateToAsync(key);
+        }
+    }
+
+    /// <summary>
+    /// Register all viewModels in a assembly so you can use them to navigate.
+    /// </summary>
+    /// <param name="viewModelAssembly"></param>
+    public void InitViewModelNavigation(Assembly viewModelAssembly)
+    {
+
+        foreach (var type in viewModelAssembly.DefinedTypes.Where(e => e.IsSubclassOf(typeof(Page))))
+        {
+            if (type.GenericTypeArguments.Length > 0)
+            {
+                RegisterRoute(type.GenericTypeArguments[0].Name, type);
+            }
+
+            if (type.BaseType.GenericTypeArguments.Length > 0)
+            {
+                RegisterRoute(type.BaseType.GenericTypeArguments[0].Name, type);
+            }
+
         }
     }
 }

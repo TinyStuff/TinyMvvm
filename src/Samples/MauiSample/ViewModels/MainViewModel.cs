@@ -35,6 +35,11 @@ public class MainViewModel : ViewModelBase
         return base.OnDisappearing();
     }
 
+    public override Task OnApplicationSleep()
+    {
+        return base.OnApplicationSleep();
+    }
+
     private ICommand details;
     public ICommand Details => details ??= new TinyCommand<string>(async (name) =>
     {
