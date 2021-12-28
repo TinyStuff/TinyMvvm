@@ -8,16 +8,16 @@ public abstract class TinyApplication : Application, ITinyApplication
 {
     private WeakEventManager eventManager = new();
 
-    event EventHandler IApplicationBase.ApplicationResume
+    event EventHandler ITinyApplication.ApplicationResume
     {
-        add => eventManager.AddEventHandler(nameof(IApplicationBase.ApplicationResume), value);
-        remove => eventManager.RemoveEventHandler(nameof(IApplicationBase.ApplicationResume), value);
+        add => eventManager.AddEventHandler(nameof(ITinyApplication.ApplicationResume), value);
+        remove => eventManager.RemoveEventHandler(nameof(ITinyApplication.ApplicationResume), value);
     }
 
-    event EventHandler IApplicationBase.ApplicationSleep
+    event EventHandler ITinyApplication.ApplicationSleep
     {
-        add => eventManager.AddEventHandler(nameof(IApplicationBase.ApplicationSleep), value);
-        remove => eventManager.RemoveEventHandler(nameof(IApplicationBase.ApplicationSleep), value);
+        add => eventManager.AddEventHandler(nameof(ITinyApplication.ApplicationSleep), value);
+        remove => eventManager.RemoveEventHandler(nameof(ITinyApplication.ApplicationSleep), value);
     }
 
     public TinyApplication()
@@ -29,14 +29,14 @@ public abstract class TinyApplication : Application, ITinyApplication
     {
         base.OnResume();
 
-        eventManager.HandleEvent(this, EventArgs.Empty, nameof(IApplicationBase.ApplicationResume));
+        eventManager.HandleEvent(this, EventArgs.Empty, nameof(ITinyApplication.ApplicationResume));
     }
 
     protected override void OnSleep()
     {
         base.OnSleep();
 
-        eventManager.HandleEvent(this, EventArgs.Empty, nameof(IApplicationBase.ApplicationSleep));
+        eventManager.HandleEvent(this, EventArgs.Empty, nameof(ITinyApplication.ApplicationSleep));
     }
 }
 
