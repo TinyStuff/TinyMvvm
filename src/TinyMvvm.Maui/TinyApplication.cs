@@ -1,5 +1,8 @@
 ﻿namespace TinyMvvm.Maui;
 
+/// <summary>
+/// Subclass of <see cref="Application"/> that enables more features for TinyMvvm.
+/// </summary>
 public abstract class TinyApplication : Application, ITinyApplication
 {
     private WeakEventManager eventManager = new();

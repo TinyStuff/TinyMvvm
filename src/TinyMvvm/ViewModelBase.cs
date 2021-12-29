@@ -1,5 +1,8 @@
 ﻿namespace TinyMvvm;
 
+/// <summary>
+/// Base class for ViewModels. 
+/// </summary>
 public abstract class ViewModelBase : IViewModelBase
 {
     private bool hasAppeared;
@@ -59,14 +62,13 @@ public abstract class ViewModelBase : IViewModelBase
     private static Action<Action>? InvokeOnMainThread { get; set; }
 
 
-    /// <summary>
-    /// Initialize runs after that BindingContext of the view has been set.
-    /// </summary>
+    /// <inheritdoc />
     public virtual Task Initialize() => Task.CompletedTask;
 
+    /// <inheritdoc />
     public virtual Task Returning() => Task.CompletedTask;
 
-
+    /// <inheritdoc />
     public virtual Task OnAppearing()
     {
 
@@ -105,18 +107,30 @@ public abstract class ViewModelBase : IViewModelBase
         return Task.CompletedTask;
     }
 
-
+    /// <inheritdoc />
     public virtual Task OnFirstAppear() => Task.CompletedTask;
 
+    /// <inheritdoc />
     public virtual Task OnDisappearing() => Task.CompletedTask;
 
+    /// <inheritdoc />
     public virtual Task OnApplicationResume() => Task.CompletedTask;
+
+    /// <inheritdoc />
     public virtual Task OnApplicationSleep() => Task.CompletedTask;
 
+    /// <inheritdoc />
     public object? ReturningParameter { get; set; }
+
+    /// <inheritdoc />
     public object? NavigationParameter { get; set; }
+
+    /// <inheritdoc />
     public Dictionary<string, string>? QueryParameters { get; set; }
 
+    /// <summary>
+    /// Command to use if you want to define how to navigate in the view.
+    /// </summary>
     public ICommand NavigateTo
     {
         get
@@ -128,6 +142,9 @@ public abstract class ViewModelBase : IViewModelBase
         }
     }
 
+    /// <summary>
+    /// Command to use if you want to define how to open a modal in the view.
+    /// </summary>
     public ICommand OpenModal
     {
         get
@@ -139,6 +156,9 @@ public abstract class ViewModelBase : IViewModelBase
         }
     }
 
+    /// <summary>
+    /// Gets the navigation helper.
+    /// </summary>
     public INavigationHelper Navigation
     {
         get
@@ -173,6 +193,7 @@ public abstract class ViewModelBase : IViewModelBase
         }
     }
 
+    /// <inheritdoc />
     public bool IsInitialized { get; set; }
 
     internal bool ReturningHasRun { get; set; }
@@ -182,8 +203,16 @@ public abstract class ViewModelBase : IViewModelBase
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
+    /// <inheritdoc />
     public event PropertyChangedEventHandler PropertyChanged;
 
+    /// <summary>
+    /// To be used in properties, will check if value is changed and raise the <see cref="PropertyChanged"/> event.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="field"></param>
+    /// <param name="newValue"></param>
+    /// <param name="propertyName"></param>
     protected void Set<T>(ref T field, T newValue, [CallerMemberName] string? propertyName = null)
     {
         if (!EqualityComparer<T>.Default.Equals(field, newValue))
