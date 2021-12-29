@@ -1,9 +1,13 @@
 ﻿namespace TinyMvvm;
 
+/// <summary>
+/// An <see cref="ICommand"/> implementation for TinyMvvm.
+/// </summary>
 public class TinyCommand : ICommand
 {
-    private Action _action;
+    private readonly Action _action;
 
+    /// <inheritdoc />
     public event EventHandler? CanExecuteChanged;
 
     public TinyCommand(Action action)
@@ -11,28 +15,35 @@ public class TinyCommand : ICommand
         _action = action;
     }
 
+    /// <inheritdoc />
     public bool CanExecute(object parameter)
     {
         return true;
     }
 
+    /// <inheritdoc />
     public void Execute(object parameter)
     {
         _action();
     }
 }
 
+/// <summary>
+/// An generic <see cref="ICommand"/> implementation for TinyMvvm.
+/// </summary>
 public class TinyCommand<T> : ICommand
 {
-    private Action<T> _action;
+    private readonly Action<T> _action;
 
     public TinyCommand(Action<T> action)
     {
         _action = action;
     }
 
+    /// <inheritdoc />
     public event EventHandler? CanExecuteChanged;
 
+    /// <inheritdoc />
     public bool CanExecute(object parameter)
     {
         if (parameter is T)
@@ -41,10 +52,9 @@ public class TinyCommand<T> : ICommand
         return false;
     }
 
-
+    /// <inheritdoc />
     public void Execute(object parameter)
     {
-
         _action((T)parameter);
     }
 }
