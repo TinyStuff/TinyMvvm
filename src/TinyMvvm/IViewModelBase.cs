@@ -14,6 +14,9 @@ public interface IViewModelBase : INotifyPropertyChanged
 
     Task OnDisappearing();
 
+    Task OnApplicationResume();
+    Task OnApplicationSleep();
+
     object? ReturningParameter { get; set; }
     object? NavigationParameter { get; set; }
     Dictionary<string, string>? QueryParameters { get; set; }
