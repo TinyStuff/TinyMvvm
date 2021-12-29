@@ -72,14 +72,14 @@ namespace TinyMvvm.Maui
 
         private static void RegisterAssemblies(MauiAppBuilder builder, Assembly viewAssembly, Assembly viewModelAssembly)
         {
-            var pageTypes = viewAssembly.DefinedTypes.Select(x => x.AsType()).Where(x => x.IsSubclassOf(typeof(ViewBase)));
+            var pageTypes = viewAssembly.DefinedTypes.Select(x => x.AsType()).Where(x => x.IsSubclassOf(typeof(ViewBase)) && !x.IsAbstract);
 
             foreach (var type in pageTypes)
             {
                 builder.Services.AddTransient(type);
             }
 
-            var typesInAssembly = viewModelAssembly.DefinedTypes.Select(x => x.AsType()).Where(x => x.IsSubclassOf(typeof(ViewModelBase)));
+            var typesInAssembly = viewModelAssembly.DefinedTypes.Select(x => x.AsType()).Where(x => x.IsSubclassOf(typeof(ViewModelBase)) && !x.IsAbstract);
 
             foreach (var type in typesInAssembly)
             {
