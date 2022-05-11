@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -109,15 +109,15 @@ namespace TinyMvvm.Forms
                         return;
                     }
                 }
-                else if (Application.Current.MainPage is MasterDetailPage masterDetailPage)
+                else if (Application.Current.MainPage is FlyoutPage flyoutPage)
                 {
                     if (resetStack)
                     {
-                        masterDetailPage.Detail = new NavigationPage(page);
+                        flyoutPage.Detail = new NavigationPage(page);
                         return;
                     }
 
-                    if (masterDetailPage.Detail is TabbedPage tabbedPage)
+                    if (flyoutPage.Detail is TabbedPage tabbedPage)
                     {
                         if (tabbedPage.CurrentPage.Navigation != null)
                         {
@@ -126,9 +126,9 @@ namespace TinyMvvm.Forms
                         }
                     }
 
-                    if (masterDetailPage?.Detail.Navigation != null)
+                    if (flyoutPage?.Detail.Navigation != null)
                     {
-                        await masterDetailPage.Detail.Navigation.PushAsync(page);
+                        await flyoutPage.Detail.Navigation.PushAsync(page);
 
                         return;
                     }
@@ -279,9 +279,9 @@ namespace TinyMvvm.Forms
                         return;
                     }
                 }
-                else if (Application.Current.MainPage is MasterDetailPage masterDetailPage)
+                else if (Application.Current.MainPage is FlyoutPage flyoutPage)
                 {
-                    if (masterDetailPage.Detail is TabbedPage tabbedPage)
+                    if (flyoutPage.Detail is TabbedPage tabbedPage)
                     {
                         if (tabbedPage.CurrentPage.Navigation != null)
                         {
@@ -301,9 +301,9 @@ namespace TinyMvvm.Forms
                             return;
                         }
                     }
-                    if (masterDetailPage.Detail.Navigation != null)
+                    if (flyoutPage.Detail.Navigation != null)
                     {
-                        var prevPage = masterDetailPage.Detail.Navigation.NavigationStack[0];
+                        var prevPage = flyoutPage.Detail.Navigation.NavigationStack[0];
 
                         if (prevPage != null && prevPage.BindingContext is ViewModelBase mdviewModel)
                         {
@@ -313,7 +313,7 @@ namespace TinyMvvm.Forms
                             Device.BeginInvokeOnMainThread(async () => await mdviewModel.Returning());
                         }
 
-                        await masterDetailPage.Detail.Navigation.PopAsync();
+                        await flyoutPage.Detail.Navigation.PopAsync();
 
                         
 
