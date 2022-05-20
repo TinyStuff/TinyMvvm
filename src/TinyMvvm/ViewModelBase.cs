@@ -160,8 +160,26 @@ namespace TinyMvvm
             }
         }
 
-        public bool IsInitialized { get; set; }
-     
+        private bool _isInitialized;
+        public bool IsInitialized 
+        {
+            get { return _isInitialized; }
+            set
+            {
+                _isInitialized = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged("IsNotInitialized");
+            }
+        }
+
+        public bool IsNotInitialized
+        {
+            get
+            {
+                return !IsInitialized;
+            }
+        }
+
         internal bool ReturningHasRun { get; set; }
 
         public void RaisePropertyChanged([CallerMemberName]string? propertyName = null)
