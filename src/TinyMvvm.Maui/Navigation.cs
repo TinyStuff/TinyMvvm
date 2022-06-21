@@ -1,11 +1,11 @@
 ﻿namespace TinyMvvm.Maui;
 
-public class ShellNavigationHelper : ClassicNavigationHelper
+public class Navigation : INavigation
 {
     private Dictionary<string, string> queries = new Dictionary<string, string>();
     private Dictionary<string, object> parameters = new Dictionary<string, object>();
 
-    public ShellNavigationHelper()
+    public Navigation()
     {
         NavigationHelper.Current = this;
     }
@@ -21,45 +21,6 @@ public class ShellNavigationHelper : ClassicNavigationHelper
         {
             //Catch to avoid app crash if route already registered
         }
-    }
-
-    internal Dictionary<string, string>? GetQueryParameters(string tinyId)
-    {
-        if (!queries.ContainsKey(tinyId))
-        {
-            return null;
-        }
-
-        var query = queries[tinyId];
-
-        var values = query.Split('&');
-
-        var parameters = new Dictionary<string, string>();
-
-        foreach (var val in values)
-        {
-            var split = val.Split('=');
-
-            parameters.Add(split.First(), split.Last());
-        }
-
-        parameters.Remove(tinyId);
-
-        return parameters;
-    }
-
-    internal object? GetParameter(string tinyId)
-    {
-        if (parameters.ContainsKey(tinyId))
-        {
-            var parameter = parameters[tinyId];
-
-            parameters.Remove(tinyId);
-
-            return parameter;
-        }
-
-        return null;
     }
 
     public async override Task NavigateToAsync(string key)
