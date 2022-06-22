@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -108,20 +108,27 @@ public class FormsNavigationHelper : INavigationHelper
 
                     return;
                 }
-            }
-            else if (Application.Current.MainPage is MasterDetailPage masterDetailPage)
-            {
-                if (resetStack)
+                else if (Application.Current.MainPage is FlyoutPage flyoutPage)
                 {
-                    masterDetailPage.Detail = new NavigationPage(page);
-                    return;
-                }
-
-                if (masterDetailPage.Detail is TabbedPage tabbedPage)
-                {
-                    if (tabbedPage.CurrentPage.Navigation != null)
+                    if (resetStack)
                     {
-                        await tabbedPage.CurrentPage.Navigation.PushAsync(page);
+                        flyoutPage.Detail = new NavigationPage(page);
+                        return;
+                    }
+
+                    if (flyoutPage.Detail is TabbedPage tabbedPage)
+                    {
+                        if (tabbedPage.CurrentPage.Navigation != null)
+                        {
+                            await tabbedPage.CurrentPage.Navigation.PushAsync(page);
+                            return;
+                        }
+                    }
+
+                    if (flyoutPage?.Detail.Navigation != null)
+                    {
+                        await flyoutPage.Detail.Navigation.PushAsync(page);
+
                         return;
                     }
                 }
@@ -301,20 +308,37 @@ public class FormsNavigationHelper : INavigationHelper
                         return;
                     }
                 }
-                if (masterDetailPage.Detail.Navigation != null)
+                else if (Application.Current.MainPage is FlyoutPage flyoutPage)
                 {
-                    var prevPage = masterDetailPage.Detail.Navigation.NavigationStack[0];
-
-                    if (prevPage != null && prevPage.BindingContext is ViewModelBase mdviewModel)
+                    if (flyoutPage.Detail is TabbedPage tabbedPage)
                     {
-                        mdviewModel.ReturningParameter = parameter;
-                        mdviewModel.ReturningHasRun = true;
+                        if (tabbedPage.CurrentPage.Navigation != null)
+                        {
+                            var prevPage = tabbedPage.CurrentPage.Navigation.NavigationStack[0];
+
+                            if (prevPage != null && prevPage.BindingContext is ViewModelBase tviewModel)
+                            {
+                                tviewModel.ReturningParameter = parameter;
+                                tviewModel.ReturningHasRun = true;
+
+                                Device.BeginInvokeOnMainThread(async () => await tviewModel.Returning());
+                            }
+
+                           await tabbedPage.CurrentPage.Navigation.PopAsync();
+
+                            
+                            return;
+                        }
+                    }
+                    if (flyoutPage.Detail.Navigation != null)
+                    {
+                        var prevPage = flyoutPage.Detail.Navigation.NavigationStack[0];
 
                         Device.BeginInvokeOnMainThread(async () => await mdviewModel.Returning());
                     }
 
-                    await masterDetailPage.Detail.Navigation.PopAsync();
 
+                        await flyoutPage.Detail.Navigation.PopAsync();
 
 
                     return;
