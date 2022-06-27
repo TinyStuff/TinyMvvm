@@ -170,6 +170,7 @@ public abstract class TinyViewModel : ITinyViewModel, IQueryAttributable
         return false;
     }
 
+    private const string TinyParameterKey = "tinyParameter";
     /// <inheritdoc />
     public async void ApplyQueryAttributes(IDictionary<string, object> query)
     {
@@ -178,9 +179,26 @@ public abstract class TinyViewModel : ITinyViewModel, IQueryAttributable
             return;
         }
 
-        if (query.ContainsKey("tinyParameter"))
+        if (query.ContainsKey(TinyParameterKey))
         {
-            NavigationParameter = query["tinyParameter"];
+            NavigationParameter = query[TinyParameterKey];
+
+            if (query.Count > 1)
+            {
+                var queryParameters = new Dictionary<string, object>();
+
+                foreach (var item in query)
+                {
+                    if (item.Key == TinyParameterKey)
+                    {
+                        continue;
+                    }
+
+                    queryParameters.Add(item.Key, item.Value);
+                }
+
+                QueryParameters = queryParameters;
+            }
         }
         else
         {
