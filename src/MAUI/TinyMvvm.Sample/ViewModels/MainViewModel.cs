@@ -39,7 +39,7 @@ public class MainViewModel : TinyViewModel
     private ICommand show;
     public ICommand Show => show ??= new TinyCommand<City>(async (city) =>
     {
-        await Navigation.NavigateTo(nameof(DetailsViewModel), city);
+        await Navigation.NavigateTo($"{nameof(DetailsViewModel)}?id=1", city);
     });
 
     private ObservableCollection<City> cities = new ObservableCollection<City>();
