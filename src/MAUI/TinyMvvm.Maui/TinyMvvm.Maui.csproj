@@ -28,10 +28,4 @@
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
-
-
-	<ItemGroup Condition="'$(Configuration)' != 'MvvmGen_PureCodeGeneration'">
-    <None Include="..\TinyMvvm.SourceGenerators\bin\$(Configuration)\netstandard2.0\TinyMvvm.SourceGenerators.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-    <None Remove="_._" />
-  </ItemGroup>
 </Project>

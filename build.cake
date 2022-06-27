@@ -8,9 +8,9 @@ var settings = new DotNetCoreBuildSettings()
     Sources = new List<string>() {"https://api.nuget.org/v3/index.json","https://pkgs.dev.azure.com/dnceng/public/_packaging/darc-pub-dotnet-runtime-6f411658/nuget/v3/index.json", "https://pkgs.dev.azure.com/dnceng/public/_packaging/darc-pub-dotnet-emsdk-1ec2e17f/nuget/v3/index.json"}
 };
     DotNetCoreBuild("src/Xamarin/TinyMvvm/TinyMvvm.csproj", settings);
-    DotNetCoreBuild("src/Xamarin//TinyMvvm.Forms/TinyMvvm.Forms.csproj", settings);
-    DotNetCoreBuild("src/Xamarin//TinyMvvm.Autofac/TinyMvvm.Autofac.csproj", settings);
-    DotNetCoreBuild("src/Xamarin//TinyMvvm.TinyIoC/TinyMvvm.TinyIoC.csproj", settings);
+    DotNetCoreBuild("src/Xamarin/TinyMvvm.Forms/TinyMvvm.Forms.csproj", settings);
+    DotNetCoreBuild("src/Xamarin/TinyMvvm.Autofac/TinyMvvm.Autofac.csproj", settings);
+    DotNetCoreBuild("src/Xamarin/TinyMvvm.TinyIoC/TinyMvvm.TinyIoC.csproj", settings);
     DotNetCoreBuild("src/MAUI/TinyMvvm.Maui/TinyMvvm.Maui.csproj", settings);
 });
 
@@ -25,10 +25,10 @@ Task("Pack").IsDependentOn("Build").Does(() =>
         OutputDirectory = ".packages"
     };
 
-    DotNetCorePack("src/Xamarin//TinyMvvm/TinyMvvm.csproj", settings);
-    DotNetCorePack("src/Xamarin//TinyMvvm.Forms/TinyMvvm.Forms.csproj", settings);
-    DotNetCorePack("src/Xamarin//TinyMvvm.Autofac/TinyMvvm.Autofac.csproj", settings);
-    DotNetCorePack("src/Xamarin//TinyMvvm.TinyIoC/TinyMvvm.TinyIoC.csproj", settings);
+    DotNetCorePack("src/Xamarin/TinyMvvm/TinyMvvm.csproj", settings);
+    DotNetCorePack("src/Xamarin/TinyMvvm.Forms/TinyMvvm.Forms.csproj", settings);
+    DotNetCorePack("src/Xamarin/TinyMvvm.Autofac/TinyMvvm.Autofac.csproj", settings);
+    DotNetCorePack("src/Xamarin/TinyMvvm.TinyIoC/TinyMvvm.TinyIoC.csproj", settings);
     DotNetCorePack("src/MAUI/TinyMvvm.Maui/TinyMvvm.Maui.csproj", settings);
 });
 
