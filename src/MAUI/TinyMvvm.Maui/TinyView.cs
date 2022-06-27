@@ -2,7 +2,7 @@
 
 public abstract class TinyView : ContentPage
 {
-    internal SemaphoreSlim ReadLock { get; private set; } = new SemaphoreSlim(1, 1);
+    internal SemaphoreSlim InternalLock { get; private set; } = new SemaphoreSlim(1, 1);
 
     protected override void OnBindingContextChanged()
     {
@@ -16,7 +16,7 @@ public abstract class TinyView : ContentPage
                 {
                     MainThread.BeginInvokeOnMainThread(async () =>
                     {
-                        await ReadLock.WaitAsync();
+                        await InternalLock.WaitAsync();
                         await viewModel.Initialize();
 
                         viewModel.IsInitialized = true;
@@ -25,7 +25,7 @@ public abstract class TinyView : ContentPage
             }
             finally
             {
-                ReadLock.Release();
+                InternalLock.Release();
             }
         }
     }
@@ -38,7 +38,7 @@ public abstract class TinyView : ContentPage
         {
             MainThread.BeginInvokeOnMainThread(async () =>
             {
-                await ReadLock.WaitAsync();
+                await InternalLock.WaitAsync();
 
                 if (!viewModel.IsInitialized)
                 {
@@ -48,7 +48,7 @@ public abstract class TinyView : ContentPage
 
                 await viewModel.OnAppearing();
 
-                ReadLock.Release();
+                InternalLock.Release();
             });
 
         }
@@ -62,11 +62,11 @@ public abstract class TinyView : ContentPage
         {
             MainThread.BeginInvokeOnMainThread(async () =>
             {
-                await ReadLock.WaitAsync();
+                await InternalLock.WaitAsync();
 
                 await viewModel.OnDisappearing();
 
-                ReadLock.Release();
+                InternalLock.Release();
             });
         }
     }

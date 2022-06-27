@@ -9,7 +9,7 @@
             <Entry Text="{Binding Text}" Placeholder="Search city" />
             <Button Command="{Binding Search}" Text="Search" />
         </VerticalStackLayout>
-        <ActivityIndicator Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" IsRunning="{Binding IsBusy}" />
+        <ActivityIndicator Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
         <CollectionView Grid.Row="1" x:Name="CityList" ItemsSource="{Binding Cities}" IsVisible="{Binding IsNotBusy}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
