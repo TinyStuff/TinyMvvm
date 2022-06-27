@@ -174,17 +174,22 @@ public abstract class ViewModelBase : IViewModelBase
         }
     }
     private bool _isBusy;
+    /// <inheritdoc />
     public bool IsBusy
     {
         get { return _isBusy; }
         set
         {
-            _isBusy = value;
-            RaisePropertyChanged();
-            RaisePropertyChanged("IsNotBusy");
+            var updated = Set(ref _isBusy, value);
+
+            if (updated)
+            {
+                RaisePropertyChanged(nameof(IsNotBusy));
+            }
         }
     }
 
+    /// <inheritdoc />
     public bool IsNotBusy
     {
         get
@@ -193,8 +198,31 @@ public abstract class ViewModelBase : IViewModelBase
         }
     }
 
+
+    private bool _isInitialized;
     /// <inheritdoc />
-    public bool IsInitialized { get; set; }
+    public bool IsInitialized
+    {
+        get { return _isInitialized; }
+        set
+        {
+            var updated = Set(ref _isInitialized, value);
+
+            if (updated)
+            {
+                RaisePropertyChanged("IsNotInitialized");
+            }
+        }
+    }
+
+    /// <inheritdoc />
+    public bool IsNotInitialized
+    {
+        get
+        {
+            return !IsInitialized;
+        }
+    }
 
     internal bool ReturningHasRun { get; set; }
 
@@ -213,12 +241,16 @@ public abstract class ViewModelBase : IViewModelBase
     /// <param name="field"></param>
     /// <param name="newValue"></param>
     /// <param name="propertyName"></param>
-    protected void Set<T>(ref T field, T newValue, [CallerMemberName] string? propertyName = null)
+    protected bool Set<T>(ref T field, T newValue, [CallerMemberName] string? propertyName = null)
     {
         if (!EqualityComparer<T>.Default.Equals(field, newValue))
         {
             field = newValue;
             RaisePropertyChanged(propertyName);
+
+            return true;
         }
+
+        return false;
     }
 }
