@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1703.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyMvvm.Maui", "TinyMvvm.Maui\TinyMvvm.Maui.csproj", "{1E75EB2D-80A6-42E1-A581-DEA1BA7A7A8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyMvvm.Sample", "TinyMvvm.Sample\TinyMvvm.Sample.csproj", "{A905BFB6-61AA-4422-B8C4-0E142A44FB8B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1E75EB2D-80A6-42E1-A581-DEA1BA7A7A8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E75EB2D-80A6-42E1-A581-DEA1BA7A7A8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E75EB2D-80A6-42E1-A581-DEA1BA7A7A8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E75EB2D-80A6-42E1-A581-DEA1BA7A7A8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A905BFB6-61AA-4422-B8C4-0E142A44FB8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A905BFB6-61AA-4422-B8C4-0E142A44FB8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A905BFB6-61AA-4422-B8C4-0E142A44FB8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A905BFB6-61AA-4422-B8C4-0E142A44FB8B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3DAB993B-9D3A-4044-B723-1B0035DC1CFA}
+	EndGlobalSection
+EndGlobal

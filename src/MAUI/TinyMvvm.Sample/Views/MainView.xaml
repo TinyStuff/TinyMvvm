@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvvm:TinyView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mvvm="clr-namespace:TinyMvvm;assembly=TinyMvvm.Maui"
+             x:Class="TinyMvvm.Sample.Views.MainView"
+             Title="MainView">
+    <Grid RowDefinitions="Auto, *" Padding="10" RowSpacing="10">
+        <VerticalStackLayout Spacing="10">
+            <Entry Text="{Binding Text}" Placeholder="Search city" />
+            <Button Command="{Binding Search}" Text="Search" />
+        </VerticalStackLayout>
+        <ActivityIndicator Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" IsRunning="{Binding IsBusy}" />
+        <CollectionView Grid.Row="1" x:Name="CityList" ItemsSource="{Binding Cities}" IsVisible="{Binding IsNotBusy}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <ContentView Padding="0,10">
+                        <ContentView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BindingContext.Show, Source={x:Reference CityList}}" CommandParameter="{Binding}" />
+                        </ContentView.GestureRecognizers>
+
+                        <Label Text="{Binding Name}" />
+                    </ContentView>
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+    </Grid>
+</mvvm:TinyView>
