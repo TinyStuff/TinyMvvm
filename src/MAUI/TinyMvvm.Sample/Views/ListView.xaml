@@ -4,7 +4,7 @@
              xmlns:mvvm="clr-namespace:TinyMvvm;assembly=TinyMvvm.Maui"
              x:Class="TinyMvvm.Sample.Views.ListView"
              Title="ListView">
-    <Grid>
+    <Grid Padding="10">
         <ActivityIndicator HorizontalOptions="Center" VerticalOptions="Center" IsRunning="{Binding IsBusy}" />
         <CollectionView x:Name="CityList" ItemsSource="{Binding Cities}" IsVisible="{Binding IsNotBusy}">
             <CollectionView.ItemTemplate>

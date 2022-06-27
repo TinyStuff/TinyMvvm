@@ -4,9 +4,9 @@
              xmlns:mvvm="clr-namespace:TinyMvvm;assembly=TinyMvvm.Maui"
              x:Class="TinyMvvm.Sample.Views.DetailsView"
              Title="DetailsView">
-    <VerticalStackLayout>
+    <VerticalStackLayout Padding="10">
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="{Binding City.Name}"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>

@@ -27,6 +27,8 @@ public class MainViewModel : TinyViewModel
     {
         IsBusy = true;
 
+        var isMain = MainThread.IsMainThread;
+
         var result = await cityService.Search(Text);
 
         Cities = new ObservableCollection<City>(result);

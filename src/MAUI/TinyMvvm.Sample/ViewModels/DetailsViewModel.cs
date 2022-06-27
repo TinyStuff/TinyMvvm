@@ -10,7 +10,7 @@ namespace TinyMvvm.Sample.ViewModels
             this.cityService = cityService;
         }
 
-        public override async Task Initialize()
+        public override async Task ParameterSet()
         {
             IsBusy = true;
 

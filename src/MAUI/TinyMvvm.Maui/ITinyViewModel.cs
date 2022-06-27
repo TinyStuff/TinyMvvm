@@ -15,9 +15,10 @@ public interface ITinyViewModel : INotifyPropertyChanged
     Task Initialize();
 
     /// <summary>
-    /// This method will run after navigating back.
+    /// This method runs when navigation parameters are set.
     /// </summary>
-    Task Returning();
+    /// <returns></returns>
+    Task ParameterSet();
 
     /// <summary>
     /// This method will run every time the view is apperaing.
@@ -44,10 +45,6 @@ public interface ITinyViewModel : INotifyPropertyChanged
     /// </summary>
     Task OnApplicationSleep();
 
-    /// <summary>
-    /// Parameter that passed to this ViewModel when navigating back to it.
-    /// </summary>
-    object? ReturningParameter { get; set; }
 
     /// <summary>
     /// Parameter that passed to this ViewModel when navigated, will not be available in the constructor, use it when Initialize is running or later. 

@@ -48,7 +48,7 @@ public class CityService : ICityService
         using var stream = await FileSystem.OpenAppPackageFileAsync("cities.json");
         using var reader = new StreamReader(stream);
 
-        var contents = reader.ReadToEnd();
+        var contents = await reader.ReadToEndAsync();
 
         cities = JsonSerializer.Deserialize<List<City>>(contents, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
 

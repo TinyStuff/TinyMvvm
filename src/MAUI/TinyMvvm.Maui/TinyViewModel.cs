@@ -32,8 +32,9 @@ public abstract class TinyViewModel : ITinyViewModel, IQueryAttributable
     /// <inheritdoc />
     public virtual Task Initialize() => Task.CompletedTask;
 
+
     /// <inheritdoc />
-    public virtual Task Returning() => Task.CompletedTask;
+    public virtual Task ParameterSet() => Task.CompletedTask;
 
     /// <inheritdoc />
     public virtual Task OnAppearing()
@@ -42,12 +43,8 @@ public abstract class TinyViewModel : ITinyViewModel, IQueryAttributable
         if (!hasAppeared)
         {
 
-           MainThread.BeginInvokeOnMainThread(async () => await OnFirstAppear());
-            
-        }
-        else
-        {
-            MainThread.BeginInvokeOnMainThread(async () => await Returning());
+            MainThread.BeginInvokeOnMainThread(async () => await OnFirstAppear());
+
         }
 
         hasAppeared = true;
@@ -66,9 +63,6 @@ public abstract class TinyViewModel : ITinyViewModel, IQueryAttributable
 
     /// <inheritdoc />
     public virtual Task OnApplicationSleep() => Task.CompletedTask;
-
-    /// <inheritdoc />
-    public object? ReturningParameter { get; set; }
 
     /// <inheritdoc />
     public object? NavigationParameter { get; set; }
@@ -104,10 +98,10 @@ public abstract class TinyViewModel : ITinyViewModel, IQueryAttributable
         {
             var updated = Set(ref _isBusy, value);
 
-            if(updated)
+            if (updated)
             {
                 RaisePropertyChanged(nameof(IsNotBusy));
-            }            
+            }
         }
     }
 
@@ -120,7 +114,7 @@ public abstract class TinyViewModel : ITinyViewModel, IQueryAttributable
         }
     }
 
-    
+
     private bool _isInitialized;
     /// <inheritdoc />
     public bool IsInitialized
@@ -177,15 +171,37 @@ public abstract class TinyViewModel : ITinyViewModel, IQueryAttributable
     }
 
     /// <inheritdoc />
-    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    public async void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        if(query.ContainsKey("tinyParameter"))
+        if(query == null || query.Count == 0)
+        {
+            return;
+        }
+
+        if (query.ContainsKey("tinyParameter"))
         {
             NavigationParameter = query["tinyParameter"];
         }
         else
         {
             QueryParameters = query;
+        }
+
+        async Task RunParameterSet()
+        {
+            await ParameterSet();
+        }
+
+        if (MainThread.IsMainThread)
+        {
+            await RunParameterSet();
+        }
+        else
+        {
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                await RunParameterSet();
+            });
         }
     }
 }
