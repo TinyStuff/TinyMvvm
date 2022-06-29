@@ -1,12 +1,12 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace TinyMvvm;
 
 /// <summary>
 /// Base class for ViewModels. 
 /// </summary>
-public abstract class TinyViewModel : ITinyViewModel, IQueryAttributable
+[INotifyPropertyChanged]
+public abstract partial class TinyViewModel : ITinyViewModel, IQueryAttributable
 {
     private bool hasAppeared;
 
@@ -42,9 +42,7 @@ public abstract class TinyViewModel : ITinyViewModel, IQueryAttributable
 
         if (!hasAppeared)
         {
-
             MainThread.BeginInvokeOnMainThread(async () => await OnFirstAppear());
-
         }
 
         hasAppeared = true;
@@ -89,21 +87,10 @@ public abstract class TinyViewModel : ITinyViewModel, IQueryAttributable
         }
     }
 
+    [ObservableProperty]
+    [AlsoNotifyChangeFor(nameof(IsNotBusy))]
     private bool _isBusy;
-    /// <inheritdoc />
-    public bool IsBusy
-    {
-        get { return _isBusy; }
-        set
-        {
-            var updated = Set(ref _isBusy, value);
-
-            if (updated)
-            {
-                RaisePropertyChanged(nameof(IsNotBusy));
-            }
-        }
-    }
+    
 
     /// <inheritdoc />
     public bool IsNotBusy
@@ -114,22 +101,10 @@ public abstract class TinyViewModel : ITinyViewModel, IQueryAttributable
         }
     }
 
-
+    [ObservableProperty]
+    [AlsoNotifyChangeFor(nameof(IsNotInitialized))]
     private bool _isInitialized;
-    /// <inheritdoc />
-    public bool IsInitialized
-    {
-        get { return _isInitialized; }
-        set
-        {
-            var updated = Set(ref _isInitialized, value);
-
-            if (updated)
-            {
-                RaisePropertyChanged("IsNotInitialized");
-            }
-        }
-    }
+   
 
     /// <inheritdoc />
     public bool IsNotInitialized
@@ -141,34 +116,6 @@ public abstract class TinyViewModel : ITinyViewModel, IQueryAttributable
     }
 
     internal bool ReturningHasRun { get; set; }
-
-    public void RaisePropertyChanged([CallerMemberName] string? propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
-    /// <inheritdoc />
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    /// <summary>
-    /// To be used in properties, will check if value is changed and raise the <see cref="PropertyChanged"/> event.
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="field"></param>
-    /// <param name="newValue"></param>
-    /// <param name="propertyName"></param>
-    protected bool Set<T>(ref T field, T newValue, [CallerMemberName] string? propertyName = null)
-    {
-        if (!EqualityComparer<T>.Default.Equals(field, newValue))
-        {
-            field = newValue;
-            RaisePropertyChanged(propertyName);
-
-            return true;
-        }
-
-        return false;
-    }
 
     private const string TinyParameterKey = "tinyParameter";
     /// <inheritdoc />

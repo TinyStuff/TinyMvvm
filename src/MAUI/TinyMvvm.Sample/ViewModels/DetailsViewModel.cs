@@ -1,11 +1,14 @@
-﻿using TinyMvvm.Sample.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using TinyMvvm.Sample.Models;
 using TinyMvvm.Sample.Services;
 
 namespace TinyMvvm.Sample.ViewModels
 {
-	public class DetailsViewModel : TinyViewModel
+    public partial class DetailsViewModel : TinyViewModel
 	{
-		public DetailsViewModel(ICityService cityService)
+        private readonly ICityService cityService;
+
+        public DetailsViewModel(ICityService cityService)
 		{
             this.cityService = cityService;
         }
@@ -27,14 +30,8 @@ namespace TinyMvvm.Sample.ViewModels
             IsBusy = false;
         }
 
+        [ObservableProperty]
         private City city;
-        private readonly ICityService cityService;
-
-        public City City
-        {
-            get => city;
-            set => Set(ref city, value);
-        }
     }
 }
 

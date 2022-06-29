@@ -2,7 +2,7 @@
 
 namespace TinyMvvm;
 
-public interface ITinyViewModel : INotifyPropertyChanged
+public interface ITinyViewModel
 {
     /// <summary>
     /// Is ViewModel initialized.

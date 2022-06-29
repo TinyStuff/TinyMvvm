@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
 using TinyMvvm.Sample.Models;
 using TinyMvvm.Sample.Services;
 
 namespace TinyMvvm.Sample.ViewModels;
 
-public class MainViewModel : TinyViewModel
+public partial class MainViewModel : TinyViewModel
 {
     private readonly ICityService cityService;
 
@@ -15,12 +16,8 @@ public class MainViewModel : TinyViewModel
         this.cityService = cityService;
     }
 
+    [ObservableProperty]
     private string text;
-    public string Text
-    {
-        get => text;
-        set => Set(ref text, value);
-    }
 
     private ICommand search;
     public ICommand Search => search ??= new TinyCommand(async () =>
@@ -42,11 +39,7 @@ public class MainViewModel : TinyViewModel
         await Navigation.NavigateTo($"{nameof(DetailsViewModel)}?id=1", city);
     });
 
+    [ObservableProperty]
     private ObservableCollection<City> cities = new ObservableCollection<City>();
-    public ObservableCollection<City> Cities
-    {
-        get => cities;
-        set => Set(ref cities, value);
-    }
 }
 

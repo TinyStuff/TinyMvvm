@@ -1,11 +1,12 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
 using TinyMvvm.Sample.Models;
 using TinyMvvm.Sample.Services;
 
 namespace TinyMvvm.Sample.ViewModels
 {
-	public class ListViewModel : TinyViewModel
+    public partial class ListViewModel : TinyViewModel
 	{
         private readonly ICityService cityService;
 
@@ -24,12 +25,8 @@ namespace TinyMvvm.Sample.ViewModels
             IsBusy = false;
         }
 
+        [ObservableProperty]
         private ObservableCollection<City> cities = new ObservableCollection<City>();
-        public ObservableCollection<City> Cities
-        {
-            get => cities;
-            set => Set(ref cities, value);
-        }
 
         private ICommand show;
         public ICommand Show => show ??= new TinyCommand<City>(async (city) =>
