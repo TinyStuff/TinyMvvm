@@ -88,7 +88,7 @@ public abstract partial class TinyViewModel : ITinyViewModel, IQueryAttributable
     }
 
     [ObservableProperty]
-    [AlsoNotifyChangeFor(nameof(IsNotBusy))]
+    [NotifyPropertyChangedFor(nameof(IsNotBusy))]
     private bool _isBusy;
     
 
@@ -102,7 +102,7 @@ public abstract partial class TinyViewModel : ITinyViewModel, IQueryAttributable
     }
 
     [ObservableProperty]
-    [AlsoNotifyChangeFor(nameof(IsNotInitialized))]
+    [NotifyPropertyChangedFor(nameof(IsNotInitialized))]
     private bool _isInitialized;
    
 
