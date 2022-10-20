@@ -14,14 +14,14 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: windows-latest
+    runs-on: macos-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '7.0.x'
+          dotnet-version: '7.x'
           dotnet-quality: 'preview'
       - name: Install maui
         run: dotnet workload install maui
