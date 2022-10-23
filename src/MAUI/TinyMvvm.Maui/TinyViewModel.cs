@@ -34,7 +34,7 @@ public abstract partial class TinyViewModel : ITinyViewModel, IQueryAttributable
 
 
     /// <inheritdoc />
-    public virtual Task ParameterSet() => Task.CompletedTask;
+    public virtual Task OnParameterSet() => Task.CompletedTask;
 
     /// <inheritdoc />
     public virtual Task OnAppearing()
@@ -90,7 +90,7 @@ public abstract partial class TinyViewModel : ITinyViewModel, IQueryAttributable
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsNotBusy))]
     private bool _isBusy;
-    
+
 
     /// <inheritdoc />
     public bool IsNotBusy
@@ -104,7 +104,7 @@ public abstract partial class TinyViewModel : ITinyViewModel, IQueryAttributable
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsNotInitialized))]
     private bool _isInitialized;
-   
+
 
     /// <inheritdoc />
     public bool IsNotInitialized
@@ -121,7 +121,7 @@ public abstract partial class TinyViewModel : ITinyViewModel, IQueryAttributable
     /// <inheritdoc />
     public async void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        if(query == null || query.Count == 0)
+        if (query == null || query.Count == 0)
         {
             return;
         }
@@ -152,20 +152,15 @@ public abstract partial class TinyViewModel : ITinyViewModel, IQueryAttributable
             QueryParameters = query;
         }
 
-        async Task RunParameterSet()
-        {
-            await ParameterSet();
-        }
-
         if (MainThread.IsMainThread)
         {
-            await RunParameterSet();
+            await OnParameterSet();
         }
         else
         {
             MainThread.BeginInvokeOnMainThread(async () =>
             {
-                await RunParameterSet();
+                await OnParameterSet();
             });
         }
     }

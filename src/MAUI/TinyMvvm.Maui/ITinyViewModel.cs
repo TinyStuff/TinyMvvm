@@ -18,7 +18,7 @@ public interface ITinyViewModel
     /// This method runs when navigation parameters are set.
     /// </summary>
     /// <returns></returns>
-    Task ParameterSet();
+    Task OnParameterSet();
 
     /// <summary>
     /// This method will run every time the view is apperaing.

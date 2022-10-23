@@ -4,29 +4,40 @@ public abstract class TinyView : ContentPage
 {
     internal SemaphoreSlim InternalLock { get; private set; } = new SemaphoreSlim(1, 1);
 
-    protected override void OnBindingContextChanged()
+    protected override async void OnBindingContextChanged()
     {
         base.OnBindingContextChanged();
 
         if (BindingContext is ITinyViewModel viewModel)
         {
-            try
+            if (!viewModel.IsInitialized)
             {
-                if (!viewModel.IsInitialized)
+
+                async Task InternalInitialize()
                 {
-                    MainThread.BeginInvokeOnMainThread(async () =>
+                    try
                     {
                         await InternalLock.WaitAsync();
                         await viewModel.Initialize();
 
                         viewModel.IsInitialized = true;
-                    });
+                    }
+                    finally
+                    {
+                        InternalLock.Release();
+                    }
+                }
+
+                if (MainThread.IsMainThread)
+                {
+                    await InternalInitialize();
+                }
+                else
+                {
+                    MainThread.BeginInvokeOnMainThread(async () => await InternalInitialize());
                 }
             }
-            finally
-            {
-                InternalLock.Release();
-            }
+
         }
     }
 

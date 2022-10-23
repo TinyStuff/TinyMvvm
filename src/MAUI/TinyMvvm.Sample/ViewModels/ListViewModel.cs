@@ -21,7 +21,7 @@ namespace TinyMvvm.Sample.ViewModels
             IsBusy = true;
 
             var result = await cityService.GetAll();
-            Cities = new ObservableCollection<City>(result);
+            Cities = new ObservableCollection<City>(result.Take(100));
 
             IsBusy = false;
         }
