@@ -1,4 +1,6 @@
-﻿namespace TinyMvvm;
+﻿using TinyMvvm.Maui;
+
+namespace TinyMvvm;
 
 public abstract class TinyView : ContentPage
 {
@@ -28,13 +30,13 @@ public abstract class TinyView : ContentPage
                     }
                 }
 
-                if (MainThread.IsMainThread)
+                if (TinyDispatcher.IsMainThread)
                 {
                     await InternalInitialize();
                 }
                 else
                 {
-                    MainThread.BeginInvokeOnMainThread(async () => await InternalInitialize());
+                    TinyDispatcher.BeginInvokeOnMainThread(async () => await InternalInitialize());
                 }
             }
 
@@ -47,7 +49,7 @@ public abstract class TinyView : ContentPage
 
         if (BindingContext is ITinyViewModel viewModel)
         {
-            MainThread.BeginInvokeOnMainThread(async () =>
+            TinyDispatcher.BeginInvokeOnMainThread(async () =>
             {
                 await InternalLock.WaitAsync();
 
@@ -71,7 +73,7 @@ public abstract class TinyView : ContentPage
 
         if (BindingContext is ITinyViewModel viewModel)
         {
-            MainThread.BeginInvokeOnMainThread(async () =>
+            TinyDispatcher.BeginInvokeOnMainThread(async () =>
             {
                 await InternalLock.WaitAsync();
 

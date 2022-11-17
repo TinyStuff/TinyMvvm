@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using TinyMvvm.Maui;
 
 namespace TinyMvvm;
 
@@ -42,7 +43,7 @@ public abstract partial class TinyViewModel : ITinyViewModel, IQueryAttributable
 
         if (!hasAppeared)
         {
-            MainThread.BeginInvokeOnMainThread(async () => await OnFirstAppear());
+            TinyDispatcher.BeginInvokeOnMainThread(async () => await OnFirstAppear());
         }
 
         hasAppeared = true;
@@ -152,13 +153,13 @@ public abstract partial class TinyViewModel : ITinyViewModel, IQueryAttributable
             QueryParameters = query;
         }
 
-        if (MainThread.IsMainThread)
+        if (TinyDispatcher.IsMainThread)
         {
             await OnParameterSet();
         }
         else
         {
-            MainThread.BeginInvokeOnMainThread(async () =>
+            TinyDispatcher.BeginInvokeOnMainThread(async () =>
             {
                 await OnParameterSet();
             });
