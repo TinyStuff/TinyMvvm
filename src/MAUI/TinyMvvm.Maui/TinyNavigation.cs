@@ -4,7 +4,7 @@ namespace TinyMvvm;
 
 public class TinyNavigation : INavigation
 {
-    public static INavigation Current { get; private set; } = null!;
+    public static INavigation Current { get; set; } = null!;
 
     public TinyNavigation()
     {
