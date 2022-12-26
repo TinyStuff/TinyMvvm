@@ -36,4 +36,4 @@ Watch Daniel Hindrikes talking about TinyMvvm on YouTube with this recording fro
 [![Watch on YouTube](https://img.youtube.com/vi/rS-cnU86870/0.jpg)](https://www.youtube.com/watch?v=rS-cnU86870)
 
 ## Contribute
-You are very welcome to contribute to TinyMvvm. If you want to add a new feature we would like if you create an issue first so we can discuss the the feature before you spend time to implement it.
+You are very welcome to contribute to TinyMvvm. If you want to add a new feature we would like if you create an issue first so we can discuss the feature before you spend time to implement it.
