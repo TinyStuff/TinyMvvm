@@ -18,7 +18,7 @@
 		<Authors>Daniel Hindrikes</Authors>
 		<Company />
 		<Product>TinyMvvm for .NET MAUI</Product>
-		<PackageIcon>https://github.com/TinyStuff/TinyMvvm/raw/master/logo.png</<PackageIcon>
+		<PackageIcon>https://github.com/TinyStuff/TinyMvvm/raw/master/logo.png</PackageIcon>
 		<Description>TinyMvvm is a tiny MVVM helper library for .NET MAUI.</Description>
 		<Version>1.0.0</Version>
 	</PropertyGroup>
