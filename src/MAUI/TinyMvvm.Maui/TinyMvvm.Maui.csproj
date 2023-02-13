@@ -18,7 +18,7 @@
 		<Authors>Daniel Hindrikes</Authors>
 		<Company />
 		<Product>TinyMvvm for .NET MAUI</Product>
-		<PackageIcon>https://github.com/TinyStuff/TinyMvvm/raw/master/logo.png</PackageIcon>
+		<PackageIcon>logo.png</PackageIcon>
 		<Description>TinyMvvm is a tiny MVVM helper library for .NET MAUI.</Description>
 		<Version>1.0.0</Version>
 	</PropertyGroup>
@@ -30,6 +30,9 @@
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
+	<ItemGroup>
+		<None Include="logo.png" Pack="true" PackagePath="\"/>
+	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="CommunityToolkit.Mvvm" />
 	</ItemGroup>
